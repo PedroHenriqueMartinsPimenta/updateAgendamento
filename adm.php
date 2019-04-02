@@ -61,11 +61,9 @@
 <link rel="stylesheet" type="text/css" href="bootstrap-4.1.3-dist (1)/css/bootstrap.min.css">
 <link rel="dns-prefetch" href="http://fonts.googleapis.com/">
 <link rel="dns-prefetch" href="http://s.w.org/">
-<link rel="alternate" type="application/rss+xml" title="Feed para Agendamento de equipamento »" href="http://localhost/diego/feed/">
-<link rel="alternate" type="application/rss+xml" title="Feed de comentários para Agendamento de equipamento »" href="http://localhost/diego/comments/feed/">
 
         <script type="text/javascript">
-			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/localhost\/diego\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.8"}};
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg"};
 			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
 		</script><script src="./adm_files/wp-emoji-release.min.js.download" type="text/javascript" defer=""></script>
 		<style type="text/css">
@@ -124,14 +122,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     
 </script>
 <script type="text/javascript" src="./adm_files/jquery-migrate.min.js.download"></script>
-<link rel="https://api.w.org/" href="http://localhost/diego/wp-json/">
-<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://localhost/diego/xmlrpc.php?rsd">
-<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://localhost/diego/wp-includes/wlwmanifest.xml"> 
 <meta name="generator" content="WordPress 4.9.8">
-<link rel="canonical" href="http://localhost/diego/">
-<link rel="shortlink" href="http://localhost/diego/">
-<link rel="alternate" type="application/json+oembed" href="http://localhost/diego/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fdiego%2F">
-<link rel="alternate" type="text/xml+oembed" href="http://localhost/diego/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fdiego%2F&amp;format=xml">
 
         <script type="text/javascript" data-name="async-styles">
         (function () {
@@ -202,7 +193,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             <span class="header-homepage-arrow move-down-bounce"> <i class="fa arrow" aria-hidden="true"><img src="adm_files/seta.png" alt=""></i>
             </span>
         </div>
-                    <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 760px; width: 1499px; z-index: -999998; position: absolute;"><div class="backstretch-item deleteable" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 100%; height: 100%; z-index: -999999;"><img alt="" src="./adm_files/hero-2.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1499px; height: 993.087px; max-width: none; left: 0px; top: -116.544px; right: auto; bottom: auto;"></div><div class="backstretch-item" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 100%; height: 100%; z-index: -999999; opacity: 0.556428;"><img alt="" src="http://localhost/diego/wp-content/themes/highlight/assets/images/hero-3.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1499px; height: 999.333px; max-width: none; left: 0px; top: -119.667px; right: auto; bottom: auto;"></div></div></div>
+                    <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 760px; width: 1499px; z-index: -999998; position: absolute;"><div class="backstretch-item deleteable" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 100%; height: 100%; z-index: -999999;"><img alt="" src="./adm_files/hero-2.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1499px; height: 993.087px; max-width: none; left: 0px; top: -116.544px; right: auto; bottom: auto;"></div><div class="backstretch-item" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 100%; height: 100%; z-index: -999999; opacity: 0.556428;"><img alt="" src="adm_files/hero-3.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1499px; height: 999.333px; max-width: none; left: 0px; top: -119.667px; right: auto; bottom: auto;"></div></div></div>
         </div>
         
     <div class="page-content">
@@ -246,7 +237,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 <script type="text/javascript" defer="defer" src="./adm_files/masonry.min.js.download"></script>
 <script type="text/javascript">
 /* <![CDATA[ */
-var mesmerize_backstretch = {"images":["http:\/\/localhost\/diego\/wp-content\/themes\/highlight\/assets\/images\/hero-1.jpg","http:\/\/localhost\/diego\/wp-content\/themes\/highlight\/assets\/images\/hero-2.jpg","http:\/\/localhost\/diego\/wp-content\/themes\/highlight\/assets\/images\/hero-3.jpg","http:\/\/localhost\/diego\/wp-content\/themes\/highlight\/assets\/images\/hero-4.jpg"],"duration":"3000","transitionDuration":"1000","animateFirst":""};
+var mesmerize_backstretch = {"images":["img/hero-1.jpg","img/hero-2.jpg","img/hero-3.jpg","img/hero-4.jpg"],"duration":"3000","transitionDuration":"1000","animateFirst":""};
 /* ]]> */
 </script>
 <script type="text/javascript" defer="defer" src="./adm_files/theme.bundle.min.js.download"></script>

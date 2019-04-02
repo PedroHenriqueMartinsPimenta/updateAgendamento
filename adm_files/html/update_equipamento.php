@@ -4,6 +4,7 @@
     if(isset($_SESSION['CPF']) && $_SESSION['PERMISSAO'] == 1){
     $cpf = $_SESSION['CPF'];
     $permissao = $_SESSION['PERMISSAO'];
+    $codigo = $_GET['codigo'];
 ?>
 <!DOCTYPE html>
 <!-- saved from url=(0032)http://localhost/diego/usuarios/ -->
@@ -56,8 +57,8 @@
             exports.mesmerizeDomReady = domReady;
         })(window, document);
     </script>
-    <title>Equipamentos – Agendamento de equipamento</title>
-<link rel="icon" href="../../img/ceara.png">
+    <title>Usuarios – Agendamento de equipamento</title>
+    <link rel="icon" href="../../img/ceara.png">
 <link rel="stylesheet" type="text/css" href="../../bootstrap-4.1.3-dist (1)/css/bootstrap.min.css">
 <link rel="dns-prefetch" href="http://fonts.googleapis.com/">
 <link rel="dns-prefetch" href="http://s.w.org/">
@@ -67,7 +68,7 @@
 			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/localhost\/diego\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.8"}};
 			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
 		</script><script src="./usuarios_files/wp-emoji-release.min.js.download" type="text/javascript" defer=""></script>
-		<style type="text/css">
+        <style type="text/css">
 img.wp-smiley,
 img.emoji {
 	display: inline !important;
@@ -100,18 +101,6 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 		background-position:center center;
 		background-size:80%;
 	}
-    @media(min-width : 350px){
-    td, th{
-        font-size:10px;
-    }
-
-    @media(min-width : 750px){
-    
-        td, th{
-        font-size:15px;
-    }
-    }
-
 </style>
 <link rel="stylesheet" id="mesmerize-style-bundle-css" href="./usuarios_files/theme.bundle.min.css" type="text/css" media="all">
 <link rel="stylesheet" id="mesmerize-fonts-css" data-href="https://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C600%2C700%7CMuli%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C900%2C900italic%7CPlayfair+Display%3A400%2C400italic%2C700%2C700italic&amp;subset=latin%2Clatin-ext" type="text/css" media="all" href="./usuarios_files/css">
@@ -196,12 +185,12 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="usuarios.php">Usuarios</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="cursos.php">Cursos</a></li>
                     <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="dados_pessoais.php">Dados pessoais</a></li>
-<li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="../../php/sair.php">Sair</a></li>
+<li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="../../php/sair.php" >Sair</a></li>
 </ul></div>    <a href="#" data-component="offcanvas" data-target="#offcanvas-wrapper" data-direction="right" data-width="300px" data-push="false" data-loaded="true">
         <div class="bubble"></div>
         <i class="fa"><img src="../../img/menu.png" alt="" width="75%"></i>
     </a>
-        
+    
     	        </div>
 	    </div>
     </div>
@@ -210,12 +199,12 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 
 <div id="page" class="site">
     <div class="header-wrapper">
-        <div class="header  color-overlay  custom-mobile-image" style="background-image: url(../../img/hero-inner.jpg); background-color: rgb(106, 115, 218); padding-top: 84.375px;" data-parallax-depth="20">
+        <div class="header  color-overlay  custom-mobile-image" style="background-image: url(&quot;../../img/hero-inner.jpg&quot;); background-color: rgb(106, 115, 218); padding-top: 84.375px;" data-parallax-depth="20">
             <div class="background-overlay"></div>								    <div class="inner-header-description gridContainer">
         <div class="row header-description-row">
     <div class="col-xs col-xs-12">
         <h1 class="hero-title">
-            Equipamentos        </h1>
+            Usuarios        </h1>
                     <p class="header-subtitle">Agendamentos rapidos</p>
             </div>
         </div>
@@ -230,55 +219,31 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <div class="gridContainer content">
             <div id="post-104" class="post-104 page type-page status-publish hentry">
      <div>
-        <button class="btn btn-dark" id="cadastrar">Cadastrar</button>
-        <div class="content" id="content-modal" style="display:none">    
+        
+
+        <div class="content" id="content-modal" style="display:block">    
     <div class="form">
-   		<form action="../../php/addEquipamento.php" method="post" enctype="multipart/form-data">
-        	<p>Adicionar usuario</p>
-            <input type="text" required name="descricao" placeholder="Descrição equipamento" class="form-control" >
-            <input type="number" required name="qtd" placeholder="Quantidade" min="0" class="form-control">
-          
-            <label class="label btn btn-primary form-control"  for="file">Selecionar foto de usuario:</label>
-            <input type="file" name="img" required accept="image/png, image/jpeg" style="display:none" id="file">
-        	<div id="preview"></div>
-            
-            <input type="submit" value="Cadastrar" class="btn btn-success">
+   		<form action="../../php/updateEquipamentoScript.php" method="post">
+           <?php 
+            $sql = "SELECT * FROM EQUIPAMENTO WHERE CODIGO = $codigo";
+            $query = mysqli_query($con, $sql);
+            while($row = mysqli_fetch_array($query)){
+            ?>
+        	<p>Atualizar equipamento</p>
+            <input type="text" name="codigo" readonly value="<?php echo $row['CODIGO']?>" class="form-control">
+            <input type="text" required name="descricao" value="<?php echo $row['DESCRICAO']?>" class="form-control" >
+            <input type="number" required name="qtd" value="<?php echo $row['QUANTIDADE']?>" class="form-control">
+            <input type="submit" value="Atualizar" class="btn btn-success">
+            <?php } ?>
         </form>
 	</div>
 <div>
-     </div>
-    </div>
+</div>
+ </div>
+
+
         </div>
     </div>
-
-    <table class="table" style="margin-top:20px">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col" id="icon">Icone</th>
-      <th scope="col" id="desc">Descrição</th>
-      <th scope="col" id="qtd">Quantidade</th>
-      <th scope="col">Editar</th>
-      <th scope="col">Remover</th>
-    </tr>
-  </thead>
-  <tbody>
-      <?php 
-        $sql = "SELECT * FROM EQUIPAMENTO ORDER BY DESCRICAO  ASC";
-        $query = mysqli_query($con, $sql);
-        while($row = mysqli_fetch_array($query)){
-      ?>
-    <tr>
-      <th scope="row" id="icon"><img src="<?php echo $row['ICON'] ?>" alt="" width="50px"></th>
-      <td id="desc"><?php echo $row['DESCRICAO'] ?></td>
-      <td id="qtd"><?php echo $row['QUANTIDADE'] ?> unidades</td>
-      <td><a href="update_equipamento.php?codigo=<?php echo $row['CODIGO'] ?>" title="Editar">Editar</a></td>
-      <td><a href="../../php/delete equipamento.php?codigo=<?php echo $row['CODIGO'] ?>" title="deletar equipamento" class="btn btn-outline-danger">Deletar</a></td>
-    </tr>
-    <?php 
-        }
-    ?>
-  </tbody>
-</table>
 
 	<div class="footer footer-simple">
     <div class="footer-content center-xs">
@@ -407,8 +372,8 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                     <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="../../php/sair.php">Sair</a></li>
 </ul></div>
 </div></body></html>
-<?php 
+            <?php 
     }else{
         header("location:../../");
     }
-?>
+            ?>

@@ -198,7 +198,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 
 <div id="page" class="site">
     <div class="header-wrapper">
-        <div class="header  color-overlay  custom-mobile-image" style="background-image: url(&quot;http://localhost/diego/wp-content/themes/highlight/assets/images/hero-inner.jpg&quot;); background-color: rgb(106, 115, 218); padding-top: 84.375px;" data-parallax-depth="20">
+        <div class="header  color-overlay  custom-mobile-image" style="background-image: url(&quot;../../img/hero-inner.jpg&quot;); background-color: rgb(106, 115, 218); padding-top: 84.375px;" data-parallax-depth="20">
             <div class="background-overlay"></div>								    <div class="inner-header-description gridContainer">
         <div class="row header-description-row">
     <div class="col-xs col-xs-12">

@@ -100,6 +100,24 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 		background-position:center center;
 		background-size:80%;
 	}
+    @media(min-width : 350px){
+    #cpf{
+        display:none
+    }
+    #mail{
+        display:none;
+    }
+
+    @media(min-width : 750px){
+    #cpf{
+        display:block
+    }
+    
+    #mail{
+        display:block;
+    }
+    
+    }
 </style>
 <link rel="stylesheet" id="mesmerize-style-bundle-css" href="./usuarios_files/theme.bundle.min.css" type="text/css" media="all">
 <link rel="stylesheet" id="mesmerize-fonts-css" data-href="https://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C600%2C700%7CMuli%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C900%2C900italic%7CPlayfair+Display%3A400%2C400italic%2C700%2C700italic&amp;subset=latin%2Clatin-ext" type="text/css" media="all" href="./usuarios_files/css">
@@ -198,7 +216,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 
 <div id="page" class="site">
     <div class="header-wrapper">
-        <div class="header  color-overlay  custom-mobile-image" style="background-image: url(&quot;http://localhost/diego/wp-content/themes/highlight/assets/images/hero-inner.jpg&quot;); background-color: rgb(106, 115, 218); padding-top: 84.375px;" data-parallax-depth="20">
+        <div class="header  color-overlay  custom-mobile-image" style="background-image: url(&quot;../../img/hero-inner.jpg&quot;); background-color: rgb(106, 115, 218); padding-top: 84.375px;" data-parallax-depth="20">
             <div class="background-overlay"></div>								    <div class="inner-header-description gridContainer">
         <div class="row header-description-row">
     <div class="col-xs col-xs-12">
@@ -246,9 +264,9 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
  <table class="table" style="margin-top:20px">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">CPF</th>
+      <th scope="col" id="cpf">CPF</th>
       <th scope="col">Nome</th>
-      <th scope="col">mail</th>
+      <th scope="col" id="mail">mail</th>
       <th scope="col" title="Enviar E-mail de recuperação de senha">Senha</th>
       <th scope="col">Editar</th>
     </tr>
@@ -260,9 +278,9 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         while($row = mysqli_fetch_array($query)){
       ?>
     <tr>
-      <th scope="row"><?php echo $row['CPF'] ?></th>
+      <th scope="row" id="cpf"><?php echo $row['CPF'] ?></th>
       <td><?php echo $row['NOME'] . " " . $row['SOBRENOME'] ?></td>
-      <td><?php echo $row['EMAIL'] ?></td>
+      <td id="mail"><a href="mailto:<?php echo $row['EMAIL'] ?>"><?php echo $row['EMAIL'] ?></a></td>
       <td><a href="../../php/recuperarSenha.php?cpf=<?php echo $row['CPF'] ?>" title="Enviar E-mail de recuperação de senha">Enviar</a></td>
       <td><a href="update_usuario.php?cpf=<?php echo $row['CPF'] ?>" title="Editar">Editar</a></td>
     </tr>

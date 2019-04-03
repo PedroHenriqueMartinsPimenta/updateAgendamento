@@ -107,7 +107,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     #mail{
         display:none;
     }
-
+    }
     @media(min-width : 750px){
     #cpf{
         display:block
@@ -116,7 +116,6 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     #mail{
         display:block;
     }
-    
     }
 </style>
 <link rel="stylesheet" id="mesmerize-style-bundle-css" href="./usuarios_files/theme.bundle.min.css" type="text/css" media="all">
@@ -216,7 +215,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 
 <div id="page" class="site">
     <div class="header-wrapper">
-        <div class="header  color-overlay  custom-mobile-image" style="background-image: url(&quot;../../img/hero-inner.jpg&quot;); background-color: rgb(106, 115, 218); padding-top: 84.375px;" data-parallax-depth="20">
+        <div class="header color-overlay  custom-mobile-image" style="background-image: url(../../img/hero-inner.jpg); background-color: rgb(106, 115, 218); padding-top: 84.375px;" data-parallax-depth="20">
             <div class="background-overlay"></div>								    <div class="inner-header-description gridContainer">
         <div class="row header-description-row">
     <div class="col-xs col-xs-12">
@@ -242,7 +241,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     <div class="form">
    		<form action="../../php/addProfessor.php" method="post" enctype="multipart/form-data">
         	<p>Adicionar professor</p>
-            <input type="text" required id="cpf" name="cpf" maxlength="14" onkeydown="javascript: fMasc( this, mCPF );" placeholder="CPF" class="form-control">
+            <input type="text" required id="_cpf" name="cpf" maxlength="14" onkeydown="javascript: fMasc( this, mCPF );" placeholder="CPF" class="form-control">
             <input type="text" required id="nome" name="nome" placeholder="Nome" class="form-control">
             <input type="text" required id="sobrenome" name="sobrenome" placeholder="Sobrenome" class="form-control">
             <input type="email" required name="email" placeholder="E-mail" class="form-control">
@@ -253,7 +252,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             </select>
             <label class="label btn btn-primary form-control"  for="file">Selecionar foto de usuario:</label>
             <input type="file" required name="foto" accept="image/png, image/jpeg" style="display:none" id="file">
-        	<div id="preview" align="center"></div>
+        	<div id="preview"></div>
             
             <input type="submit" value="Cadastrar" class="btn btn-success">
         </form>

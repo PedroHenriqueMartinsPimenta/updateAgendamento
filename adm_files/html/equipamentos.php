@@ -104,7 +104,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     td, th{
         font-size:10px;
     }
-
+    }
     @media(min-width : 750px){
     
         td, th{

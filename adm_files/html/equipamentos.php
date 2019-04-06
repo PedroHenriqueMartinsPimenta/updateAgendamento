@@ -304,10 +304,16 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 				if(opc == 1){
 						$('#content-modal').hide(500);
 						$("#cadastrar").text("Cadastrar");
+                        $("#cadastrar").addClass('btn-dark');
+                        $("#cadastrar").addClass('btn');
+						$("#cadastrar").removeClass('close');
 					opc = 0;
 					}else if(opc == 0){
 						$('#content-modal').show(500);
-						$("#cadastrar").text("X");
+                        $("#cadastrar").text("X");
+                        $("#cadastrar").removeClass('btn-dark');
+                        $("#cadastrar").removeClass('btn');
+                        $('#cadastrar').addClass('close');
 						opc = 1;
 						}
 				});

@@ -148,7 +148,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 <link rel="alternate" type="text/xml+oembed" href="http://localhost/diego/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fdiego%2Fusuarios%2F&amp;format=xml">
         <style data-name="header-gradient-overlay">
             .header .background-overlay {
-                background: linear-gradient(135deg , rgba(102,126,234, 0.8) 0%, rgba(118,75,162,0.8) 100%);
+                background: linear-gradient(135deg , rgba(60,200,60, 0.8) 0%, rgba(90,175,132,0.8) 100%);
             }
         </style>
         <script type="text/javascript" data-name="async-styles">
@@ -230,11 +230,35 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         </form>
 	</div>
 <div>
+
      </div>
     </div>
         </div>
     </div>
-
+<table class="table" style="margin-top:20px">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" id="icon">Codigo</th>
+      <th scope="col" id="desc">Descrição</th>
+      <th scope="col">Remover</th>
+    </tr>
+  </thead>
+  <tbody>
+      <?php 
+        $sql = "SELECT * FROM TURMA ORDER BY DESCRICAO  ASC";
+        $query = mysqli_query($con, $sql);
+        while($row = mysqli_fetch_array($query)){
+      ?>
+    <tr>
+      <th scope="row" id="icon"><?php echo $row['CODIGO'] ?></th>
+      <td id="desc"><?php echo $row['DESCRICAO'] ?></td>
+      <td><a href="../../php/delete turma.php?codigo=<?php echo $row['CODIGO'] ?>" title="deletar equipamento" class="btn btn-outline-danger">Remover</a></td>
+    </tr>
+    <?php 
+        }
+    ?>
+  </tbody>
+</table>
 	<div class="footer footer-simple">
     <div class="footer-content center-xs">
         <div class="gridContainer">

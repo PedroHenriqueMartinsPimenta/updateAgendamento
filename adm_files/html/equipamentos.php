@@ -160,7 +160,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 <link rel="alternate" type="text/xml+oembed" href="http://localhost/diego/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fdiego%2Fusuarios%2F&amp;format=xml">
         <style data-name="header-gradient-overlay">
             .header .background-overlay {
-                background: linear-gradient(135deg , rgba(102,126,234, 0.8) 0%, rgba(118,75,162,0.8) 100%);
+                background: linear-gradient(135deg , rgba(60,200,60, 0.8) 0%, rgba(90,175,132,0.8) 100%);
             }
         </style>
         <script type="text/javascript" data-name="async-styles">

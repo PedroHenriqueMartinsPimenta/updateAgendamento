@@ -5,6 +5,10 @@
     $cpf = $_SESSION['CPF'];
     $permissao = $_SESSION['PERMISSAO'];
     $codigo = $_GET['codigo'];
+    
+    $sql = "SELECT * FROM EQUIPAMENTO WHERE CODIGO = $codigo";
+    $query = mysqli_query($con, $sql);
+    while($row = mysqli_fetch_array($query)){
 ?>
 <!DOCTYPE html>
 <!-- saved from url=(0032)http://localhost/diego/usuarios/ -->
@@ -149,7 +153,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 <link rel="alternate" type="text/xml+oembed" href="http://localhost/diego/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fdiego%2Fusuarios%2F&amp;format=xml">
         <style data-name="header-gradient-overlay">
             .header .background-overlay {
-                background: linear-gradient(135deg , rgba(102,126,234, 0.8) 0%, rgba(118,75,162,0.8) 100%);
+                background: linear-gradient(135deg , rgba(60,200,60, 0.8) 0%, rgba(90,175,132,0.8) 100%);
             }
         </style>
         <script type="text/javascript" data-name="async-styles">
@@ -204,7 +208,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <div class="row header-description-row">
     <div class="col-xs col-xs-12">
         <h1 class="hero-title">
-            Usuarios        </h1>
+            <?php echo $row['DESCRICAO']?>        </h1>
                     <p class="header-subtitle">Agendamentos rapidos</p>
             </div>
         </div>
@@ -224,17 +228,11 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <div class="content" id="content-modal" style="display:block">    
     <div class="form">
    		<form action="../../php/updateEquipamentoScript.php" method="post">
-           <?php 
-            $sql = "SELECT * FROM EQUIPAMENTO WHERE CODIGO = $codigo";
-            $query = mysqli_query($con, $sql);
-            while($row = mysqli_fetch_array($query)){
-            ?>
         	<p>Atualizar equipamento</p>
             <input type="text" name="codigo" readonly value="<?php echo $row['CODIGO']?>" class="form-control">
             <input type="text" required name="descricao" value="<?php echo $row['DESCRICAO']?>" class="form-control" >
             <input type="number" required name="qtd" value="<?php echo $row['QUANTIDADE']?>" class="form-control">
             <input type="submit" value="Atualizar" class="btn btn-success">
-            <?php } ?>
         </form>
 	</div>
 <div>
@@ -373,6 +371,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 </ul></div>
 </div></body></html>
             <?php 
+    }
     }else{
         header("location:../../");
     }

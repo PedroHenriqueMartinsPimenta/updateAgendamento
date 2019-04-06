@@ -152,7 +152,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 <link rel="alternate" type="text/xml+oembed" href="http://localhost/diego/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fdiego%2Fusuarios%2F&amp;format=xml">
         <style data-name="header-gradient-overlay">
             .header .background-overlay {
-                background: linear-gradient(135deg , rgba(102,126,234, 0.8) 0%, rgba(118,75,162,0.8) 100%);
+                background: linear-gradient(135deg , rgba(60,200,60, 0.8) 0%, rgba(90,175,132,0.8) 100%);
             }
         </style>
         <script type="text/javascript" data-name="async-styles">
@@ -202,7 +202,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 
 <div id="page" class="site">
     <div class="header-wrapper">
-        <div class="header  color-overlay  custom-mobile-image" style="background-image: url(&quot;http://localhost/diego/wp-content/themes/highlight/assets/images/hero-inner.jpg&quot;); background-color: rgb(106, 115, 218); padding-top: 84.375px;" data-parallax-depth="20">
+        <div class="header  color-overlay  custom-mobile-image" style="background-image: url(&quot;../../img/hero-inner.jpg&quot;); background-color: rgb(106, 115, 218); padding-top: 84.375px;" data-parallax-depth="20">
             <div class="background-overlay"></div>								    <div class="inner-header-description gridContainer">
         <div class="row header-description-row">
     <div class="col-xs col-xs-12">

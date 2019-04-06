@@ -134,8 +134,38 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 <link rel="alternate" type="text/xml+oembed" href="http://localhost/diego/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fdiego%2Fagendamentos%2F&amp;format=xml">
         <style data-name="header-gradient-overlay">
             .header .background-overlay {
-                background: linear-gradient(135deg , rgba(102,126,234, 0.8) 0%, rgba(118,75,162,0.8) 100%);
+                background: linear-gradient(135deg , rgba(60,200,60, 0.8) 0%, rgba(90,175,132,0.8) 100%);
             }
+            @media(min-width : 350px){
+            td, th{
+                font-size:11px;
+            }
+            }
+            @media(min-width : 750px){
+            
+                td, th{
+                font-size:15px;
+            }
+            }
+            @media print{
+                .header,input, select, .btn, #page-top, .footer, .edit{
+                    width:0px;
+                    display:none;
+                }
+                table{
+                    display:block;
+                    border:1px black solid;
+                }
+                td, th{
+                    border-bottom:1px black solid;
+                    width:190px;
+                    text-align:center;
+                }
+            }
+            .btn{
+                margin-top:3px;
+            }
+            
         </style>
         <script type="text/javascript" data-name="async-styles">
         (function () {
@@ -202,7 +232,167 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     <div class="page-content">
         <div class="gridContainer content">
             <div id="post-103" class="post-103 page type-page status-publish hentry">
-  <div>
+    <div>
+    <form action="reservas.php" method="post">
+    <select id="filtro" class="col-12" name="aula">
+		<option value="!= 0">Todas as aulas</option>
+		<option value="= 1">Aula 1</option>
+		<option value="= 2">Aula 2</option>
+		<option value="= 3">Aula 3</option>
+		<option value="= 4">Aula 4</option>
+		<option value="= 5">Aula 5</option>
+		<option value="= 6">Aula 6</option>
+		<option value="= 7">Aula 7</option>
+		<option value="= 8">Aula 8</option>
+		<option value="= 9">Aula 9</option>
+	</select>
+	<input type="date" id="dia" class="col-12" name="dia">
+	<script >
+		var g = new Date();
+		var dia = g.getDate();
+		var mes = g.getMonth()+1;
+		var ano = g.getYear()+1900;
+		if(dia < 10){
+			dia = "0"+dia;
+		}
+		if(mes < 10){
+			mes = "0"+mes;
+		}
+		document.getElementById('dia').value = ano+"-"+mes+"-"+ dia;
+		
+	</script>
+	<button type="submit" onclick="filtrar()" class="btn btn-success">
+		fitrar
+	</button>
+	<a href="reservas.php"><button type="button" class="btn btn-danger">
+		Remover filtro
+	</button></a>
+    
+    <a href="reservas.php?id=1"><button type="button" class="btn btn-info">
+		Historico 
+	</button></a>
+    
+	<div id="print"  class="print btn btn-dark" style="cursor: pointer;">
+	Imprimir
+	</div>
+</form>
+<?php 
+    if(!isset($_POST['dia']) && !isset($_GET['id'])){
+?>
+    <table class="table" style="margin-top:20px">
+    <tr class="cabecario thead-dark">
+      <th scope="col" id="icon">Aula</th>
+      <th>Nome completo</th>
+      <th scope="col">Turma</th>
+      <th scope="col">Dia</th>
+      <th scope="col" class="td">Dia da efetuação</th>
+      <th scope="col" class="edit">Cancelar</th>
+    </tr>
+  <tbody>
+  <?php 
+	$dia = date('Y-m-d');
+	$sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO, AULA.DESCRICAO AS AULA, TURMA.DESCRICAO AS TURMA FROM RESERVA
+INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO 
+INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF
+INNER JOIN AULA ON RESERVA.AULA_CODIGO = AULA.CODIGO
+INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '$dia' ORDER BY AULA ASC";
+
+$queryAgendamento = mysqli_query($con,$sql);
+while($rowList = mysqli_fetch_array($queryAgendamento)){
+    ?>
+    <tr>
+      <th scope="row" id="aula"><?php echo $rowList["AULA"]?></th>
+      <td id="desc"><?php echo $rowList["NOME"]. " ".  $rowList["SOBRENOME"]?></td>
+      <td id="desc"><?php echo $rowList["TURMA"]?></td>
+      <td id="desc"><?php echo $rowList["DATA"]?></td>
+      <td id="desc" class="td"><?php echo $rowList["EFETUOU"]?></td>
+      <td><a href="../../php/delete agendamento.php?codigo=<?php echo $rowList['CODIGO']?>" title="deletar equipamento" class="edit btn btn-outline-danger cancelar">Cancelar</a></td>
+    </tr>
+    <?php 
+        }
+    ?>
+  </tbody>
+</table>
+<?php 
+    }else if(isset($_GET['id'])){
+        ?>
+        <table class="table" style="margin-top:20px">
+    <tr class="cabecario thead-dark">
+      <th scope="col" id="icon">Aula</th>
+      <th>Nome completo</th>
+      <th scope="col">Turma</th>
+      <th scope="col">Dia</th>
+      <th scope="col" class="td">Dia da efetuação</th>
+      <th scope="col" class="edit">Cancelar</th>
+    </tr>
+  <tbody>
+  <?php 
+	$sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO, AULA.DESCRICAO AS AULA, TURMA.DESCRICAO AS TURMA FROM RESERVA
+INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO 
+INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF
+INNER JOIN AULA ON RESERVA.AULA_CODIGO = AULA.CODIGO
+INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO ORDER BY EFETUOU DESC";
+
+$queryAgendamento = mysqli_query($con,$sql);
+echo mysqli_error($con);
+while($rowList = mysqli_fetch_array($queryAgendamento)){
+    ?>
+    <tr>
+      <th scope="row" id="aula"><?php echo $rowList["AULA"]?></th>
+      <td id="desc"><?php echo $rowList["NOME"]. " ".  $rowList["SOBRENOME"]?></td>
+      <td id="desc"><?php echo $rowList["TURMA"]?></td>
+      <td id="desc"><?php echo $rowList["DATA"]?></td>
+      <td id="desc" class="td"><?php echo $rowList["EFETUOU"]?></td>
+      <td><a href="../../php/delete agendamento.php?codigo=<?php echo $rowList['CODIGO']?>" title="deletar equipamento" class="edit btn btn-outline-danger cancelar">Cancelar</a></td>
+    </tr>
+    <?php 
+        }
+    ?>
+  </tbody>
+</table>    
+<?php
+    }else{
+        ?>
+        <table class="table" style="margin-top:20px">
+    <tr class="cabecario thead-dark">
+      <th scope="col" id="icon">Aula</th>
+      <th>Nome completo</th>
+      <th scope="col">Turma</th>
+      <th scope="col">Dia</th>
+      <th scope="col" class="td">Dia da efetuação</th>
+      <th scope="col" class="edit">Cancelar</th>
+    </tr>
+  <tbody>
+  <?php 
+    $dia = $_POST['dia'];
+    $aula = $_POST['aula'];
+	$sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO, AULA.DESCRICAO AS AULA, TURMA.DESCRICAO AS TURMA FROM RESERVA
+INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO 
+INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF
+INNER JOIN AULA ON RESERVA.AULA_CODIGO = AULA.CODIGO
+INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE AULA_CODIGO ". $aula ." AND  DATA_ULTILIZAR = '$dia' ORDER BY AULA ASC";
+
+$queryAgendamento = mysqli_query($con,$sql);
+echo mysqli_error($con);
+while($rowList = mysqli_fetch_array($queryAgendamento)){
+    ?>
+    <tr>
+      <th scope="row" id="aula"><?php echo $rowList["AULA"]?></th>
+      <td id="desc"><?php echo $rowList["NOME"]. " ".  $rowList["SOBRENOME"]?></td>
+      <td id="desc"><?php echo $rowList["TURMA"]?></td>
+      <td id="desc"><?php echo $rowList["DATA"]?></td>
+      <td id="desc" class="td"><?php echo $rowList["EFETUOU"]?></td>
+      <td><a href="../../php/delete agendamento.php?codigo=<?php echo $rowList['CODIGO']?>" title="deletar equipamento" class="edit btn btn-outline-danger cancelar">Cancelar</a></td>
+    </tr>
+    <?php 
+        }
+    ?>
+  </tbody>
+</table>      
+        <?php
+
+    }
+?>
      </div>
     </div>
         </div>
@@ -234,11 +424,15 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             $("#close").click(function(){
                 $('#offcanvas-wrapper').hide(500);
             });
+        $('.print').click(function(){
+            window.print();
+        });
+            
     })
 </script>
 
 <script type="text/javascript">
-	document.getElementsByClassName('site-info').item(0).style.display = 'none'
+	document.getElementsByClassName('site-info').item(0).style.display = 'none';
 </script>
 <div id="offcanvas-wrapper" class="hide  offcanvas-right offcanvas col-12">
         <div class="offcanvas-top">

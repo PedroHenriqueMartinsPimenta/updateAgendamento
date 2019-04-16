@@ -233,13 +233,14 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <div class="row header-description-row">
     <div class="col-xs col-xs-12">
         <h1 class="hero-title">
-            Agendamentos        </h1>
+            Efetuar agendamento        </h1>
                     <p class="header-subtitle">Agendamentos rapidos</p>
             </div>
         </div>
     </div>
         <script>
         window.mesmerizeSetHeaderTopSpacing();
+
     </script>
                         </div>
     </div>
@@ -248,180 +249,83 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <div class="gridContainer content">
             <div id="post-103" class="post-103 page type-page status-publish hentry">
     <div>
-    <form action="reservas.php" method="post">
-    <select id="filtro" class="col-12" name="aula">
-		<option value="!= 0">Todas as aulas</option>
-		<option value="= 1">Aula 1</option>
-		<option value="= 2">Aula 2</option>
-		<option value="= 3">Aula 3</option>
-		<option value="= 4">Aula 4</option>
-		<option value="= 5">Aula 5</option>
-		<option value="= 6">Aula 6</option>
-		<option value="= 7">Aula 7</option>
-		<option value="= 8">Aula 8</option>
-		<option value="= 9">Aula 9</option>
-	</select>
-	<input type="date" id="dia" value="<?php echo $_POST['dia']?>" class="col-12" name="dia">
-	<?php 
-		if(!isset($_POST['dia'])){
-	?>
-	<script >
-		var g = new Date();
-		var dia = g.getDate();
-		var mes = g.getMonth()+1;
-		var ano = g.getYear()+1900;
-		if(dia < 10){
-			dia = "0"+dia;
-		}
-		if(mes < 10){
-			mes = "0"+mes;
-		}
-		document.getElementById('dia').value = ano+"-"+mes+"-"+ dia;
-		
-	</script>
-	<?php 
-		}
-	?>
-	<button type="submit" onclick="filtrar()" class="btn btn-success">
-		fitrar
-	</button>
-	<a href="reservas.php"><button type="button" class="btn btn-danger">
-		Remover filtro
-	</button></a>
-    
-    <a href="reservas.php?id=1"><button type="button" class="btn btn-info">
-		Historico 
-	</button></a>
-    <br>
-   <a href="agendar.php"><button type="button" class="btn btn-outline-primary">
-        Novo agendamento
-    </button></a>
-	<div id="print"  class="print btn btn-dark" style="cursor: pointer;">
-	Imprimir
-	</div>
-</form>
-<?php 
-    if(!isset($_POST['dia']) && !isset($_GET['id'])){
-?>
-    <table class="table" style="margin-top:20px">
-    <tr class="cabecario thead-dark">
-      <th scope="col" id="icon">Aula</th>
-      <th>Nome completo</th>
-      <th scope="col">Turma</th>
-      <th scope="col">Dia</th>
-      <th scope="col" class="td">Dia da efetuação</th>
-      <th scope="col" class="edit">Cancelar</th>
-    </tr>
-  <tbody>
-  <?php 
-	$dia = date('Y-m-d');
-	$sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO, AULA.DESCRICAO AS AULA, TURMA.DESCRICAO AS TURMA FROM RESERVA
-INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO 
-INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF
-INNER JOIN AULA ON RESERVA.AULA_CODIGO = AULA.CODIGO
-INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '$dia' ORDER BY AULA ASC";
 
-$queryAgendamento = mysqli_query($con,$sql);
-while($rowList = mysqli_fetch_array($queryAgendamento)){
-    ?>
-    <tr>
-      <th scope="row" id="aula"><?php echo $rowList["AULA"]?></th>
-      <td id="desc"><?php echo $rowList["NOME"]. " ".  $rowList["SOBRENOME"]?></td>
-      <td id="desc"><?php echo $rowList["TURMA"]?></td>
-      <td id="desc"><?php echo $rowList["DATA"]?></td>
-      <td id="desc" class="td"><?php echo $rowList["EFETUOU"]?></td>
-      <td><a href="../../php/delete agendamento.php?codigo=<?php echo $rowList['CODIGO']?>" title="deletar equipamento" class="edit btn btn-outline-danger cancelar">Cancelar</a></td>
-    </tr>
-    <?php 
-        }
-    ?>
-  </tbody>
-</table>
-<?php 
-    }else if(isset($_GET['id'])){
-        ?>
-        <table class="table" style="margin-top:20px">
-    <tr class="cabecario thead-dark">
-      <th scope="col" id="icon">Aula</th>
-      <th>Nome completo</th>
-      <th scope="col">Turma</th>
-      <th scope="col">Dia</th>
-      <th scope="col" class="td">Dia da efetuação</th>
-      <th scope="col" class="edit">Cancelar</th>
-    </tr>
-  <tbody>
-  <?php 
-	$sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO, AULA.DESCRICAO AS AULA, TURMA.DESCRICAO AS TURMA FROM RESERVA
-INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO 
-INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF
-INNER JOIN AULA ON RESERVA.AULA_CODIGO = AULA.CODIGO
-INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO ORDER BY EFETUOU DESC";
+        <a href="reservas.php"><button type="button" class="btn btn-danger">Cancelar</button></a>
+            <form method="post" action="">
+                <?php 
+                    $dia = date("Y-m-d");
+                ?>
+                 <div class="col-9" id="selectEquipamento" style="margin: 0 auto; text-align: center">
+               <label for="dia">Selecionar dia de ultlização</label> <input type="date" id="dia" name="dia" value="<?php echo $dia ?>" class="form-control col-11" style="margin:5px auto" id="dia">
+                    <?php 
+                        $sql = "SELECT * FROM EQUIPAMENTO ORDER BY DESCRICAO ASC";
+                        $query = mysqli_query($con, $sql);
+                        while ($row = mysqli_fetch_array($query)) {
+                    ?>
+                    <input type="checkbox" name="equipamento" id="campo<?php echo $row['CODIGO']?>" value="<?php echo $row['CODIGO']?>" style="display: none;">
+                    <label  onclick="selecionar(this, <?php echo $row['CODIGO']?>)" id="label<?php echo $row['CODIGO']?>" class="btn btn-primary col-2" style="max-width: 90px;
+                     min-height: 80px; margin: 4px" for="campo<?php echo $row['CODIGO']?>" title="<?php echo $row['DESCRICAO']?>"><img src="<?php echo $row['ICON']?>" width="80px"></label>
+                 <?php } ?><br>
+                 <button type="button" class="btn btn-outline-success proximo_equipamento" disabled>Proximo</button>
+                </div>
 
-$queryAgendamento = mysqli_query($con,$sql);
-echo mysqli_error($con);
-while($rowList = mysqli_fetch_array($queryAgendamento)){
-    ?>
-    <tr>
-      <th scope="row" id="aula"><?php echo $rowList["AULA"]?></th>
-      <td id="desc"><?php echo $rowList["NOME"]. " ".  $rowList["SOBRENOME"]?></td>
-      <td id="desc"><?php echo $rowList["TURMA"]?></td>
-      <td id="desc"><?php echo $rowList["DATA"]?></td>
-      <td id="desc" class="td"><?php echo $rowList["EFETUOU"]?></td>
-      <td><a href="../../php/delete agendamento.php?codigo=<?php echo $rowList['CODIGO']?>" title="deletar equipamento" class="edit btn btn-outline-danger cancelar">Cancelar</a></td>
-    </tr>
-    <?php 
-        }
-    ?>
-  </tbody>
-</table>    
-<?php
-    }else{
-        ?>
-        <table class="table" style="margin-top:20px">
-    <tr class="cabecario thead-dark">
-      <th scope="col" id="icon">Aula</th>
-      <th>Nome completo</th>
-      <th scope="col">Turma</th>
-      <th scope="col">Dia</th>
-      <th scope="col" class="td">Dia da efetuação</th>
-      <th scope="col" class="edit">Cancelar</th>
-    </tr>
-  <tbody>
-  <?php 
-    $dia = $_POST['dia'];
-    $aula = $_POST['aula'];
-	$sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO, AULA.DESCRICAO AS AULA, TURMA.DESCRICAO AS TURMA FROM RESERVA
-INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO 
-INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF
-INNER JOIN AULA ON RESERVA.AULA_CODIGO = AULA.CODIGO
-INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE AULA_CODIGO ". $aula ." AND  DATA_ULTILIZAR = '$dia' ORDER BY AULA ASC";
 
-$queryAgendamento = mysqli_query($con,$sql);
-echo mysqli_error($con);
-while($rowList = mysqli_fetch_array($queryAgendamento)){
-    ?>
-    <tr>
-      <th scope="row" id="aula"><?php echo $rowList["AULA"]?></th>
-      <td id="desc"><?php echo $rowList["NOME"]. " ".  $rowList["SOBRENOME"]?></td>
-      <td id="desc"><?php echo $rowList["TURMA"]?></td>
-      <td id="desc"><?php echo $rowList["DATA"]?></td>
-      <td id="desc" class="td"><?php echo $rowList["EFETUOU"]?></td>
-      <td><a href="../../php/delete agendamento.php?codigo=<?php echo $rowList['CODIGO']?>" title="deletar equipamento" class="edit btn btn-outline-danger cancelar">Cancelar</a></td>
-    </tr>
-    <?php 
-        }
-    ?>
-  </tbody>
-</table>      
-        <?php
+                 <div class="col-9 form-check" id="selectAula" style="margin: 0 auto; text-align: center; display: none">
+                               <?php 
+                               $sql = "SELECT * FROM AULA ORDER BY DESCRICAO ASC";
+                               $query = mysqli_query($con, $sql);
+                               while ($row = mysqli_fetch_array($query)) {
+                                
+                               ?>
+                               <div class="custom-control custom-checkbox">
+                                     <input type="checkbox" onclick="selectAula(this)" name="aula" class="custom-control-input" id="aula<?php echo $row['CODIGO']?>" value="<?php echo $row['CODIGO']?>">
+                                     <label class="custom-control-label" for="aula<?php echo $row['CODIGO']?>"><?php echo $row['DESCRICAO']?></label>
+                                </div>
+                            <?php } ?>
+                 <button type="button" class="btn btn-outline-danger voltar_aula">Voltar</button>                
+                 <button type="button" class="btn btn-outline-success proximo_aula" disabled>Proximo</button>
+                </div>
 
-    }
-?>
-     </div>
+
+                 <div class="col-9 form-check" id="selectTurma" style="margin: 0 auto; text-align: center; display: none">
+                               
+                               <select onchange="selectTurma(this)" id="turma">
+                                  <option value="null">Selecionar turma</option> 
+                               <?php 
+                               $sql = "SELECT * FROM TURMA ORDER BY DESCRICAO ASC";
+                               $query = mysqli_query($con, $sql);
+                               while ($row = mysqli_fetch_array($query)) {
+                               ?>
+                                <option value="<?php echo $row['CODIGO']?>"><?php echo $row['DESCRICAO']?></option>
+                            <?php } ?>
+                               </select>
+                 <button type="button" class="btn btn-outline-danger voltar_turma">Voltar</button>                
+                 <button type="button" class="btn btn-outline-success proximo_turma" disabled>Proximo</button>
+                </div>
+
+
+                 <div class="col-9 form-check" id="selectConfirm" style="margin: 0 auto; text-align: center; display: none">
+                       <table class="table" style="margin-top:20px">
+                          <thead class="thead-dark">
+                            <tr>
+                              <th scope="col" id="icon">Equipamento</th>
+                              <th scope="col" id="desc">Aula</th>
+                              <th scope="col" id="qtd">Turma</th>
+                              <th scope="col" id="qtd">Dia</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            
+                        </tbody>
+                     </table>
+                 <button type="button" class="btn btn-outline-danger Cancelar_confirm">Refazer</button>                
+                 <button type="button" class="btn btn-outline-success proximo_confirm">Confirmar</button>
+                </div>
+            </form>
     </div>
         </div>
     </div>
-
+</div>
 	<div class="footer footer-simple">
     <div class="footer-content center-xs">
         <div class="gridContainer">
@@ -439,6 +343,7 @@ while($rowList = mysqli_fetch_array($queryAgendamento)){
 <script type="text/javascript" src="./reservas_files/theme-child.js.download"></script>
 <script type="text/javascript" defer="defer" src="./reservas_files/wp-embed.min.js.download"></script>
 <script type="text/javascript" src="../../jquery-ui-1.12.1/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="../../js/js/funcoes usuario comum.js"></script>
 <script>
     $(function(){
         
@@ -451,13 +356,152 @@ while($rowList = mysqli_fetch_array($queryAgendamento)){
         $('.print').click(function(){
             window.print();
         });
+        $('.proximo_equipamento').click(function(){
+            $("#selectEquipamento").hide();
+            for(var i = 1; i <= equipamentosSelected.length;i++){
+                pesquisarAulas(equipamentosSelected[i]);
+            }
+            $("#selectAula").show('slow');
+        });
+        $('.voltar_aula').click(function(){
+            $('#selectAula').hide();
+            for(var i = 0; i < document.getElementsByClassName('custom-control-input').length; i++){
+                document.getElementsByClassName('custom-control-input').item(i).checked = false;
+                $('.proximo_aula').attr('disabled','');
+            }
+            $('#selectEquipamento').show('slow');
+        });
+        $('.proximo_aula').click(function(){
+            $('#selectAula').hide();
+            $("#selectTurma").show('slow');
+        });
+        $('.voltar_turma').click(function(){
+            $("#selectTurma").hide();
+            $('#selectAula').show('slow');
+
+        });
+        $('.proximo_turma').click(function(){
+            $('#selectTurma').hide();
+            $('#selectConfirm').show('slow');
+            vereficarAgendamento(equipamentosSelected);
+        });
             
-    })
+    });
+        
+        
+</script>
+<script type="text/javascript">
+    var dia = getData();
+    document.getElementById('dia').setAttribute('min',dia[0]);
+    document.getElementById('dia').setAttribute('max',dia[1]);
+    document.getElementById('dia').value = dia[0];
+    var equipamentosS = <?php echo json_encode( $_SESSION['equipamentos'])?>;
+    var equipamentosSelected = [];
+    for(var i = 1; i <= <?php echo count( $_SESSION['equipamentos'])?>;i++){
+        if(equipamentosS[i] != null){
+        document.getElementById("campo"+equipamentosS[i]).checked = true;
+        $("#label"+equipamentosS[i]).addClass('btn-success');
+        equipamentosSelected[i] = equipamentosS[i];
+        $('.proximo_equipamento').removeAttr('disabled');
+    }
+    }
+    function selecionar(label, codigo){
+        if($(label).hasClass("btn-success")){
+            var data = {"equipamento" : codigo};
+            $.post(
+                "../../php/removeRequestEquipamento.php",
+                data,
+                function(result){
+                    console.log(result);
+                    equipamentosSelected = result;
+                        $(label).removeClass("btn-success");
+                        if(document.getElementsByClassName('btn-success').length == 0){
+                            $('.proximo_equipamento').attr("disabled",""); 
+                        }
+                    }
+                );
+            
+        }else{
+            var data = {"equipamento" : codigo};
+            $.post(
+                "../../php/requestEquipamento.php",
+                data,
+                function(result){
+                    console.log(result);
+                    equipamentosSelected = result;
+                    if (equipamentosSelected != null) {
+                         $(label).addClass("btn-success");
+                         $('.proximo_equipamento').removeAttr("disabled"); 
+                    }
+                }
+                );           
+        }
+    }
+
+        
+    function selectAula(input){
+        var checado = false;
+        for(var i = 0; i < document.getElementsByClassName('custom-control-input').length;i++){
+            if(document.getElementsByClassName('custom-control-input').item(i).checked){
+                checado = true;
+                break;
+            }
+        }
+        if(checado){
+            $('.proximo_aula').removeAttr('disabled');
+        }else{
+            $('.proximo_aula').attr('disabled','');
+
+        }
+    }
+    function pesquisarAulas(codigo){
+        var diaA = $('#dia').val();
+        var data = {equi:codigo, dia:diaA};
+        $.post(
+            "../../php/pesquisaEquipamentos.php",
+            data,
+            function(page){
+                var arrayPage = page;
+                for(var i = 0; i < arrayPage.length;i++){;
+                    document.getElementById('aula'+arrayPage[i]).disabled = true;
+                }
+            
+                },'JSON'
+            )
+        
+        
+    }
+    function selectTurma(select){
+        if($(select).val() != 'null'){
+            $('.proximo_turma').removeAttr('disabled');
+        }else{
+            $('.proximo_turma').attr('disabled','');
+        }
+    }
+
+    function vereficarAgendamento( equii){
+        var table = $('table tbody').html();
+            for(var i = 1; i <= 9; i++){
+                var checked = document.getElementById('aula'+i).checked;
+                if(checked){
+                    var sala = $('select option:selected').text();
+                    for(var a = 1; a <= equipamentosSelected.length; a++){
+                        if(equipamentosSelected[a] != null){
+                            console.log(equipamentosSelected[a]);
+                        var equi = document.getElementById('campo'+equipamentosSelected[a]).checked;
+                        if(equi){
+                            var dia = $("#dia").val();
+                            var equipamento = $("#label"+equipamentosSelected[a]).attr('title');
+                            table+="<tr><th scope='row'>"+equipamento+"</th><td scope='row'>"+i+"º Aula</td><td scope='row'>"+sala+"</td><td scope='row'>"+dia+"</td></tr>";
+                            $('table tbody').html(table);
+                            }
+                        }
+                    }
+                    }
+                }
+            }
 </script>
 
-<script type="text/javascript">
-	document.getElementsByClassName('site-info').item(0).style.display = 'none';
-</script>
 <div id="offcanvas-wrapper" class="hide  offcanvas-right offcanvas col-12">
         <div class="offcanvas-top">
             <div class="logo-holder">

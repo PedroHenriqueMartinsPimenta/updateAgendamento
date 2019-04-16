@@ -7,8 +7,8 @@
 	$row = mysqli_fetch_array($query);
 	$senha = base64_decode($row['SENHA']);
 	$email = $row['EMAIL'];
-	$mensagem = "Sua atual senha: ".$senha;
-	mail($email, "Recuperacao de senha", $mensagem);
+	$mensagem = "Olá senhor(a) usuário, um dos administradores requisitaram a recuperação de senha voltado ao senhor(a), por este motivo estamos lhe enviando um E-mail com sua atual senha. senha: ".$senha;
+	mail($email, "Recuperação de senha", $mensagem);
 	
 ?>
 <script type="text/javascript">

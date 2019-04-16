@@ -112,6 +112,29 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     }
     }
 
+            @media print{
+                .header,input, select, .btn, #page-top, .footer, .edit, #content-modal, .close{
+                    width:0px;
+                    display:none;
+                }
+                table{
+                    border:1px black solid;
+                }
+                td, th{
+                    border-bottom:1px black solid;
+                    width:250px;
+                    text-align:center;
+                }
+                .td{
+                     display:none;
+                     height:100%;
+                     border: none;
+                 }
+            }
+            .btn{
+                margin-top:3px;
+            }
+
 </style>
 <link rel="stylesheet" id="mesmerize-style-bundle-css" href="./usuarios_files/theme.bundle.min.css" type="text/css" media="all">
 <link rel="stylesheet" id="mesmerize-fonts-css" data-href="https://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C600%2C700%7CMuli%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C900%2C900italic%7CPlayfair+Display%3A400%2C400italic%2C700%2C700italic&amp;subset=latin%2Clatin-ext" type="text/css" media="all" href="./usuarios_files/css">
@@ -231,6 +254,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             <div id="post-104" class="post-104 page type-page status-publish hentry">
      <div>
         <button class="btn btn-dark" id="cadastrar">Cadastrar</button>
+        <button type="button" class="btn btn-primary" id="impimir">Impimir</button>
         <div class="content" id="content-modal" style="display:none">    
     <div class="form">
    		<form action="../../php/addEquipamento.php" method="post" enctype="multipart/form-data">
@@ -257,8 +281,8 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
       <th scope="col" id="icon">Icone</th>
       <th scope="col" id="desc">Descrição</th>
       <th scope="col" id="qtd">Quantidade</th>
-      <th scope="col">Editar</th>
-      <th scope="col">Remover</th>
+      <th scope="col" class="td">Editar</th>
+      <th scope="col" class="td">Remover</th>
     </tr>
   </thead>
   <tbody>
@@ -271,15 +295,17 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
       <th scope="row" id="icon"><img src="<?php echo $row['ICON'] ?>" alt="" width="50px"></th>
       <td id="desc"><?php echo $row['DESCRICAO'] ?></td>
       <td id="qtd"><?php echo $row['QUANTIDADE'] ?> unidades</td>
-      <td><a href="update_equipamento.php?codigo=<?php echo $row['CODIGO'] ?>" title="Editar">Editar</a></td>
-      <td><a href="../../php/delete equipamento.php?codigo=<?php echo $row['CODIGO'] ?>" title="deletar equipamento" class="btn btn-outline-danger">Deletar</a></td>
+      <td class="td"><a href="update_equipamento.php?codigo=<?php echo $row['CODIGO'] ?>" title="Editar">Editar</a></td>
+      <td class="td"><a href="../../php/delete equipamento.php?codigo=<?php echo $row['CODIGO'] ?>" title="deletar equipamento" class="btn btn-outline-danger">Deletar</a></td>
     </tr>
     <?php 
         }
     ?>
   </tbody>
 </table>
-
+</div>
+</div>
+</div>
 	<div class="footer footer-simple">
     <div class="footer-content center-xs">
         <div class="gridContainer">
@@ -317,6 +343,9 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 						opc = 1;
 						}
 				});
+			$("#impimir").click(function(){
+				window.print();
+			});
             $('.fa').click(function(){
                 $('#offcanvas-wrapper').show(500);
             });

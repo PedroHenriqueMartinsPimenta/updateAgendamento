@@ -193,7 +193,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             <span class="header-homepage-arrow move-down-bounce"> <i class="fa arrow" aria-hidden="true"><img src="adm_files/seta.png" alt=""></i>
             </span>
         </div>
-                    <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 760px; width: 1499px; z-index: -999998; position: absolute;"><div class="backstretch-item deleteable" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 100%; height: 100%; z-index: -999999;"><img alt="" src="./adm_files/hero-2.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1499px; height: 993.087px; max-width: none; left: 0px; top: -116.544px; right: auto; bottom: auto;"></div><div class="backstretch-item" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 100%; height: 100%; z-index: -999999; opacity: 0.556428;"><img alt="" src="adm_files/hero-3.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1499px; height: 999.333px; max-width: none; left: 0px; top: -119.667px; right: auto; bottom: auto;"></div></div></div>
+                    <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 760px; width: 1499px; z-index: -999998; position: absolute;"><div class="backstretch-item deleteable" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 100%; height: 100%; z-index: -999999;"><img alt="" src="./adm_files/hero-1.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1499px; height: 993.087px; max-width: none; left: 0px; top: -116.544px; right: auto; bottom: auto;"></div><div class="backstretch-item" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 100%; height: 100%; z-index: -999999; opacity: 0.556428;"><img alt="" src="adm_files/hero-3.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1499px; height: 999.333px; max-width: none; left: 0px; top: -119.667px; right: auto; bottom: auto;"></div></div></div>
         </div>
         
     <div class="page-content">
@@ -237,7 +237,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 <script type="text/javascript" defer="defer" src="./adm_files/masonry.min.js.download"></script>
 <script type="text/javascript">
 /* <![CDATA[ */
-var mesmerize_backstretch = {"images":["img/hero-1.jpg","img/hero-2.jpg","img/hero-3.jpg","img/hero-4.jpg"],"duration":"3000","transitionDuration":"1000","animateFirst":""};
+var mesmerize_backstretch = {"images":["img/hero-1.jpg","img/hero-2.jpg","img/hero-5.jpg","img/hero-6.jpg"],"duration":"3000","transitionDuration":"1000","animateFirst":""};
 /* ]]> */
 </script>
 <script type="text/javascript" defer="defer" src="./adm_files/theme.bundle.min.js.download"></script>

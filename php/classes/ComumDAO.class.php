@@ -19,6 +19,7 @@ class ComumDAO extends Conexao{
 				$_SESSION['senha'] = $row['SENHA'];
 				$_SESSION['PERMISSAO'] = $row['PERMISSAO'];
 				$_SESSION['FOTO'] = $row['FOTO'];
+        $_SESSION["equipamentos"] = array();
 								
 				if($row['PERMISSAO'] == 0){
 					header("location:../user.php");

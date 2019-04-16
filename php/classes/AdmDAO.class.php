@@ -125,15 +125,16 @@ class AdmDAO extends Conexao{
                    return false;
                }
            }
-           public function updateProfessor($nome,$sobrenome,$ativo,$permissao,$cpf){
+           public function updateProfessor($nome,$sobrenome,$ativo,$permissao,$cpf, $email){
                $con = $this->openConnection();
-               $sql = "UPDATE USUARIO SET NOME = :NOME,SOBRENOME = :SOBRENOME,  ATIVO = :ATIVO, PERMISSAO = :PERMISSAO WHERE CPF = :CPF";
+               $sql = "UPDATE USUARIO SET NOME = :NOME,SOBRENOME = :SOBRENOME,  ATIVO = :ATIVO, PERMISSAO = :PERMISSAO, EMAIL = :EMAIL WHERE CPF = :CPF";
                $tpmt = $con->prepare($sql);
                $tpmt->bindValue(":NOME",$nome);
                $tpmt->bindValue(":SOBRENOME",$sobrenome);
                $tpmt->bindValue(":ATIVO",$ativo);
                $tpmt->bindValue(":PERMISSAO",$permissao);
                $tpmt->bindValue(":CPF",$cpf);
+               $tpmt->bindValue(":EMAIL", $email);
                $result = $tpmt->execute();
                if($result == 1){
                    return true;

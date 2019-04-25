@@ -87,6 +87,36 @@ class UserComumDAO extends Conexao{
                 }
                 return $array;
             }
+
+            
+         public function pesquisaEquipamentosAula($equipamento,$dia,$aula){
+             $con1 = $this->openConnection();
+             $con2 = $this->openConnection();
+             $array = array();
+             $c = 0;
+                $sqlTest ="SELECT count(AULA_CODIGO) AS QTD FROM RESERVA WHERE EQUIPAMENTO_CODIGO = :EQUIPAMENTO AND DATA_ULTILIZAR = :DIA AND AULA_CODIGO = :I"; 
+                $sqlQtd = "SELECT * FROM EQUIPAMENTO WHERE CODIGO = :EQUIPAMENTO";
+                $tpmt1 = $con1->prepare($sqlQtd);
+                $tpmt1->bindValue(":EQUIPAMENTO",$equipamento);
+                $tpmt1->execute();
+                $query_qtd = $tpmt1->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($query_qtd as $rowQtd) {
+                    $tpmt2 = $con2->prepare($sqlTest);
+                    $tpmt2->bindValue(":EQUIPAMENTO",$equipamento);
+                    $tpmt2->bindValue(":DIA",$dia);
+                    $tpmt2->bindValue(":I",$aula);
+                    $tpmt2->execute();
+                        $query_test = $tpmt2->fetchAll(PDO::FETCH_ASSOC);
+                        foreach ($query_test as $rowTest) {
+                                if($rowTest['QTD'] >= $rowQtd['QUANTIDADE']){
+                                                $array[$c] = $aula;
+                                                $c++; 
+                                                }
+                                }
+                        }
+                
+                return $array;
+            }
         
             public function removerFiltro($cpf){
                 $con = $this->openConnection();

@@ -133,6 +133,19 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 <link rel="alternate" type="application/json+oembed" href="http://localhost/diego/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fdiego%2Fagendamentos%2F">
 <link rel="alternate" type="text/xml+oembed" href="http://localhost/diego/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fdiego%2Fagendamentos%2F&amp;format=xml">
         <style data-name="header-gradient-overlay">
+            .carregando{
+                position: fixed;
+                top:0px;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(2,2,2,0.5);
+                z-index: 9999;
+                background-image: url(../../img/progress.gif);
+                background-repeat: no-repeat;
+                background-size: 50%;
+                background-position: center center;
+                display: none
+            }
             .header .background-overlay {
                 background: linear-gradient(135deg , rgba(60,200,60, 0.8) 0%, rgba(90,175,132,0.8) 100%);
             }
@@ -251,7 +264,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     <div>
 
         <a href="reservas.php"><button type="button" class="btn btn-danger">Cancelar</button></a>
-            <form method="post" action="">
+            <form method="post" action="" id="form">
                 <?php 
                     $dia = date("Y-m-d");
                 ?>
@@ -288,17 +301,8 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 
 
                  <div class="col-9 form-check" id="selectTurma" style="margin: 0 auto; text-align: center; display: none">
-                               
-                               <select onchange="selectTurma(this)" id="turma">
-                                  <option value="null">Selecionar turma</option> 
-                               <?php 
-                               $sql = "SELECT * FROM TURMA ORDER BY DESCRICAO ASC";
-                               $query = mysqli_query($con, $sql);
-                               while ($row = mysqli_fetch_array($query)) {
-                               ?>
-                                <option value="<?php echo $row['CODIGO']?>"><?php echo $row['DESCRICAO']?></option>
-                            <?php } ?>
-                               </select>
+                    <div>
+                    </div>
                  <button type="button" class="btn btn-outline-danger voltar_turma">Voltar</button>                
                  <button type="button" class="btn btn-outline-success proximo_turma" disabled>Proximo</button>
                 </div>
@@ -319,7 +323,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                         </tbody>
                      </table>
                  <button type="button" class="btn btn-outline-danger Cancelar_confirm">Refazer</button>                
-                 <button type="button" class="btn btn-outline-success proximo_confirm">Confirmar</button>
+                 <button type="button" class="btn btn-outline-success proximo_confirm" onclick="agendar()">Confirmar</button>
                 </div>
             </form>
     </div>
@@ -337,6 +341,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     </div>
 </div>
 	</div>
+<div class="carregando"></div>
 <script type="text/javascript" defer="defer" src="./reservas_files/imagesloaded.min.js.download"></script>
 <script type="text/javascript" defer="defer" src="./reservas_files/masonry.min.js.download"></script>
 <script type="text/javascript" defer="defer" src="./reservas_files/theme.bundle.min.js.download"></script>
@@ -358,7 +363,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         });
         $('.proximo_equipamento').click(function(){
             $("#selectEquipamento").hide();
-            for(var i = 1; i <= equipamentosSelected.length;i++){
+            for(var i in equipamentosSelected){
                 pesquisarAulas(equipamentosSelected[i]);
             }
             $("#selectAula").show('slow');
@@ -367,6 +372,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             $('#selectAula').hide();
             for(var i = 0; i < document.getElementsByClassName('custom-control-input').length; i++){
                 document.getElementsByClassName('custom-control-input').item(i).checked = false;
+                document.getElementsByClassName('custom-control-input').item(i).disabled = false;
                 $('.proximo_aula').attr('disabled','');
             }
             $('#selectEquipamento').show('slow');
@@ -374,10 +380,18 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         $('.proximo_aula').click(function(){
             $('#selectAula').hide();
             $("#selectTurma").show('slow');
+            for(var i = 1; i <= 9; i++){
+                var checked = document.getElementById('aula'+i).checked;
+                        if(checked){
+                    var html = '<label>'+i+'° aula: </label><select onchange="selectTurma(this)" id="turma'+i+'"><option value="null">Selecionar turma</option><?php $sql = "SELECT * FROM TURMA ORDER BY DESCRICAO ASC"; $query = mysqli_query($con, $sql); while ($row = mysqli_fetch_array($query)) { ?> <option value="<?php echo $row["CODIGO"]?>"><?php echo $row["DESCRICAO"]?></option> <?php } ?> </select><br><br>';
+                    $("#selectTurma div").html($("#selectTurma div").html()+html);
+                        }
+            }
         });
         $('.voltar_turma').click(function(){
             $("#selectTurma").hide();
             $('#selectAula').show('slow');
+            $("#selectTurma div").html("");
 
         });
         $('.proximo_turma').click(function(){
@@ -385,6 +399,13 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             $('#selectConfirm').show('slow');
             vereficarAgendamento(equipamentosSelected);
         });
+        $('.Cancelar_confirm').click(function(){
+            var c = confirm("reiniciar o agendamento?");
+            if (c) {
+                window.location.href = "agendar.php";
+            }      
+      });
+        
             
     });
         
@@ -396,12 +417,11 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     document.getElementById('dia').setAttribute('max',dia[1]);
     document.getElementById('dia').value = dia[0];
     var equipamentosS = <?php echo json_encode( $_SESSION['equipamentos'])?>;
-    var equipamentosSelected = [];
+    var equipamentosSelected = equipamentosS;
     for(var i = 1; i <= <?php echo count( $_SESSION['equipamentos'])?>;i++){
         if(equipamentosS[i] != null){
         document.getElementById("campo"+equipamentosS[i]).checked = true;
         $("#label"+equipamentosS[i]).addClass('btn-success');
-        equipamentosSelected[i] = equipamentosS[i];
         $('.proximo_equipamento').removeAttr('disabled');
     }
     }
@@ -412,13 +432,13 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                 "../../php/removeRequestEquipamento.php",
                 data,
                 function(result){
-                    console.log(result);
                     equipamentosSelected = result;
                         $(label).removeClass("btn-success");
                         if(document.getElementsByClassName('btn-success').length == 0){
                             $('.proximo_equipamento').attr("disabled",""); 
                         }
-                    }
+                    },
+                    'JSON'
                 );
             
         }else{
@@ -427,13 +447,13 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                 "../../php/requestEquipamento.php",
                 data,
                 function(result){
-                    console.log(result);
                     equipamentosSelected = result;
                     if (equipamentosSelected != null) {
                          $(label).addClass("btn-success");
                          $('.proximo_equipamento').removeAttr("disabled"); 
                     }
-                }
+                },
+                'JSON'
                 );           
         }
     }
@@ -455,6 +475,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         }
     }
     function pesquisarAulas(codigo){
+        $('.carregando').show();
         var diaA = $('#dia').val();
         var data = {equi:codigo, dia:diaA};
         $.post(
@@ -462,10 +483,10 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             data,
             function(page){
                 var arrayPage = page;
-                for(var i = 0; i < arrayPage.length;i++){;
-                    document.getElementById('aula'+arrayPage[i]).disabled = true;
+                for(var i = 0; i < arrayPage.length;i++){
+                  document.getElementById('aula'+arrayPage[i]).disabled = true;
                 }
-            
+                    $('.carregando').hide();
                 },'JSON'
             )
         
@@ -479,19 +500,19 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         }
     }
 
+
     function vereficarAgendamento( equii){
         var table = $('table tbody').html();
             for(var i = 1; i <= 9; i++){
                 var checked = document.getElementById('aula'+i).checked;
                 if(checked){
-                    var sala = $('select option:selected').text();
-                    for(var a = 1; a <= equipamentosSelected.length; a++){
-                        if(equipamentosSelected[a] != null){
-                            console.log(equipamentosSelected[a]);
-                        var equi = document.getElementById('campo'+equipamentosSelected[a]).checked;
+                    var sala = $('#turma'+i+' option:selected').text();
+                    for(var key in equipamentosSelected){
+                        if(equipamentosSelected[key] != null){
+                        var equi = document.getElementById('campo'+equipamentosSelected[key]).checked;
                         if(equi){
                             var dia = $("#dia").val();
-                            var equipamento = $("#label"+equipamentosSelected[a]).attr('title');
+                            var equipamento = $("#label"+equipamentosSelected[key]).attr('title');
                             table+="<tr><th scope='row'>"+equipamento+"</th><td scope='row'>"+i+"º Aula</td><td scope='row'>"+sala+"</td><td scope='row'>"+dia+"</td></tr>";
                             $('table tbody').html(table);
                             }
@@ -500,6 +521,52 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                     }
                 }
             }
+
+     function agendar(){
+        $('.carregando').show();
+        var erroEquipamento = "";
+        var aula;
+        var equipamento;
+        var e = "";
+        var turma;
+        var dia = $('#dia').val();
+        for(var i = 1; i <= 9; i++){
+            var checked = document.getElementById('aula'+i).checked;
+            if (checked) {
+                aula = i;
+                for(var key in equipamentosSelected){
+                    console.log(key);
+                    if(equipamentosSelected[key] != null){
+                    var equi = document.getElementById('campo'+equipamentosSelected[key]).checked;
+                    if(equi){
+                        turma = turma =  $('#turma'+i+' option:selected').val();
+                        equipamento = document.getElementById('campo'+equipamentosSelected[key]).value;
+                        var data = {equipamento: equipamento, aula: aula, sala: turma, data_ultilizar: dia};
+                        $.post(
+                            "../../php/agendar.php",
+                            data,
+                            function(result){
+                                if(typeof result == "number"){
+                                    alert("sucesso");
+                                }else if(typeof result == "string"){
+                                      e = $("#label"+result).attr('title');       
+                                     alert("ERRO:\n O equipamento ("+e+") foi reservado enquanto peenchia-se o seu formulario");
+                                }
+                            },
+                            'JSON'
+                            );
+
+                            }
+                        }
+                    }
+                }
+            }
+            alert("Agendamento finalizado!");
+            $("#selectConfirm").html('<a href="agendar.php"><button type="button" class="btn btn-outline-danger Cancelar_confirm">Novo agendamento</button></a><a href="reservas.php"><button type="button" class="btn btn-outline-success">Ir para os agendamentos</button></a>');
+
+        $('.carregando').hide();
+        
+     }
 </script>
 
 <div id="offcanvas-wrapper" class="hide  offcanvas-right offcanvas col-12">

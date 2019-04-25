@@ -79,6 +79,7 @@ img.emoji {
 	background: none !important;
 	padding: 0 !important;
 }
+
 </style>
 <link rel="stylesheet" id="mesmerize-parent-css" href="./adm_files/style.min.css" type="text/css" media="all">
 <link rel="stylesheet" id="mesmerize-style-css" href="./adm_files/style.min(1).css" type="text/css" media="all">
@@ -193,7 +194,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             <span class="header-homepage-arrow move-down-bounce"> <i class="fa arrow" aria-hidden="true"><img src="adm_files/seta.png" alt=""></i>
             </span>
         </div>
-                    <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 760px; width: 1499px; z-index: -999998; position: absolute;"><div class="backstretch-item deleteable" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 100%; height: 100%; z-index: -999999;"><img alt="" src="./adm_files/hero-1.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1499px; height: 993.087px; max-width: none; left: 0px; top: -116.544px; right: auto; bottom: auto;"></div><div class="backstretch-item" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 100%; height: 100%; z-index: -999999; opacity: 0.556428;"><img alt="" src="adm_files/hero-3.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1499px; height: 999.333px; max-width: none; left: 0px; top: -119.667px; right: auto; bottom: auto;"></div></div></div>
+                    <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 760px; width: 1499px; z-index: -999998; position: absolute;"><div class="backstretch-item deleteable" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 100%; height: 100%; z-index: -999999;"><img alt="" src="img/hero-1.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1499px; height: 993.087px; max-width: none; left: 0px; top: -116.544px; right: auto; bottom: auto;"></div><div class="backstretch-item" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 100%; height: 100%; z-index: -999999; opacity: 0.556428;"><img alt="" src="adm_files/hero-3.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1499px; height: 999.333px; max-width: none; left: 0px; top: -119.667px; right: auto; bottom: auto;"></div></div></div>
         </div>
         
     <div class="page-content">

@@ -100,26 +100,6 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 		background-position:center center;
 		background-size:80%;
 	}
-    @media(min-width : 350px){
-    #cpf{
-        display:none;
-    }
-    #mail{
-        display:none;
-    }
-    }
-    @media(min-width : 750px){
-    #cpf{
-        display:block;
-        border-bottom:none;
-    }
-    
-    #mail{
-        display:block;
-        border-bottom:none;
-    }
-
-    }
 
             @media print{
                 .header,input, select, .btn, #page-top, .footer, .edit, #content-modal, .close {
@@ -295,6 +275,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 <div>
 </div>
  </div>
+ <div style=" max-width: 100%;overflow: scroll">
  <table class="table" style="margin-top:20px">
   <thead class="thead-dark">
     <tr>
@@ -325,7 +306,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     ?>
   </tbody>
 </table>
-
+</div>
 
         </div>
     </div>

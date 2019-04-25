@@ -266,6 +266,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     </div>
         </div>
     </div>
+<div style=" max-width: 100%;overflow: scroll">
 <table class="table" style="margin-top:20px">
   <thead class="thead-dark">
     <tr>
@@ -290,7 +291,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     ?>
   </tbody>
 </table>
-
+</div>
 </div>
 </div>
 </div>

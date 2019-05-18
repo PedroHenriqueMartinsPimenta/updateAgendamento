@@ -295,16 +295,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 </div>
 </div>
 </div>
-	<div class="footer footer-simple">
-    <div class="footer-content center-xs">
-        <div class="gridContainer">
-	        <div class="row middle-xs footer-content-row">
-	            <div class="footer-content-col col-xs-12">
-	                    <p class="copyright">©&nbsp;&nbsp;2019&nbsp;Agendamento de equipamento.&nbsp;Construído pela equipe <a target="_blank" href="#" class="mesmerize-theme-link">Try Developer</a></p>	            </div>
-	        </div>
-	    </div>
-    </div>
-</div>
+	
 	</div>
 <script type="text/javascript" defer="defer" src="./usuarios_files/imagesloaded.min.js.download"></script>
 <script type="text/javascript" defer="defer" src="./usuarios_files/masonry.min.js.download"></script>

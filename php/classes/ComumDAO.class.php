@@ -17,21 +17,23 @@ class ComumDAO extends Conexao{
 				session_start();
 				$_SESSION['CPF'] = $row['CPF'];
 				$_SESSION['senha'] = $row['SENHA'];
+        $_SESSION['nome'] = $row['NOME'];
 				$_SESSION['PERMISSAO'] = $row['PERMISSAO'];
+        $_SESSION['ativo'] = $row['ATIVO'];
 				$_SESSION['FOTO'] = $row['FOTO'];
         $_SESSION["equipamentos"] = array();
 								
 				if($row['PERMISSAO'] == 0){
-					header("location:../user.php");
+					echo json_encode(0);
 				}else if($row['PERMISSAO'] == 1){
-					header("location:../adm.php");
+					echo json_encode(1);
 				}
 			}else{
-				header("location:../");
+				echo json_encode(2);
 				}
                  }
                   }else{
-                  	header("location:../");
+                    echo json_encode(2);
                   }
       }catch(PDOException $e){
           echo $e;

@@ -260,7 +260,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             <input type="text" required id="nome" name="nome" placeholder="Nome" class="form-control">
             <input type="text" required id="sobrenome" name="sobrenome" placeholder="Sobrenome" class="form-control">
             <input type="email" required name="email" placeholder="E-mail" class="form-control">
-            <input type="password" required id="senha" name="senha" placeholder="Senha" class="form-control">
+            <input type="password" required id="senha" name="senha" placeholder="Senha" class="form-control"  minlength="6" maxlength="16">
             <select name="permissao" required id="permisao" class="form-control">
             	<option value="0">Professor</option>
             	<option value="1">Administrador</option>
@@ -292,6 +292,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         $sql = "SELECT * FROM USUARIO ORDER BY NOME  ASC";
         $query = mysqli_query($con, $sql);
         while($row = mysqli_fetch_array($query)){
+            if($row['ATIVO'] == 1){
       ?>
     <tr>
       <td scope="col"><img src="<?php echo $row['FOTO'] ?>" class="img-fluid" width="50px"></td>
@@ -301,7 +302,20 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
       <td class="td"><a href="../../php/recuperarSenha.php?cpf=<?php echo $row['CPF'] ?>" title="Enviar E-mail de recuperação de senha">Enviar</a></td>
       <td class="td"><a href="update_usuario.php?cpf=<?php echo $row['CPF'] ?>" title="Editar">Editar</a></td>
     </tr>
-    <?php 
+    <?php
+    }else{
+        ?>
+    <tr style="opacity: 0.3">
+      <td scope="col"><img src="<?php echo $row['FOTO'] ?>" class="img-fluid" width="50px"></td>
+      <th scope="row" id="cpf"><?php echo $row['CPF'] ?></th>
+      <td><?php echo $row['NOME'] . " " . $row['SOBRENOME'] ?></td>
+      <td id="mail"><a href="mailto:<?php echo $row['EMAIL'] ?>"><?php echo $row['EMAIL'] ?></a></td>
+      <td class="td"><a href="../../php/recuperarSenha.php?cpf=<?php echo $row['CPF'] ?>" title="Enviar E-mail de recuperação de senha">Enviar</a></td>
+      <td class="td"><a href="update_usuario.php?cpf=<?php echo $row['CPF'] ?>" title="Editar">Editar</a></td>
+    </tr>
+
+        <?php
+    } 
         }
     ?>
   </tbody>
@@ -314,16 +328,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     </div>
 </div>
 </div>
-	<div class="footer footer-simple">
-    <div class="footer-content center-xs">
-        <div class="gridContainer">
-	        <div class="row middle-xs footer-content-row">
-	            <div class="footer-content-col col-xs-12">
-	                    <p class="copyright">©&nbsp;&nbsp;2019&nbsp;Agendamento de equipamento.&nbsp;Construído pela equipe <a target="_blank" href="#" class="mesmerize-theme-link">Try Developer</a></p>	            </div>
-	        </div>
-	    </div>
-    </div>
-</div>
+	
 	</div>
 <script type="text/javascript" defer="defer" src="./usuarios_files/imagesloaded.min.js.download"></script>
 <script type="text/javascript" defer="defer" src="./usuarios_files/masonry.min.js.download"></script>

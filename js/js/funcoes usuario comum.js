@@ -1,5 +1,5 @@
 // JavaScript Document
-function getData(){
+function getData(mesQtd){
 		data = new Date();
 		var dia = data.getDate();
 		var mes = data.getMonth() + 1;
@@ -10,31 +10,53 @@ function getData(){
 			dia = "0"+ dia;
 			}
 		var ano = data.getYear() +1900;
-		
 		var diaSemana = data.getDay();
 		diaSemana = parseInt(diaSemana);
 		if(diaSemana == 6){
-			
-			var diasProximo =  ano + "-" +mes + "-" + (parseInt(dia) + parseInt(diaSemana));
-			dia = parseInt(dia) + 2;
+			var diasProximo = "0000-00-00";
+			var diaAtual = "0000-00-00";			
+		}else if(diaSemana == 5){
+			if(data.getHours() > 12){
+			if ((parseInt(dia) + parseInt(diaSemana)) > mesQtd) {
+				var newMes = parseInt(mes)+1;
+				if(newMes < 10){
+					newMes = "0" + newMes;
+				}
+				if( (2 + parseInt(diaSemana)) < 10){
+					var diasProximo =  ano + "-" +newMes + "-0" + (2 + parseInt(diaSemana));
+				}else{
+					var diasProximo =  ano + "-" +newMes + "-" + (2 + parseInt(diaSemana));
+				}
+			}else{
+				var diasProximo =  ano + "-" +mes + "-" + (parseInt(dia) + (2 + parseInt(diaSemana)));
+			}
+			dia = parseInt(dia);
+			if (dia > mesQtd) {
+				dia = 2;
+				mes++;
+			}
 			if(dia < 10){
 				dia = "0"+dia;
 				}
 				
 				var diaAtual = ano + "-" +mes + "-" + dia;
-		}else if(diaSemana == 5){
-			var diasProximo =  ano + "-" +mes + "-" + dia;
-			var diaAtual = ano + "-" +mes + "-" + dia;
+			}else{
+					var diasProximo =  ano + "-" +mes + "-" + dia;
+					var diaAtual = ano + "-" +mes + "-" + dia;
+			}
 		}else if(diaSemana == 0){
-					var diasProximo =  ano + "-" +mes + "-" + (parseInt(dia) + 5);
-					dia = parseInt(dia) + 1;
-					if(dia < 10){
-						dia = "0"+dia;
-					}
-					var diaAtual = ano + "-" +mes + "-" + dia;	
+			var diasProximo = "0000-00-00";
+			var diaAtual = "0000-00-00";		
 			}else{
 		var diaAtual = ano + "-" +mes + "-" + dia;
 			dia = (parseInt(dia)+1);
+				if (dia > mesQtd) {
+					dia = (parseInt(dia)) - mesQtd;
+					mes++;
+				if (mes < 10) {
+					mes = "0" + mes;
+				}
+				}
 			if(dia < 10){
 				dia = "0"+dia;
 				}
@@ -44,6 +66,12 @@ function getData(){
 			var dias =[diaAtual, diasProximo];
 		return dias;
 		}
+
+
+
+
+
+
 			
 			function desmarcar(){
 				var array = [document.getElementById('aula1'),

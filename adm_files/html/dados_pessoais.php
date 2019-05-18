@@ -123,6 +123,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     
     
 </script>
+
 <script type="text/javascript" src="./dados_pessoais_files/jquery-migrate.min.js.download"></script>
 <link rel="https://api.w.org/" href="http://localhost/diego/wp-json/">
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://localhost/diego/xmlrpc.php?rsd">
@@ -222,16 +223,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         </div>
     </div>
 
-	<div class="footer footer-simple">
-    <div class="footer-content center-xs">
-        <div class="gridContainer">
-	        <div class="row middle-xs footer-content-row">
-	            <div class="footer-content-col col-xs-12">
-                <p class="copyright">©&nbsp;&nbsp;2019&nbsp;Agendamento de equipamento.&nbsp;Construído Pela equipe de desenvolvimento <a target="_blank" href="#" class="mesmerize-theme-link">Try Developer</a></p>	            </div>
-	        </div>
-	    </div>
-    </div>
-</div>
+	
 	</div>
 <div class="escuro col-12">
    
@@ -303,7 +295,7 @@ function updateSenha(){
 	var nova = $('#nova').val();
 	var conf = $('#confirmar').val();
 	var cpf = <?php echo json_encode($cpf)?>;
-	console.log(senha + " == " + senhaAtual);
+    if (nova.length >= 6) {
 	if(senha == senhaAtual){
 	var data = {senhaAntiga:senhaAtual,newSenha:nova,confSenha:conf,cpf:cpf};
 	
@@ -324,7 +316,10 @@ function updateSenha(){
 	}else{
 		alert("Esta não é sua senha atual \n necessario informar sua atual senha. \n Caso perda de senha informar ao administrador");
 		}
-	}
+	}else{
+        alert("Nova senha tem que ter no minimo 6 caracteres");
+    }
+}
 
 	function criptografar(campo){
 		var dado = campo.value;
@@ -336,7 +331,7 @@ function updateSenha(){
 				senhaAtual = senhaCriptografada;
 			}
 			);
-
+        
 	}
 	function criptografia(campo){
 		var dado = campo;

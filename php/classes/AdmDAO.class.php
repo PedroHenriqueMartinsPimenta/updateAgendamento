@@ -50,11 +50,6 @@ class AdmDAO extends Conexao{
                 $tpmt->bindValue(":EMAIL",$email);  
 		
 		$query = $tpmt->execute();
-		if($query == 1){
-			
-			}else{
-				
-				}
 		}
 	
 	public function listarAdm($codigo,$dia){

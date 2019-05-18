@@ -330,16 +330,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         </div>
     </div>
 </div>
-	<div class="footer footer-simple">
-    <div class="footer-content center-xs">
-        <div class="gridContainer">
-	        <div class="row middle-xs footer-content-row">
-	            <div class="footer-content-col col-xs-12">
-                <p class="copyright">©&nbsp;&nbsp;2019&nbsp;Agendamento de equipamento.&nbsp;Construído Pela equipe de desenvolvimento <a target="_blank" href="#" class="mesmerize-theme-link">Try Developer</a></p>	            </div>
-	        </div>
-	    </div>
-    </div>
-</div>
+	
 	</div>
 <div class="carregando"></div>
 <script type="text/javascript" defer="defer" src="./reservas_files/imagesloaded.min.js.download"></script>
@@ -412,10 +403,15 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         
 </script>
 <script type="text/javascript">
-    var dia = getData();
-    document.getElementById('dia').setAttribute('min',dia[0]);
-    document.getElementById('dia').setAttribute('max',dia[1]);
-    document.getElementById('dia').value = dia[0];
+    var mesQtd = <?php echo json_decode(date('t'))?>;
+    var dia = getData(mesQtd);
+    if (dia[0] != "0000-00-00") {
+        document.getElementById('dia').setAttribute('min',dia[0]);
+        document.getElementById('dia').setAttribute('max',dia[1]);
+        document.getElementById('dia').value = dia[0];
+    }else{
+        $('#dia').attr("disabled",""); 
+    }
     var equipamentosS = <?php echo json_encode( $_SESSION['equipamentos'])?>;
     var equipamentosSelected = equipamentosS;
     for(var i = 1; i <= <?php echo count( $_SESSION['equipamentos'])?>;i++){
@@ -426,6 +422,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     }
     }
     function selecionar(label, codigo){
+        if(!document.getElementById('dia').disabled){
         if($(label).hasClass("btn-success")){
             var data = {"equipamento" : codigo};
             $.post(
@@ -457,6 +454,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                 );           
         }
     }
+}
 
         
     function selectAula(input){
@@ -493,11 +491,20 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         
     }
     function selectTurma(select){
-        if($(select).val() != 'null'){
-            $('.proximo_turma').removeAttr('disabled');
-        }else{
-            $('.proximo_turma').attr('disabled','');
+        var pode = false;
+        for(var i = 1; i <= 9; i++){
+            if($("#turma"+i).val() != 'null'){
+                pode = true;
+            }else{
+                pode = false;
+                i = 10;
+            }
         }
+        if(pode){
+                $('.proximo_turma').removeAttr('disabled');
+            }else{
+                $('.proximo_turma').attr('disabled','');
+            }
     }
 
 
@@ -547,7 +554,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                             data,
                             function(result){
                                 if(typeof result == "number"){
-                                    alert("sucesso");
+                                    
                                 }else if(typeof result == "string"){
                                       e = $("#label"+result).attr('title');       
                                      alert("ERRO:\n O equipamento ("+e+") foi reservado enquanto peenchia-se o seu formulario");

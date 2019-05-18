@@ -5,59 +5,13 @@
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 	<meta name="viewport" content="width=device-width">
     	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.css">
-	<script type="text/javascript">
-		
-			function fMasc(objeto,mascara) {
-				obj=objeto
-				masc=mascara
-				setTimeout("fMascEx()",1)
-			}
-			function fMascEx() {
-				obj.value=masc(obj.value)
-			}
-			function mTel(tel) {
-				tel=tel.replace(/\D/g,"")
-				tel=tel.replace(/^(\d)/,"($1")
-				tel=tel.replace(/(.{3})(\d)/,"$1)$2")
-				if(tel.length == 9) {
-					tel=tel.replace(/(.{1})$/,"-$1")
-				} else if (tel.length == 10) {
-					tel=tel.replace(/(.{2})$/,"-$1")
-				} else if (tel.length == 11) {
-					tel=tel.replace(/(.{3})$/,"-$1")
-				} else if (tel.length == 12) {
-					tel=tel.replace(/(.{4})$/,"-$1")
-				} else if (tel.length > 12) {
-					tel=tel.replace(/(.{4})$/,"-$1")
-				}
-				return tel;
-			}
-			function mCNPJ(cnpj){
-				cnpj=cnpj.replace(/\D/g,"")
-				cnpj=cnpj.replace(/^(\d{2})(\d)/,"$1.$2")
-				cnpj=cnpj.replace(/^(\d{2})\.(\d{3})(\d)/,"$1.$2.$3")
-				cnpj=cnpj.replace(/\.(\d{3})(\d)/,".$1/$2")
-				cnpj=cnpj.replace(/(\d{4})(\d)/,"$1-$2")
-				return cnpj
-			}
-			function mCPF(cpf){
-				cpf=cpf.replace(/\D/g,"")
-				cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
-				cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
-				cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
-				return cpf
-			}
-			function mCEP(cep){
-				cep=cep.replace(/\D/g,"")
-				cep=cep.replace(/^(\d{2})(\d)/,"$1.$2")
-				cep=cep.replace(/\.(\d{3})(\d)/,".$1-$2")
-				return cep
-			}
-			function mNum(num){
-				num=num.replace(/\D/g,"")
-				return num
-			}
-		</script>
+    	<link rel="stylesheet" type="text/css" href="bootstrap-4.1.3-dist (1)/css/bootstrap.min.css">
+    	<style type="text/css">
+    		input[type=button]{
+    			margin-top: 10px
+    		}
+    	</style>
+	
 <link rel="icon" href="img/ceara.png">
 </head>
 <body>
@@ -77,21 +31,31 @@
 			<img src="img/userPadrao.png" class="icon" draggable="false">
 		</div>
 		
-		<form action="php/entrar.php" method="post">
+		<form method="post">
 			<table>
 				<tr>
 					<td><label class="cpf">CPF</label></td>
-					<td><input type="text" name="cpf" maxlength="14" autocomplete="off" onkeydown="javascript: fMasc( this, mCPF );" class="input"></td>
+					<td><input type="text" name="cpf" maxlength="14" id="cpf" autocomplete="off" onkeydown="javascript: fMasc( this, mCPF );" class="input"></td>
 				</tr>
 				<tr>
 					<td><label>Senha</label></td>
-					<td><input type="password" name="senha" class="input"></td>
+					<td><input type="password" name="senha" class="input" id="senha" minlength="6" maxlength="16"></td>
 				</tr>
-				<input type="submit" class="entrar button" value="Entrar">
+				<input type="button" class="entrar button" onclick="entrar()" value="Entrar">
 		</table>
 		</form>
+		<div class="col-10" style="position: relative; top: 50%; margin: 0 auto">
+				<a href="recuperar.html">Esqueci minha senha</a>
+			</div>
+			<div class="alert alert-danger col-10" style="position: relative; top: 50%; display: none; margin: 0 auto">
+				<strong>Atenção</strong><br> aguarde a autenticação <img src="img/loader.gif" width="25px">
+			</div>
 	</div>
-
-	<script type="text/javascript" src="js/jquery.mobile.js"></script>
+	<script type="text/javascript" src="jquery-ui-1.12.1/jquery-3.3.1.js"></script>
+	<script type="text/javascript"> $(document).ready(function(){
+	$('input[type=text], input[type=password]').keypress(function(e){ if
+	(e.keyCode == 13) { entrar(); } }); }); </script>
+	<script type="text/javascript" src="js/js/entrar.js"></script>
+	<script type="text/javascript" src="js/js/jquery.mobile.js"></script>
 </body>
 </html>

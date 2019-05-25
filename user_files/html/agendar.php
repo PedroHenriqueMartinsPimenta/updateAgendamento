@@ -144,7 +144,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                 background-repeat: no-repeat;
                 background-size: 50%;
                 background-position: center center;
-                display: none
+                display: block;
             }
             .header .background-overlay {
                 background: linear-gradient(135deg , rgba(60,200,60, 0.8) 0%, rgba(90,175,132,0.8) 100%);
@@ -349,12 +349,16 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         $('.print').click(function(){
             window.print();
         });
-        $('.proximo_equipamento').click(function(){
-            $("#selectEquipamento").hide();
-            for(var i in equipamentosSelected){
-                pesquisarAulas(equipamentosSelected[i]);
+       $('.proximo_equipamento').click(function(){
+            if($('#dia').val() != null){
+                $("#selectEquipamento").hide();
+                for(var i in equipamentosSelected){
+                    pesquisarAulas(equipamentosSelected[i]);
+                }
+                $("#selectAula").show('slow');
+            }else{
+                alert("Dia de ultilização deve ser informado!");
             }
-            $("#selectAula").show('slow');
         });
         $('.voltar_aula').click(function(){
             $('#selectAula').hide();
@@ -406,6 +410,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         document.getElementById('dia').setAttribute('min',dia[0]);
         document.getElementById('dia').setAttribute('max',dia[1]);
         document.getElementById('dia').value = dia[0];
+        $('.carregando').hide();
     }else{
         $('#dia').attr("disabled",""); 
     }
@@ -533,6 +538,8 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         var equipamento;
         var e = "";
         var turma;
+        var hoje = new Date();
+        var efetuacao = hoje.getYear()+1900+"-"+ (hoje.getMonth()+1) + "-"+ hoje.getDate()+" "+ hoje.getHours()+":"+hoje.getMinutes()+":"+hoje.getSeconds();
         var dia = $('#dia').val();
         for(var i = 1; i <= 9; i++){
             var checked = document.getElementById('aula'+i).checked;
@@ -545,7 +552,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                     if(equi){
                         turma = turma =  $('#turma'+i+' option:selected').val();
                         equipamento = document.getElementById('campo'+equipamentosSelected[key]).value;
-                        var data = {equipamento: equipamento, aula: aula, sala: turma, data_ultilizar: dia};
+                        var data = {equipamento: equipamento, aula: aula, sala: turma, data_ultilizar: dia, efetuacao: efetuacao};
                         $.post(
                             "../../php/agendar.php",
                             data,

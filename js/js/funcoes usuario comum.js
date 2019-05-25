@@ -16,7 +16,7 @@ function getData(mesQtd){
 			var diasProximo = "0000-00-00";
 			var diaAtual = "0000-00-00";			
 		}else if(diaSemana == 5){
-			if(data.getHours() > 12){
+			if(data.getHours() >= 12){
 			if ((parseInt(dia) + parseInt(diaSemana)) > mesQtd) {
 				var newMes = parseInt(mes)+1;
 				if(newMes < 10){
@@ -48,8 +48,9 @@ function getData(mesQtd){
 			var diasProximo = "0000-00-00";
 			var diaAtual = "0000-00-00";		
 			}else{
+				var diasAmais = 5 - diaSemana;
 		var diaAtual = ano + "-" +mes + "-" + dia;
-			dia = (parseInt(dia)+1);
+			dia = (parseInt(dia)+ diasAmais);
 				if (dia > mesQtd) {
 					dia = (parseInt(dia)) - mesQtd;
 					mes++;

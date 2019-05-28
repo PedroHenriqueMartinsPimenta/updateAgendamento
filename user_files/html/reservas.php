@@ -296,6 +296,10 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 	<div id="print"  class="print btn btn-dark" style="cursor: pointer;">
 	Imprimir
 	</div>
+    <br>
+    <a href="reservas_files/table.php"><div class="btn btn-warning" style="cursor: pointer;">
+        Gerar planinha
+    </div></a>
 </form>
 <div style=" max-width: 100%;overflow: scroll">
 <?php 

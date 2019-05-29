@@ -4,6 +4,7 @@
     if(isset($_SESSION['CPF']) && $_SESSION['PERMISSAO'] == 1){
     $cpf = $_SESSION['CPF'];
     $permissao = $_SESSION['PERMISSAO'];
+			$dia = $_SESSION['dia'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,19 +45,9 @@
 				<td colspan="<?php echo $row['QTD']+3?>" align="center"><b>Agendamentos</b></td>
 			</tr>
 			<tr>
-				<td colspan="<?php echo $row['QTD']+3?>" align="center"><b><?php echo date('d/m/Y')?></b></td>
+				<td colspan="<?php echo $row['QTD']+3?>" align="center"><b><?php echo date("d/m/Y", strtotime($dia))?></b></td>
 			</tr>
-		</thead>
-		<?php 
-			}
-			$sql = "SELECT MAX(QUANTIDADE) AS MAIOR FROM EQUIPAMENTO";
-			$query = mysqli_query($con, $sql);
-			$row = mysqli_fetch_array($query);
-			$maior = $row['MAIOR'];
-		?>
-		<tbody>
-			
-				<tr>
+			<tr>
 					<td>Aula</td>
 					<td>Nome Completo</td>
 					<td>Turma</td>
@@ -70,10 +61,20 @@
 			}
 			?>
 				</tr>
+		</thead>
+		<?php 
+			}
+			$sql = "SELECT MAX(QUANTIDADE) AS MAIOR FROM EQUIPAMENTO";
+			$query = mysqli_query($con, $sql);
+			$row = mysqli_fetch_array($query);
+			$maior = $row['MAIOR'] * 2;
+		?>
+		<tbody>
+			
+				
 			<?php 
 			$y = 1;
 			$AULA = "NULL";
-			$dia = date('Y-m-d');
 	$sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO,EQUIPAMENTO.CODIGO AS EQUI, AULA.DESCRICAO AS AULA,CONCAT(AULA.DESCRICAO,'-', RESERVA.DATA) AS ORDEM, TURMA.DESCRICAO AS TURMA FROM RESERVA
 INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO 
 INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF

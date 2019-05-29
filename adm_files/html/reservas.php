@@ -3,6 +3,7 @@
     session_start();
     if(isset($_SESSION['CPF']) && $_SESSION['PERMISSAO'] == 1){
     $cpf = $_SESSION['CPF'];
+    $_SESSION['dia'] = date('Y-m-d');
     $permissao = $_SESSION['PERMISSAO'];
 ?>
 <!DOCTYPE html>
@@ -302,7 +303,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 	</div>
     <br>
     <a href="reservas_files/table.php"><div class="btn btn-warning" style="cursor: pointer;">
-        Gerar planinha
+        Gerar planilha
     </div></a>
 </form>
 <div style=" max-width: 100%;overflow: scroll">
@@ -347,6 +348,7 @@ while($rowList = mysqli_fetch_array($queryAgendamento)){
 </table>
 <?php 
     }else if(isset($_GET['id'])){
+
         ?>
         <table class="table" style="margin-top:20px">
     <tr class="cabecario thead-dark">
@@ -400,6 +402,7 @@ while($rowList = mysqli_fetch_array($queryAgendamento)){
   <tbody>
   <?php 
     $dia = $_POST['dia'];
+    $_SESSION['dia'] = $dia;
     $aula = $_POST['aula'];
 	$sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO, AULA.DESCRICAO AS AULA, CONCAT(AULA.DESCRICAO,'-', RESERVA.DATA) AS ORDEM, TURMA.DESCRICAO AS TURMA FROM RESERVA
 INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO 

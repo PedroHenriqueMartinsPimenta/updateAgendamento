@@ -46,17 +46,7 @@
 			<tr>
 				<td colspan="<?php echo $row['QTD']+3?>" align="center"><b><?php echo date('d/m/Y')?></b></td>
 			</tr>
-		</thead>
-		<?php 
-			}
-			$sql = "SELECT MAX(QUANTIDADE) AS MAIOR FROM EQUIPAMENTO";
-			$query = mysqli_query($con, $sql);
-			$row = mysqli_fetch_array($query);
-			$maior = $row['MAIOR'];
-		?>
-		<tbody>
-			
-				<tr>
+			<tr>
 					<td>Aula</td>
 					<td>Nome Completo</td>
 					<td>Turma</td>
@@ -70,6 +60,17 @@
 			}
 			?>
 				</tr>
+		</thead>
+		<?php 
+			}
+			$sql = "SELECT MAX(QUANTIDADE) AS MAIOR FROM EQUIPAMENTO";
+			$query = mysqli_query($con, $sql);
+			$row = mysqli_fetch_array($query);
+			$maior = $row['MAIOR'];
+		?>
+		<tbody>
+			
+				
 			<?php 
 			$y = 1;
 			$AULA = "NULL";
@@ -141,7 +142,7 @@ INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '
 			}else{
 				?>
 				<script type="text/javascript">
-					$('#line<?php echo $line?>aula<?php echo $i?> #nome<?php echo $line?>').html("<?php echo $reserva['NOME']?>");	
+					$('#line<?php echo $line?>aula<?php echo $i?> #nome<?php echo $line?>').html("**********");	
 				</script>
 				<?php
 			}

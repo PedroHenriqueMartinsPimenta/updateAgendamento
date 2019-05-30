@@ -21,15 +21,15 @@
 
 		}
 		@media print{
-			a{
+			p{
 				display: none
 			}
 		}
 	</style>
 </head>
 <body>
-	<a href="#" id="pdf">Baixar (.pdf)</a> / 
-	<a href="#" id="exel">Baixar (.xlsx)</a>
+	<p><a href="#" id="pdf">Baixar (.pdf)</a> / 
+	<a href="#" id="exel">Baixar (.xlsx)</a></p>
 	<div id="table">
 	<table border="1px" align="center">
 		<?php 
@@ -64,10 +64,10 @@
 		</thead>
 		<?php 
 			}
-			$sql = "SELECT MAX(QUANTIDADE) AS MAIOR FROM EQUIPAMENTO";
+			$sql = "SELECT SUM(QUANTIDADE) AS MAIOR FROM EQUIPAMENTO";
 			$query = mysqli_query($con, $sql);
 			$row = mysqli_fetch_array($query);
-			$maior = $row['MAIOR'] * 2;
+			$maior = $row['MAIOR'];
 		?>
 		<tbody>
 			
@@ -85,15 +85,15 @@ INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '
 				if($row['AULA'] != $AULA){
 			?>
 
-			<tr>
-				<td rowspan="<?php echo $maior + 1?>"><?php echo $row['AULA']?></td>
+			<tr >
+				<td rowspan="<?php echo $maior + 1?>"class="aula"><?php echo $row['AULA']?></td>
 				
 			</tr>
 
 			<?php 
 				for ($i=0; $i < $maior; $i++) { 
 				?>
-				<tr id="line<?php echo $i?>aula<?php echo substr($row['AULA'], 0,1)?>">
+				<tr id="line<?php echo $i?>aula<?php echo substr($row['AULA'], 0,1)?>" class="line<?php echo substr($row['AULA'], 0,1)?>">
 					<td id="nome<?php echo $i?>"></td>
 					<td id="turma<?php echo $i?>"></td>
 					<?php 
@@ -144,10 +144,13 @@ INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '
 	}
 	?>
 	<script type="text/javascript">
+		var total = <?php echo json_decode($maior)?>;
 		$("#pdf").click(function(){
 			window.print();
 		});
 		$("#exel").click(function(){
+			$('tr').removeAttr('style');
+			$('.aula').attr('rowspan', total + 1);
 			var tabela = $("#table").html();
 			var htmlBase64 = btoa(tabela);
 			  var link = "data:application/vnd.ms-excel;base64," + htmlBase64;
@@ -159,8 +162,37 @@ INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '
     document.body.appendChild(hyperlink);
     hyperlink.click();
     document.body.removeChild(hyperlink);
-    
+    adapter();
 		});
+	</script>
+	<script type="text/javascript">
+		var qtd = 0;
+		var test = true;
+		window.onload= function(){
+				adapter();
+		
+			}
+
+			function adapter(){
+				var aula = document.getElementsByClassName('aula');
+		for(var a = 1; a <= aula.length; a++){
+		var td = document.getElementsByClassName('line'+a);
+			for (var i = 0; i < td.length; i++) {
+				if (!td[i].innerHTML.match("<b>X</b>")) {
+					td[i].style.display = 'none';if (test) {
+						qtd = i;
+						test = false;
+					}
+					
+				}
+			}
+			test = true;
+			console.log(qtd +":"+ a);
+			console.log(aula[a-1]);
+			$(aula[a-1]).attr('rowspan',qtd+1);
+			qtd = 0;
+		}
+			}
 	</script>
 </body>
 </html>

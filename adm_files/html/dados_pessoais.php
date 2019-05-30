@@ -81,6 +81,18 @@ img.emoji {
 	background: none !important;
 	padding: 0 !important;
 }
+.editar{
+    width: 50px;
+    height: 50px;
+    background-image: url(../../img/edit_foto.png);
+    background-size: 100%;
+    background-position:center center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.editar:hover{
+    transform:  rotate(15deg);
+}
 </style>
 <link rel="stylesheet" id="mesmerize-parent-css" href="./dados_pessoais_files/style.min.css" type="text/css" media="all">
 <link rel="stylesheet" id="mesmerize-style-css" href="./dados_pessoais_files/style.min(1).css" type="text/css" media="all">
@@ -170,6 +182,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                     <li id="menu-item-111" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-111"><a href="equipamentos.php">Equipamentos</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="usuarios.php">Usuarios</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="cursos.php">Cursos</a></li>
+                    <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="observacoes.php">Observações</a></li>
                     <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="dados_pessoais.php">Dados pessoais</a></li>
 <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="../../php/sair.php" >Sair</a></li>
 </ul></div>    <a href="#" data-component="offcanvas" data-target="#offcanvas-wrapper" data-direction="right" data-width="300px" data-push="false" data-loaded="true">
@@ -211,6 +224,20 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         $query = mysqli_query($con, $sql);
         while($row = mysqli_fetch_array($query)){
      ?>
+            <style type="text/css">
+                .perfil{
+                    width: 150px;
+                    min-height: 150px;
+                    margin:0 auto;
+                    background-image: url(<?php echo $row['FOTO']?>);
+                    background-repeat: no-repeat;
+                    background-size: 100%;
+                    background-position: center center;     
+                }
+            </style>
+            <div class="perfil">
+                <div class="editar"></div>
+            </div>
             <div class="btn btn-dark col-11" style="margin-top:10px"><?php echo $row['CPF']?></div>
             <div class="btn btn-dark col-11" style="margin-top:10px"><?php echo $row['NOME'] . " " . $row['SOBRENOME']?></div>
             <div class="btn btn-dark col-11" style="margin-top:10px"><a href="mailto:<?php echo $row['EMAIL']?>"><?php echo $row['EMAIL']?></a></div>
@@ -229,16 +256,27 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
    
 	</div>
 
+    
 		<div class="modal col-10">
 			<div class="x btn  close">X</div>
 			<h3 class="titulo">Altera senha</h3>
-			<form>
+			<form >
             	<input type="password" name="senhaantiga" id="antiga" placeholder="Senha atual" onkeyup="criptografar(this)" class="form-control"><br>
 				<input type="password" name="novasenha" id="nova" placeholder="Nova senha" class="form-control"><br>
                 <input type="password" name="confirmacao" id="confirmar" placeholder="Confirme sua senha" class="form-control"><br>
 				<input type="button" value="Alterar" id="botao" class="btn btn-success">
 			</form>
+            <hr>
+            <h3 class="titulo">Alterar foto</h3>
+            <form action="../../php/updateFoto.php" method="post" enctype="multipart/form-data">
+                <label class="label btn btn-primary form-control"  for="file">Selecionar foto de usuario:</label>
+                    <input type="file" required name="foto" accept="image/png, image/jpeg" style="display:none" id="file">
+                    <div id="preview" class="perfil"></div>
+                <input type="submit" value="Alterar" class="btn btn-success" style="width: 100%; margin-top: 10px">
+            </form>
 		</div>
+        
+        
 <script type="text/javascript" defer="defer" src="./dados_pessoais_files/imagesloaded.min.js.download"></script>
 <script type="text/javascript" defer="defer" src="./dados_pessoais_files/masonry.min.js.download"></script>
 <script type="text/javascript" defer="defer" src="./dados_pessoais_files/theme.bundle.min.js.download"></script>
@@ -282,6 +320,19 @@ $(function(){
 			$('#botao').click(function(){
 				updateSenha();
 				});
+
+            $('.editar').click(function(){
+                    $('.modal').show('slow');
+                    $('.escuro').show('slow');
+            });
+            $('.x_img').click(function(){
+                     $('.modal').hide('slow');
+                    $('.escuro').hide('slow');
+            });
+            $('#file').change(function(){
+                    readURL(this);
+                    $('.label').text("foto selecionada!");
+            });
 })
 </script>
 
@@ -345,6 +396,19 @@ function updateSenha(){
 			);
 
 	}
+    function readURL(input) {        
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#preview').show();
+                $('#preview').css('background-image','url('+e.target.result+')');
+               }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+        }
 </script>
 <div id="offcanvas-wrapper" class="hide  offcanvas-right offcanvas col-12">
         <div class="offcanvas-top">
@@ -356,6 +420,7 @@ function updateSenha(){
                     <li id="menu-item-111" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-111"><a href="equipamentos.php">Equipamentos</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="usuarios.php">Usuarios</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="cursos.php">Cursos</a></li>
+                    <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="observacoes.php">Observações</a></li>
                     <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="dados_pessoais.php">Dados pessoais</a></li>
                     <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="../../php/sair.php">Sair</a></li>
 </ul></div>

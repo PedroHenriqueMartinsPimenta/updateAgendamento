@@ -168,7 +168,8 @@ INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '
 	<script type="text/javascript">
 		var qtd = 0;
 		var test = true;
-		window.onload= function(){
+		window.onload= function(e){
+			console.log("agora");
 				adapter();
 		
 			}

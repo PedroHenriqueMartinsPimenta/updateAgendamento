@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="http://gmpg.org/xfn/11">
 
-	    <script>
+        <script>
         (function (exports, d) {
             var _isReady = false,
                 _event,
@@ -64,23 +64,23 @@
 <link rel="dns-prefetch" href="http://s.w.org/">
 <link rel="alternate" type="application/rss+xml" title="Feed para Agendamento de equipamento »" href="http://localhost/diego/feed/">
 <link rel="alternate" type="application/rss+xml" title="Feed de comentários para Agendamento de equipamento »" href="http://localhost/diego/comments/feed/">
-		<script type="text/javascript">
-			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/localhost\/diego\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.8"}};
-			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
-		</script><script src="./reservas_files/wp-emoji-release.min.js.download" type="text/javascript" defer=""></script>
+        <script type="text/javascript">
+            window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/localhost\/diego\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.8"}};
+            !function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+        </script><script src="./reservas_files/wp-emoji-release.min.js.download" type="text/javascript" defer=""></script>
         <style type="text/css">
         input, select, label{margin-top:10px; height: 25px}
 img.wp-smiley,
 img.emoji {
-	display: inline !important;
-	border: none !important;
-	box-shadow: none !important;
-	height: 1em !important;
-	width: 1em !important;
-	margin: 0 .07em !important;
-	vertical-align: -0.1em !important;
-	background: none !important;
-	padding: 0 !important;
+    display: inline !important;
+    border: none !important;
+    box-shadow: none !important;
+    height: 1em !important;
+    width: 1em !important;
+    margin: 0 .07em !important;
+    vertical-align: -0.1em !important;
+    background: none !important;
+    padding: 0 !important;
 }
 </style>
 <link rel="stylesheet" id="mesmerize-parent-css" href="./reservas_files/style.min.css" type="text/css" media="all">
@@ -204,18 +204,17 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 <body class="page-template-default page page-id-103 mesmerize-inner-page">
 
     <div id="page-top" class="header-top">
-		<div style="visibility: hidden; display: none;"></div><div class="navigation-bar coloured-nav" data-sticky="0" data-sticky-mobile="1" data-sticky-to="top" style="z-index: 10000;">
+        <div style="visibility: hidden; display: none;"></div><div class="navigation-bar coloured-nav" data-sticky="0" data-sticky-mobile="1" data-sticky-to="top" style="z-index: 10000;">
     <div class="navigation-wrapper ">
-    	<div class="row basis-auto">
-	        <div class="logo_col col-xs col-sm-fit">
-	            <a class="text-logo" data-type="group" data-dynamic-mod="true" href="../../adm.php">Agendamento<span style="font-weight: 300;" class="span12"> de</span> equipamento</a>	        </div>
-	        <div class="main_menu_col col-xs">
-	            <div id="mainmenu_container" class="row"><ul id="main_menu" class="active-line-bottom main-menu dropdown-menu"><li id="menu-item-39" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-39"><a href="../../adm.php">Página inicial</a></li>
+        <div class="row basis-auto">
+            <div class="logo_col col-xs col-sm-fit">
+                <a class="text-logo" data-type="group" data-dynamic-mod="true" href="../../adm.php">Agendamento<span style="font-weight: 300;" class="span12"> de</span> equipamento</a>            </div>
+            <div class="main_menu_col col-xs">
+                <div id="mainmenu_container" class="row"><ul id="main_menu" class="active-line-bottom main-menu dropdown-menu"><li id="menu-item-39" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-39"><a href="../../adm.php">Página inicial</a></li>
                     <li id="menu-item-109" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109"><a href="reservas.php">Agendamentos</a></li>
                     <li id="menu-item-111" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-111"><a href="equipamentos.php">Equipamentos</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="usuarios.php">Usuarios</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="cursos.php">Cursos</a></li>
-                    <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="observacoes.php">Observações</a></li>
                     <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="dados_pessoais.php">Dados pessoais</a></li>
 <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="../../php/sair.php" >Sair</a></li>
 </ul></div>    <a href="#" data-component="offcanvas" data-target="#offcanvas-wrapper" data-direction="right" data-width="300px" data-push="false" data-loaded="true">
@@ -223,15 +222,15 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <i class="fa"><img src="../../img/menu.png" alt="" width="75%"></i>
     </a>
     
-    	        </div>
-	    </div>
+                </div>
+        </div>
     </div>
 </div>
 </div>
 <div id="page" class="site">
     <div class="header-wrapper">
         <div class="header  color-overlay  custom-mobile-image" style="background-image: url(&quot;../../img/hero-inner.jpg&quot;); background-color: rgb(106, 115, 218); padding-top: 84.375px;" data-parallax-depth="20">
-            <div class="background-overlay"></div>								    <div class="inner-header-description gridContainer">
+            <div class="background-overlay"></div>                                  <div class="inner-header-description gridContainer">
         <div class="row header-description-row">
     <div class="col-xs col-xs-12">
         <h1 class="hero-title">
@@ -252,56 +251,56 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     <div>
     <form action="reservas.php" method="post">
     <select id="filtro" class="col-12" name="aula">
-		<option value="!= 0">Todas as aulas</option>
-		<option value="= 1">Aula 1</option>
-		<option value="= 2">Aula 2</option>
-		<option value="= 3">Aula 3</option>
-		<option value="= 4">Aula 4</option>
-		<option value="= 5">Aula 5</option>
-		<option value="= 6">Aula 6</option>
-		<option value="= 7">Aula 7</option>
-		<option value="= 8">Aula 8</option>
-		<option value="= 9">Aula 9</option>
-	</select>
-	<input type="date" id="dia" value="<?php echo $_POST['dia']?>" class="col-12" name="dia">
-	<?php 
-		if(!isset($_POST['dia'])){
-	?>
-	<script >
-		var g = new Date();
-		var dia = g.getDate();
-		var mes = g.getMonth()+1;
-		var ano = g.getYear()+1900;
-		if(dia < 10){
-			dia = "0"+dia;
-		}
-		if(mes < 10){
-			mes = "0"+mes;
-		}
-		document.getElementById('dia').value = ano+"-"+mes+"-"+ dia;
-		
-	</script>
-	<?php 
-		}
-	?>
-	<button type="submit" onclick="filtrar()" class="btn btn-success">
-		fitrar
-	</button>
-	<a href="reservas.php"><button type="button" class="btn btn-danger">
-		Remover filtro
-	</button></a>
+        <option value="!= 0">Todas as aulas</option>
+        <option value="= 1">Aula 1</option>
+        <option value="= 2">Aula 2</option>
+        <option value="= 3">Aula 3</option>
+        <option value="= 4">Aula 4</option>
+        <option value="= 5">Aula 5</option>
+        <option value="= 6">Aula 6</option>
+        <option value="= 7">Aula 7</option>
+        <option value="= 8">Aula 8</option>
+        <option value="= 9">Aula 9</option>
+    </select>
+    <input type="date" id="dia" value="<?php echo $_POST['dia']?>" class="col-12" name="dia">
+    <?php 
+        if(!isset($_POST['dia'])){
+    ?>
+    <script >
+        var g = new Date();
+        var dia = g.getDate();
+        var mes = g.getMonth()+1;
+        var ano = g.getYear()+1900;
+        if(dia < 10){
+            dia = "0"+dia;
+        }
+        if(mes < 10){
+            mes = "0"+mes;
+        }
+        document.getElementById('dia').value = ano+"-"+mes+"-"+ dia;
+        
+    </script>
+    <?php 
+        }
+    ?>
+    <button type="submit" onclick="filtrar()" class="btn btn-success">
+        fitrar
+    </button>
+    <a href="reservas.php"><button type="button" class="btn btn-danger">
+        Remover filtro
+    </button></a>
     
     <a href="reservas.php?id=1"><button type="button" class="btn btn-info">
-		Historico 
-	</button></a>
+        Historico 
+    </button></a>
     <br>
    <a href="agendar.php"><button type="button" class="btn btn-outline-primary">
         Novo agendamento
     </button></a>
 
-	<div id="print"  class="print btn btn-dark" style="cursor: pointer;">
-	Imprimir
-	</div>
+    <div id="print"  class="print btn btn-dark" style="cursor: pointer;">
+    Imprimir
+    </div>
     <br>
     <a href="reservas_files/table.php"><div class="btn btn-warning" style="cursor: pointer;">
         Gerar planilha
@@ -323,8 +322,8 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     </tr>
   <tbody>
   <?php 
-	$dia = date('Y-m-d');
-	$sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO, AULA.DESCRICAO AS AULA,CONCAT(AULA.DESCRICAO,'-', RESERVA.DATA) AS ORDEM, TURMA.DESCRICAO AS TURMA FROM RESERVA
+    $dia = date('Y-m-d');
+    $sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO, AULA.DESCRICAO AS AULA,CONCAT(AULA.DESCRICAO,'-', RESERVA.DATA) AS ORDEM, TURMA.DESCRICAO AS TURMA FROM RESERVA
 INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO 
 INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF
 INNER JOIN AULA ON RESERVA.AULA_CODIGO = AULA.CODIGO
@@ -363,7 +362,7 @@ while($rowList = mysqli_fetch_array($queryAgendamento)){
     </tr>
   <tbody>
   <?php 
-	$sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO, AULA.DESCRICAO AS AULA,  TURMA.DESCRICAO AS TURMA FROM RESERVA
+    $sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO, AULA.DESCRICAO AS AULA,  TURMA.DESCRICAO AS TURMA FROM RESERVA
 INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO 
 INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF
 INNER JOIN AULA ON RESERVA.AULA_CODIGO = AULA.CODIGO
@@ -405,7 +404,7 @@ while($rowList = mysqli_fetch_array($queryAgendamento)){
     $dia = $_POST['dia'];
     $_SESSION['dia'] = $dia;
     $aula = $_POST['aula'];
-	$sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO, AULA.DESCRICAO AS AULA, CONCAT(AULA.DESCRICAO,'-', RESERVA.DATA) AS ORDEM, TURMA.DESCRICAO AS TURMA FROM RESERVA
+    $sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO, AULA.DESCRICAO AS AULA, CONCAT(AULA.DESCRICAO,'-', RESERVA.DATA) AS ORDEM, TURMA.DESCRICAO AS TURMA FROM RESERVA
 INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO 
 INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF
 INNER JOIN AULA ON RESERVA.AULA_CODIGO = AULA.CODIGO
@@ -439,8 +438,8 @@ while($rowList = mysqli_fetch_array($queryAgendamento)){
         </div>
     </div>
 
-	
-	</div>
+    
+    </div>
 <script type="text/javascript" defer="defer" src="./reservas_files/imagesloaded.min.js.download"></script>
 <script type="text/javascript" defer="defer" src="./reservas_files/masonry.min.js.download"></script>
 <script type="text/javascript" defer="defer" src="./reservas_files/theme.bundle.min.js.download"></script>
@@ -464,7 +463,7 @@ while($rowList = mysqli_fetch_array($queryAgendamento)){
 </script>
 
 <script type="text/javascript">
-	document.getElementsByClassName('site-info').item(0).style.display = 'none';
+    document.getElementsByClassName('site-info').item(0).style.display = 'none';
 </script>
 <div id="offcanvas-wrapper" class="hide  offcanvas-right offcanvas col-12">
         <div class="offcanvas-top">
@@ -476,7 +475,6 @@ while($rowList = mysqli_fetch_array($queryAgendamento)){
                     <li id="menu-item-111" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-111"><a href="equipamentos.php">Equipamentos</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="usuarios.php">Usuarios</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="cursos.php">Cursos</a></li>
-                    <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="observacoes.php">Observações</a></li>
                     <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="dados_pessoais.php">Dados pessoais</a></li>
                     <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="../../php/sair.php">Sair</a></li>
 </ul></div>

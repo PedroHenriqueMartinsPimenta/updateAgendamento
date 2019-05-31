@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="http://gmpg.org/xfn/11">
 
-	    <script>
+        <script>
         (function (exports, d) {
             var _isReady = false,
                 _event,
@@ -64,22 +64,22 @@
 <link rel="dns-prefetch" href="http://s.w.org/">
 <link rel="alternate" type="application/rss+xml" title="Feed para Agendamento de equipamento »" href="http://localhost/diego/feed/">
 <link rel="alternate" type="application/rss+xml" title="Feed de comentários para Agendamento de equipamento »" href="http://localhost/diego/comments/feed/">
-		<script type="text/javascript">
-			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/localhost\/diego\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.8"}};
-			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
-		</script><script src="./dados_pessoais_files/wp-emoji-release.min.js.download" type="text/javascript" defer=""></script>
-		<style type="text/css">
+        <script type="text/javascript">
+            window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/localhost\/diego\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.8"}};
+            !function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+        </script><script src="./dados_pessoais_files/wp-emoji-release.min.js.download" type="text/javascript" defer=""></script>
+        <style type="text/css">
 img.wp-smiley,
 img.emoji {
-	display: inline !important;
-	border: none !important;
-	box-shadow: none !important;
-	height: 1em !important;
-	width: 1em !important;
-	margin: 0 .07em !important;
-	vertical-align: -0.1em !important;
-	background: none !important;
-	padding: 0 !important;
+    display: inline !important;
+    border: none !important;
+    box-shadow: none !important;
+    height: 1em !important;
+    width: 1em !important;
+    margin: 0 .07em !important;
+    vertical-align: -0.1em !important;
+    background: none !important;
+    padding: 0 !important;
 }
 .editar{
     width: 50px;
@@ -171,18 +171,17 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 <body class="page-template-default page page-id-98 mesmerize-inner-page">
 
     <div id="page-top" class="header-top">
-		<div style="visibility: hidden; display: none;"></div><div class="navigation-bar coloured-nav" data-sticky="0" data-sticky-mobile="1" data-sticky-to="top" style="z-index: 10000;">
+        <div style="visibility: hidden; display: none;"></div><div class="navigation-bar coloured-nav" data-sticky="0" data-sticky-mobile="1" data-sticky-to="top" style="z-index: 10000;">
     <div class="navigation-wrapper ">
-    	<div class="row basis-auto">
-	        <div class="logo_col col-xs col-sm-fit">
-	            <a class="text-logo" data-type="group" data-dynamic-mod="true" href="../../adm.php">Agendamento<span style="font-weight: 300;" class="span12"> de</span> equipamento</a>	        </div>
-	        <div class="main_menu_col col-xs">
-	            <div id="mainmenu_container" class="row"><ul id="main_menu" class="active-line-bottom main-menu dropdown-menu"><li id="menu-item-39" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-39"><a href="../../adm.php">Página inicial</a></li>
+        <div class="row basis-auto">
+            <div class="logo_col col-xs col-sm-fit">
+                <a class="text-logo" data-type="group" data-dynamic-mod="true" href="../../adm.php">Agendamento<span style="font-weight: 300;" class="span12"> de</span> equipamento</a>            </div>
+            <div class="main_menu_col col-xs">
+                <div id="mainmenu_container" class="row"><ul id="main_menu" class="active-line-bottom main-menu dropdown-menu"><li id="menu-item-39" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-39"><a href="../../adm.php">Página inicial</a></li>
                     <li id="menu-item-109" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109"><a href="reservas.php">Agendamentos</a></li>
                     <li id="menu-item-111" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-111"><a href="equipamentos.php">Equipamentos</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="usuarios.php">Usuarios</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="cursos.php">Cursos</a></li>
-                    <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="observacoes.php">Observações</a></li>
                     <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="dados_pessoais.php">Dados pessoais</a></li>
 <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="../../php/sair.php" >Sair</a></li>
 </ul></div>    <a href="#" data-component="offcanvas" data-target="#offcanvas-wrapper" data-direction="right" data-width="300px" data-push="false" data-loaded="true">
@@ -190,8 +189,8 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <i class="fa"><img src="../../img/menu.png" alt="" width="75%"></i>
     </a>
     
-    	        </div>
-	    </div></div>
+                </div>
+        </div></div>
     </div>
 </div>
 </div>
@@ -200,7 +199,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 <div id="page" class="site">
     <div class="header-wrapper">
         <div class="header  color-overlay  custom-mobile-image" style="background-image: url(&quot;../../img/hero-inner.jpg&quot;); background-color: rgb(106, 115, 218); padding-top: 84.375px;" data-parallax-depth="20">
-            <div class="background-overlay"></div>								    <div class="inner-header-description gridContainer">
+            <div class="background-overlay"></div>                                  <div class="inner-header-description gridContainer">
         <div class="row header-description-row">
     <div class="col-xs col-xs-12">
         <h1 class="hero-title">
@@ -250,22 +249,22 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         </div>
     </div>
 
-	
-	</div>
+    
+    </div>
 <div class="escuro col-12">
    
-	</div>
+    </div>
 
     
-		<div class="modal col-10">
-			<div class="x btn  close">X</div>
-			<h3 class="titulo">Altera senha</h3>
-			<form >
-            	<input type="password" name="senhaantiga" id="antiga" placeholder="Senha atual" onkeyup="criptografar(this)" class="form-control"><br>
-				<input type="password" name="novasenha" id="nova" placeholder="Nova senha" class="form-control"><br>
+        <div class="modal col-10">
+            <div class="x btn  close">X</div>
+            <h3 class="titulo">Altera senha</h3>
+            <form >
+                <input type="password" name="senhaantiga" id="antiga" placeholder="Senha atual" onkeyup="criptografar(this)" class="form-control"><br>
+                <input type="password" name="novasenha" id="nova" placeholder="Nova senha" class="form-control"><br>
                 <input type="password" name="confirmacao" id="confirmar" placeholder="Confirme sua senha" class="form-control"><br>
-				<input type="button" value="Alterar" id="botao" class="btn btn-success">
-			</form>
+                <input type="button" value="Alterar" id="botao" class="btn btn-success">
+            </form>
             <hr>
             <h3 class="titulo">Alterar foto</h3>
             <form action="../../php/updateFoto.php" method="post" enctype="multipart/form-data">
@@ -274,7 +273,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                     <div id="preview" class="perfil"></div>
                 <input type="submit" value="Alterar" class="btn btn-success" style="width: 100%; margin-top: 10px">
             </form>
-		</div>
+        </div>
         
         
 <script type="text/javascript" defer="defer" src="./dados_pessoais_files/imagesloaded.min.js.download"></script>
@@ -292,34 +291,34 @@ $(function(){
                 $('#offcanvas-wrapper').hide(500);
             });
             
-				$('#update').click(function (){
+                $('#update').click(function (){
                                     $(".escuro").fadeIn(1000);
                                     $(".modal").fadeIn(1000);
-				});
-		
-		$(".escuro").hide();	
-			$(".x").click(function(){
-				$(".escuro").hide("slow");
-				$(".modal").hide("slow");
-			});
-			$(".aparecer").click(function(){
-				$(".escuro").fadeIn(1000);
-				$(".modal").fadeIn(1000);
-			});
-			$(".escuro").click(function(){
-				$(this).hide("slow");
-				$(".modal").hide("slow");
-			});
-				window.onkeydown = function(){
-				var ke  =String.fromCharCode(window.event.keyCode);
-				if(ke == ''){
-						$(".escuro").hide("slow");
-						$(".modal").hide("slow");
-					}
-				}
-			$('#botao').click(function(){
-				updateSenha();
-				});
+                });
+        
+        $(".escuro").hide();    
+            $(".x").click(function(){
+                $(".escuro").hide("slow");
+                $(".modal").hide("slow");
+            });
+            $(".aparecer").click(function(){
+                $(".escuro").fadeIn(1000);
+                $(".modal").fadeIn(1000);
+            });
+            $(".escuro").click(function(){
+                $(this).hide("slow");
+                $(".modal").hide("slow");
+            });
+                window.onkeydown = function(){
+                var ke  =String.fromCharCode(window.event.keyCode);
+                if(ke == ''){
+                        $(".escuro").hide("slow");
+                        $(".modal").hide("slow");
+                    }
+                }
+            $('#botao').click(function(){
+                updateSenha();
+                });
 
             $('.editar').click(function(){
                     $('.modal').show('slow');
@@ -337,65 +336,65 @@ $(function(){
 </script>
 
 <script type="text/javascript">
-	document.getElementsByClassName('site-info').item(0).style.display = 'none'
+    document.getElementsByClassName('site-info').item(0).style.display = 'none'
 </script>
 <script>
-	var senha = '<?php echo json_encode($_SESSION["senha"])?>';
-	var senhaAtual;
+    var senha = '<?php echo json_encode($_SESSION["senha"])?>';
+    var senhaAtual;
 function updateSenha(){
-	var nova = $('#nova').val();
-	var conf = $('#confirmar').val();
-	var cpf = <?php echo json_encode($cpf)?>;
+    var nova = $('#nova').val();
+    var conf = $('#confirmar').val();
+    var cpf = <?php echo json_encode($cpf)?>;
     if (nova.length >= 6) {
-	if(senha == senhaAtual){
-	var data = {senhaAntiga:senhaAtual,newSenha:nova,confSenha:conf,cpf:cpf};
-	
-	if(nova == conf){
+    if(senha == senhaAtual){
+    var data = {senhaAntiga:senhaAtual,newSenha:nova,confSenha:conf,cpf:cpf};
+    
+    if(nova == conf){
 
-		$.post(
-			"../../php/updateSenha.php",
-			data,
-			function(msg){
-				alert(msg);
-				$('.x').click();
-				criptografia(nova);
-				},"JSON"
-		);
-		}else{
-			alert("Senhas incompativeis!");
-			}
-	}else{
-		alert("Esta não é sua senha atual \n necessario informar sua atual senha. \n Caso perda de senha informar ao administrador");
-		}
-	}else{
+        $.post(
+            "../../php/updateSenha.php",
+            data,
+            function(msg){
+                alert(msg);
+                $('.x').click();
+                criptografia(nova);
+                },"JSON"
+        );
+        }else{
+            alert("Senhas incompativeis!");
+            }
+    }else{
+        alert("Esta não é sua senha atual \n necessario informar sua atual senha. \n Caso perda de senha informar ao administrador");
+        }
+    }else{
         alert("Nova senha tem que ter no minimo 6 caracteres");
     }
 }
 
-	function criptografar(campo){
-		var dado = campo.value;
-		var data = {dado:dado};
-		$.post(
-			"../../php/criptografar.php",
-			data,
-			function(senhaCriptografada){
-				senhaAtual = senhaCriptografada;
-			}
-			);
+    function criptografar(campo){
+        var dado = campo.value;
+        var data = {dado:dado};
+        $.post(
+            "../../php/criptografar.php",
+            data,
+            function(senhaCriptografada){
+                senhaAtual = senhaCriptografada;
+            }
+            );
         
-	}
-	function criptografia(campo){
-		var dado = campo;
-		var data = {dado:dado};
-		$.post(
-			"../../php/criptografar.php",
-			data,
-			function(senhaCriptografada){
-				senha = senhaCriptografada;
-			}
-			);
+    }
+    function criptografia(campo){
+        var dado = campo;
+        var data = {dado:dado};
+        $.post(
+            "../../php/criptografar.php",
+            data,
+            function(senhaCriptografada){
+                senha = senhaCriptografada;
+            }
+            );
 
-	}
+    }
     function readURL(input) {        
 
         if (input.files && input.files[0]) {
@@ -420,7 +419,6 @@ function updateSenha(){
                     <li id="menu-item-111" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-111"><a href="equipamentos.php">Equipamentos</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="usuarios.php">Usuarios</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="cursos.php">Cursos</a></li>
-                    <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="observacoes.php">Observações</a></li>
                     <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="dados_pessoais.php">Dados pessoais</a></li>
                     <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="../../php/sair.php">Sair</a></li>
 </ul></div>

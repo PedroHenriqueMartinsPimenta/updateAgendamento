@@ -10,8 +10,13 @@
 <html>
 <head>
 	<script type="text/javascript" src="../../../jquery-ui-1.12.1/jquery-3.3.1.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../bootstrap-4.1.3-dist (1)/css/bootstrap.min.css">
 		<title>Agendamentos de <?php echo date('d/m/Y')?></title>
 	<style type="text/css">
+		p{
+			margin-top: 10px;
+			margin-left: 10px;
+		}
 		td{
 			text-align: center;
 			border: 1px solid black
@@ -28,8 +33,10 @@
 	</style>
 </head>
 <body>
-	<p><a href="#" id="pdf">Baixar (.pdf)</a> / 
-	<a href="#" id="exel">Baixar (.xlsx)</a></p>
+	<p><a href="#" id="pdf" class="btn btn-info">Baixar (.pdf)</a> 
+	<a href="#" id="exel"  class="btn btn-info">Baixar (.xlsx)</a>
+	<a href="#" class="btn btn-info" onclick="adapter()">Melhorar visão da tabela</a>
+	</p>
 	<div id="table">
 	<table border="1px" align="center">
 		<?php 
@@ -168,11 +175,7 @@ INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '
 	<script type="text/javascript">
 		var qtd = 0;
 		var test = true;
-		window.onload= function(e){
-			console.log("agora");
-				adapter();
 		
-			}
 
 			function adapter(){
 				var aula = document.getElementsByClassName('aula');

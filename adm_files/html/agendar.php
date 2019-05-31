@@ -91,6 +91,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 <link rel="stylesheet" id="mesmerize-style-bundle-css" href="./reservas_files/theme.bundle.min.css" type="text/css" media="all">
 <link rel="stylesheet" id="mesmerize-fonts-css" data-href="https://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C600%2C700%7CMuli%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C900%2C900italic%7CPlayfair+Display%3A400%2C400italic%2C700%2C700italic&amp;subset=latin%2Clatin-ext" type="text/css" media="all" href="./reservas_files/css">
 <script type="text/javascript" src="./reservas_files/jquery.js.download"></script>
+
 <script type="text/javascript">
     
         (function () {

@@ -177,8 +177,11 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             <div class="logo_col col-xs col-sm-fit">
                 <a class="text-logo" data-type="group" data-dynamic-mod="true" href="../../adm.php">Agendamento<span style="font-weight: 300;" class="span12"> de</span> equipamento</a>            </div>
             <div class="main_menu_col col-xs">
-                <div id="mainmenu_container" class="row"><ul id="main_menu" class="active-line-bottom main-menu dropdown-menu"><li id="menu-item-39" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-39"><a href="../../user.php">Página inicial</a></li>
+                <div id="mainmenu_container" class="row"><ul id="main_menu" class="active-line-bottom main-menu dropdown-menu"><li id="menu-item-39" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-39"><a href="../../adm.php">Página inicial</a></li>
                     <li id="menu-item-109" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109"><a href="reservas.php">Agendamentos</a></li>
+                    <li id="menu-item-111" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-111"><a href="equipamentos.php">Equipamentos</a></li>
+                    <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="usuarios.php">Usuarios</a></li>
+                    <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="cursos.php">Cursos</a></li>
                     <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="dados_pessoais.php">Dados pessoais</a></li>
 <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="../../php/sair.php" >Sair</a></li>
 </ul></div>    <a href="#" data-component="offcanvas" data-target="#offcanvas-wrapper" data-direction="right" data-width="300px" data-push="false" data-loaded="true">
@@ -193,6 +196,11 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 </div>
 
 
+     <?php 
+        $sql = "SELECT * FROM USUARIO WHERE CPF = '$cpf'";
+        $query = mysqli_query($con, $sql);
+        while($row = mysqli_fetch_array($query)){
+     ?>
 <div id="page" class="site">
     <div class="header-wrapper">
         <div class="header  color-overlay  custom-mobile-image" style="background-image: url(&quot;../../img/hero-inner.jpg&quot;); background-color: rgb(106, 115, 218); padding-top: 84.375px;" data-parallax-depth="20">
@@ -215,11 +223,6 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <div class="gridContainer content">
             <div id="post-98" class="post-98 page type-page status-publish hentry">
      <div  style="text-align:center">
-     <?php 
-        $sql = "SELECT * FROM USUARIO WHERE CPF = '$cpf'";
-        $query = mysqli_query($con, $sql);
-        while($row = mysqli_fetch_array($query)){
-     ?>
             <style type="text/css">
                 .perfil{
                     width: 150px;
@@ -238,9 +241,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             <div class="btn btn-dark col-11" style="margin-top:10px"><?php echo $row['NOME'] . " " . $row['SOBRENOME']?></div>
             <div class="btn btn-dark col-11" style="margin-top:10px"><a href="mailto:<?php echo $row['EMAIL']?>"><?php echo $row['EMAIL']?></a></div>
             <div class="btn btn-dark col-11" style="margin-top:10px" id="update"><a style="color:white">Alterar senha</a></div>
-    <?php
-        }
-    ?>
+   
      </div>
     </div>
         </div>
@@ -252,7 +253,6 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
    
     </div>
 
-    
         <div class="modal col-10">
             <div class="x btn  close">X</div>
             <h3 class="titulo">Altera senha</h3>
@@ -270,9 +270,21 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                     <div id="preview" class="perfil"></div>
                 <input type="submit" value="Alterar" class="btn btn-success" style="width: 100%; margin-top: 10px">
             </form>
+            <hr>
+            <h3 class="titulo">Alterar dados pessoais</h3>
+            <form action="../../php/update dados.php" method="post">
+                <label>Nome</label>
+                <input type="text" name="nome" required value="<?php echo $row['NOME']?>">
+                <label>Sobrenome</label>
+                <input type="text" name="sobrenome" required value="<?php echo $row['SOBRENOME']?>">
+                <label>E-mail</label>
+                <input type="mail" name="email" required value="<?php echo $row['EMAIL']?>">
+                <input type="submit" value="Alterar" class="btn btn-success" style="width: 100%; margin-top: 10px">
+            </form>
         </div>
-        
-        
+         <?php
+        }
+    ?>
 <script type="text/javascript" defer="defer" src="./dados_pessoais_files/imagesloaded.min.js.download"></script>
 <script type="text/javascript" defer="defer" src="./dados_pessoais_files/masonry.min.js.download"></script>
 <script type="text/javascript" defer="defer" src="./dados_pessoais_files/theme.bundle.min.js.download"></script>
@@ -413,7 +425,9 @@ function updateSenha(){
         </div>
         <div id="offcanvas-menu" class="menu-menu-do-topo-container"><ul id="offcanvas_menu" class="offcanvas_menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-39"><a href="../../adm.php">Página inicial</a></li>
         <li id="menu-item-109" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109"><a href="reservas.php">Agendamentos</a></li>
-                    
+                    <li id="menu-item-111" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-111"><a href="equipamentos.php">Equipamentos</a></li>
+                    <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="usuarios.php">Usuarios</a></li>
+                    <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="cursos.php">Cursos</a></li>
                     <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="dados_pessoais.php">Dados pessoais</a></li>
                     <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="../../php/sair.php">Sair</a></li>
 </ul></div>

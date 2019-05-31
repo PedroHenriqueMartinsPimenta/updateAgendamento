@@ -196,6 +196,11 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 </div>
 
 
+     <?php 
+        $sql = "SELECT * FROM USUARIO WHERE CPF = '$cpf'";
+        $query = mysqli_query($con, $sql);
+        while($row = mysqli_fetch_array($query)){
+     ?>
 <div id="page" class="site">
     <div class="header-wrapper">
         <div class="header  color-overlay  custom-mobile-image" style="background-image: url(&quot;../../img/hero-inner.jpg&quot;); background-color: rgb(106, 115, 218); padding-top: 84.375px;" data-parallax-depth="20">
@@ -218,11 +223,6 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <div class="gridContainer content">
             <div id="post-98" class="post-98 page type-page status-publish hentry">
      <div  style="text-align:center">
-     <?php 
-        $sql = "SELECT * FROM USUARIO WHERE CPF = '$cpf'";
-        $query = mysqli_query($con, $sql);
-        while($row = mysqli_fetch_array($query)){
-     ?>
             <style type="text/css">
                 .perfil{
                     width: 150px;
@@ -241,9 +241,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             <div class="btn btn-dark col-11" style="margin-top:10px"><?php echo $row['NOME'] . " " . $row['SOBRENOME']?></div>
             <div class="btn btn-dark col-11" style="margin-top:10px"><a href="mailto:<?php echo $row['EMAIL']?>"><?php echo $row['EMAIL']?></a></div>
             <div class="btn btn-dark col-11" style="margin-top:10px" id="update"><a style="color:white">Alterar senha</a></div>
-    <?php
-        }
-    ?>
+   
      </div>
     </div>
         </div>
@@ -255,7 +253,6 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
    
     </div>
 
-    
         <div class="modal col-10">
             <div class="x btn  close">X</div>
             <h3 class="titulo">Altera senha</h3>
@@ -273,9 +270,21 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                     <div id="preview" class="perfil"></div>
                 <input type="submit" value="Alterar" class="btn btn-success" style="width: 100%; margin-top: 10px">
             </form>
+            <hr>
+            <h3 class="titulo">Alterar dados pessoais</h3>
+            <form action="../../php/update dados.php" method="post">
+                <label>Nome</label>
+                <input type="text" name="nome" required value="<?php echo $row['NOME']?>">
+                <label>Sobrenome</label>
+                <input type="text" name="sobrenome" required value="<?php echo $row['SOBRENOME']?>">
+                <label>E-mail</label>
+                <input type="mail" name="email" required value="<?php echo $row['EMAIL']?>">
+                <input type="submit" value="Alterar" class="btn btn-success" style="width: 100%; margin-top: 10px">
+            </form>
         </div>
-        
-        
+         <?php
+        }
+    ?>
 <script type="text/javascript" defer="defer" src="./dados_pessoais_files/imagesloaded.min.js.download"></script>
 <script type="text/javascript" defer="defer" src="./dados_pessoais_files/masonry.min.js.download"></script>
 <script type="text/javascript" defer="defer" src="./dados_pessoais_files/theme.bundle.min.js.download"></script>

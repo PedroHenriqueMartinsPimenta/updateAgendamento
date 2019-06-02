@@ -13,8 +13,28 @@ function getData(mesQtd){
 		var diaSemana = data.getDay();
 		diaSemana = parseInt(diaSemana);
 		if(diaSemana == 6){
-			var diasProximo = "0000-00-00";
-			var diaAtual = "0000-00-00";			
+			if((parseInt(dia) + parseInt(diaSemana)) <= mesQtd){
+			if((parseInt(dia) + parseInt(diaSemana)) >= 10){
+			var diasProximo =  ano + "-" +mes + "-" + (parseInt(dia) + parseInt(diaSemana));
+			}else{
+				var diasProximo =  ano + "-" +mes + "-0" + (parseInt(dia) + parseInt(diaSemana));
+			}
+			dia = parseInt(dia) + 2;
+			if(dia < 10){
+				dia = "0"+dia;
+				}
+				
+				var diaAtual = ano + "-" +mes + "-" + dia;	
+				}else{
+					var diaAtual = ano + "-" +mes + "-" + dia;
+					dia = (parseInt(dia) + parseInt(diaSemana)) - mesQtd;
+					mes = parseInt(mes) + 1;
+					if (mes >= 10) {
+						var diasProximo = ano + "-" +mes + "-0" + dia;
+					}else{
+						var diasProximo = ano + "-0" +mes + "-0" + dia;
+					}
+				}		
 		}else if(diaSemana == 5){
 			if(data.getHours() >= 12){
 			if ((parseInt(dia) + parseInt(diaSemana)) > mesQtd) {
@@ -45,8 +65,27 @@ function getData(mesQtd){
 					var diaAtual = ano + "-" +mes + "-" + dia;
 			}
 		}else if(diaSemana == 0){
-			var diasProximo = "0000-00-00";
-			var diaAtual = "0000-00-00";		
+			if ((parseInt(dia) + 5) <= mesQtd) {
+			if((parseInt(dia) + 5) >= 10){
+				var diasProximo =  ano + "-" +mes + "-" + (parseInt(dia) + 5);
+			}else{
+				var diasProximo =  ano + "-" +mes + "-0" + (parseInt(dia) + 5);
+			}
+					dia = parseInt(dia) + 1;
+					if(dia < 10){
+						dia = "0"+dia;
+					}
+					var diaAtual = ano + "-" +mes + "-" + dia;
+				}else{
+					var diaAtual = ano + "-" +mes + "-" + dia;
+					dia = (parseInt(dia) + 5) - mesQtd;
+					mes = parseInt(mes) + 1;
+					if (mes >= 10) {
+						var diasProximo = ano + "-" +mes + "-0" + dia;
+					}else{
+						var diasProximo = ano + "-0" +mes + "-0" + dia;
+					}
+					}			
 			}else{
 				var diasAmais = 5 - diaSemana;
 		var diaAtual = ano + "-" +mes + "-" + dia;

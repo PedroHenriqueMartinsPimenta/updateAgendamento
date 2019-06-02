@@ -323,7 +323,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
   <tbody>
   <?php 
     $dia = date('Y-m-d');
-    $sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO, AULA.DESCRICAO AS AULA,CONCAT(AULA.DESCRICAO,'-', RESERVA.DATA) AS ORDEM, TURMA.DESCRICAO AS TURMA FROM RESERVA
+    $sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO_CODIGO, AULA_CODIGO,  EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO, AULA.DESCRICAO AS AULA,CONCAT(AULA.DESCRICAO,'-', RESERVA.DATA) AS ORDEM, TURMA.DESCRICAO AS TURMA FROM RESERVA
 INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO 
 INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF
 INNER JOIN AULA ON RESERVA.AULA_CODIGO = AULA.CODIGO
@@ -331,12 +331,19 @@ INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '
 
 $queryAgendamento = mysqli_query($con,$sql);
 while($rowList = mysqli_fetch_array($queryAgendamento)){
+    $momento = $rowList['EFETUOU'];
+                $codigo_equipamento = $rowList['EQUIPAMENTO_CODIGO'];
+                $a = $rowList['AULA_CODIGO'];
+                $sql = "SELECT COUNT(CODIGO) AS QTD FROM RESERVA WHERE DATA < '$momento' AND AULA_CODIGO = $a AND DATA_ULTILIZAR = '$dia' AND EQUIPAMENTO_CODIGO = $codigo_equipamento";
+                $queryCount = mysqli_query($con, $sql);
+                $rowCount = mysqli_fetch_array($queryCount);
+                $qtdCount = $rowCount['QTD']+1;
     ?>
     <tr>
       <th scope="row" id="aula"><?php echo $rowList["AULA"]?></th>
       <td id="desc"><?php echo $rowList["NOME"]. " ".  $rowList["SOBRENOME"]?></td>
       <td id="desc"><?php echo $rowList["TURMA"]?></td>
-      <td id="desc"><?php echo $rowList["EQUIPAMENTO"]?></td>
+      <td id="desc"><?php echo $rowList["EQUIPAMENTO"] . " ".$qtdCount ?>º</td>
       <td id="desc"><?php echo $rowList["DATA"]?></td>
       <td id="desc" class="td"><?php echo $rowList["EFETUOU"]?></td>
       <td><a href="../../php/delete agendamento.php?codigo=<?php echo $rowList['CODIGO']?>" title="deletar equipamento" class="edit btn btn-outline-danger cancelar">Cancelar</a></td>
@@ -362,7 +369,7 @@ while($rowList = mysqli_fetch_array($queryAgendamento)){
     </tr>
   <tbody>
   <?php 
-    $sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO, AULA.DESCRICAO AS AULA,  TURMA.DESCRICAO AS TURMA FROM RESERVA
+    $sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO_CODIGO, AULA_CODIGO, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO, AULA.DESCRICAO AS AULA,  TURMA.DESCRICAO AS TURMA FROM RESERVA
 INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO 
 INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF
 INNER JOIN AULA ON RESERVA.AULA_CODIGO = AULA.CODIGO
@@ -371,6 +378,7 @@ INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO ORDER BY EFETUOU DESC";
 $queryAgendamento = mysqli_query($con,$sql);
 echo mysqli_error($con);
 while($rowList = mysqli_fetch_array($queryAgendamento)){
+                
     ?>
     <tr>
       <th scope="row" id="aula"><?php echo $rowList["AULA"]?></th>
@@ -404,7 +412,7 @@ while($rowList = mysqli_fetch_array($queryAgendamento)){
     $dia = $_POST['dia'];
     $_SESSION['dia'] = $dia;
     $aula = $_POST['aula'];
-    $sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO, AULA.DESCRICAO AS AULA, CONCAT(AULA.DESCRICAO,'-', RESERVA.DATA) AS ORDEM, TURMA.DESCRICAO AS TURMA FROM RESERVA
+    $sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO_CODIGO, AULA_CODIGO, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO, AULA.DESCRICAO AS AULA, CONCAT(AULA.DESCRICAO,'-', RESERVA.DATA) AS ORDEM, TURMA.DESCRICAO AS TURMA FROM RESERVA
 INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO 
 INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF
 INNER JOIN AULA ON RESERVA.AULA_CODIGO = AULA.CODIGO
@@ -413,12 +421,20 @@ INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE AULA_CODIGO ". $au
 $queryAgendamento = mysqli_query($con,$sql);
 echo mysqli_error($con);
 while($rowList = mysqli_fetch_array($queryAgendamento)){
+     $momento = $rowList['EFETUOU'];
+                $codigo_equipamento = $rowList['EQUIPAMENTO_CODIGO'];
+                $a = $rowList['AULA_CODIGO'];
+                $sql = "SELECT COUNT(CODIGO) AS QTD FROM RESERVA WHERE DATA < '$momento' AND AULA_CODIGO = $a AND DATA_ULTILIZAR = '$dia' AND EQUIPAMENTO_CODIGO = $codigo_equipamento";
+                $queryCount = mysqli_query($con, $sql);
+                $rowCount = mysqli_fetch_array($queryCount);
+                $qtdCount = $rowCount['QTD']+1;
+                
     ?>
     <tr>
       <th scope="row" id="aula"><?php echo $rowList["AULA"]?></th>
       <td id="desc"><?php echo $rowList["NOME"]. " ".  $rowList["SOBRENOME"]?></td>
       <td id="desc"><?php echo $rowList["TURMA"]?></td>
-      <td id="desc"><?php echo $rowList["EQUIPAMENTO"]?></td>
+      <td id="desc"><?php echo $rowList["EQUIPAMENTO"]." ".$qtdCount?>º</td>
       <td id="desc"><?php echo $rowList["DATA"]?></td>
       <td id="desc" class="td"><?php echo $rowList["EFETUOU"]?></td>
       <td><a href="../../php/delete agendamento.php?codigo=<?php echo $rowList['CODIGO']?>" title="deletar equipamento" class="edit btn btn-outline-danger cancelar">Cancelar</a></td>

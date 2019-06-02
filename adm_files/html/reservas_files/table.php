@@ -135,12 +135,20 @@ INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '
 			$sql2 = "SELECT * FROM RESERVA INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '$dia' AND USUARIO_CPF = '$cpf' AND AULA_CODIGO = $i";
 			$query2 = mysqli_query($con, $sql2);
 			while ($reserva = mysqli_fetch_array($query2)) {
+				$momento = $reserva['DATA'];
+				$codigo_equipamento = $reserva['EQUIPAMENTO_CODIGO'];
+				$a = $reserva['AULA_CODIGO'];
+				$sql = "SELECT COUNT(CODIGO) AS QTD FROM RESERVA WHERE DATA < '$momento' AND AULA_CODIGO = $a AND DATA_ULTILIZAR = '$dia' AND EQUIPAMENTO_CODIGO = $codigo_equipamento";
+				$queryCount = mysqli_query($con, $sql);
+				$rowCount = mysqli_fetch_array($queryCount);
+				$qtdCount = $rowCount['QTD']+1;
+				
 				?>
 				<script type="text/javascript">
 					$(function(){
 					$('#line<?php echo $line?>aula<?php echo $i?> #nome<?php echo $line?>').html("<?php echo $reserva['NOME']?>");
 					$('#line<?php echo $line?>aula<?php echo $i?> #turma<?php echo $line?>').html("<?php echo $reserva['DESCRICAO']?>");
-					$('#line<?php echo $line?>aula<?php echo $i?> #equi<?php echo $reserva['EQUIPAMENTO_CODIGO']?>').html("<b>X</b>");
+					$('#line<?php echo $line?>aula<?php echo $i?> #equi<?php echo $reserva['EQUIPAMENTO_CODIGO']?>').html("<b>X</b>  <?php echo $qtdCount ?>º");
 					});
 				</script>
 				<?php

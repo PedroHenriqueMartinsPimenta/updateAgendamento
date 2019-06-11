@@ -100,7 +100,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         width:200px;
         height:200px;
         margin:0 auto;
-        display:none;
+        display:block;
         background-repeat:no-repeat;
         background-position:center center;
         background-size:80%;
@@ -227,8 +227,12 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 
         <div class="content" id="content-modal" style="display:block">    
     <div class="form">
-        <form action="../../php/updateEquipamentoScript.php" method="post">
+        <form action="../../php/updateEquipamentoScript.php" method="post" enctype="multipart/form-data">
             <p>Atualizar equipamento</p>
+            <label class="label btn btn-primary form-control"  for="file">Selecionar foto do equipamento:</label>
+            <input type="file" name="img" accept="image/png, image/jpeg" style="display:none" id="file">
+            <div id="preview" style="background-image: url('<?php echo $row['ICON']?>');"></div>
+            <?php $_SESSION['IMG_EQUI'] = $row['ICON'] ?>
             <input type="text" name="codigo" readonly value="<?php echo $row['CODIGO']?>" class="form-control">
             <input type="text" required name="descricao" value="<?php echo $row['DESCRICAO']?>" class="form-control" >
             <input type="number" required name="qtd" value="<?php echo $row['QUANTIDADE']?>" class="form-control">

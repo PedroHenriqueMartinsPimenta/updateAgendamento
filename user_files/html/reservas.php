@@ -301,6 +301,9 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     <a href="reservas_files/table.php"><div class="btn btn-warning" style="cursor: pointer;">
         Gerar planinha
     </div></a>
+    <a href="grafico.php"><div class="btn btn-info" style="cursor: pointer;">
+        Graficos
+    </div></a>
 </form>
 <div style=" max-width: 100%;overflow: scroll">
 <?php 

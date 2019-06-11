@@ -228,7 +228,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                     width: 150px;
                     min-height: 150px;
                     margin:0 auto;
-                    background-image: url(<?php echo $row['FOTO']?>);
+                    background-image: url('<?php echo $row['FOTO']?>');
                     background-repeat: no-repeat;
                     background-size: 100%;
                     background-position: center center;     

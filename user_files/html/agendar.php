@@ -81,6 +81,7 @@ img.emoji {
     background: none !important;
     padding: 0 !important;
 }
+
 </style>
 <link rel="stylesheet" id="mesmerize-parent-css" href="./reservas_files/style.min.css" type="text/css" media="all">
 <link rel="stylesheet" id="mesmerize-style-css" href="./reservas_files/style.min(1).css" type="text/css" media="all">
@@ -260,13 +261,15 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             <div id="post-103" class="post-103 page type-page status-publish hentry">
     <div>
 
-        <a href="reservas.php"><button type="button" class="btn btn-danger">Cancelar</button></a>
+        <a href="reservas.php"><button type="button" class="btn btn-danger" id="cancelar">Cancelar</button></a>
             <form method="post" action="" id="form">
                 <?php 
                     $dia = date("Y-m-d");
-                ?>
+
+                ?> 
+                <div class="col-9" style="margin:0 auto"><label for="dia">Selecionar dia de ultlização</label> <input type="date" id="dia" name="dia" value="<?php echo $dia ?>" class="form-control col-11" style="margin:5px auto" id="dia"></div>
                  <div class="col-9" id="selectEquipamento" style="margin: 0 auto; text-align: center">
-               <label for="dia">Selecionar dia de ultlização</label> <input type="date" id="dia" name="dia" value="<?php echo $dia ?>" class="form-control col-11" style="margin:5px auto" id="dia">
+              
                     <?php 
                         $sql = "SELECT * FROM EQUIPAMENTO ORDER BY DESCRICAO ASC";
                         $query = mysqli_query($con, $sql);
@@ -274,24 +277,23 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                     ?>
                     <input type="checkbox" name="equipamento" id="campo<?php echo $row['CODIGO']?>" value="<?php echo $row['CODIGO']?>" style="display: none;">
                     <label  onclick="selecionar(this, <?php echo $row['CODIGO']?>)" id="label<?php echo $row['CODIGO']?>" class="btn btn-primary col-2" style="max-width: 90px;
-                     min-height: 80px; margin: 4px" for="campo<?php echo $row['CODIGO']?>" title="<?php echo $row['DESCRICAO']?>"><img src="<?php echo $row['ICON']?>" width="80px"></label>
+                     min-height: 80px; margin: 4px; " for="campo<?php echo $row['CODIGO']?>" title="<?php echo $row['DESCRICAO']?>"><img src="<?php echo $row['ICON']?>" width="80px"></label>
+                    
                  <?php } ?><br>
                  <button type="button" class="btn btn-outline-success proximo_equipamento" disabled>Proximo</button>
                 </div>
 
 
                  <div class="col-9 form-check" id="selectAula" style="margin: 0 auto; text-align: center; display: none">
+                    <div>
                                <?php 
                                $sql = "SELECT * FROM AULA ORDER BY DESCRICAO ASC";
                                $query = mysqli_query($con, $sql);
+                               $aulaCount = 0;
                                while ($row = mysqli_fetch_array($query)) {
-                                
-                               ?>
-                               <div class="custom-control custom-checkbox">
-                                     <input type="checkbox" onclick="selectAula(this)" name="aula" class="custom-control-input" id="aula<?php echo $row['CODIGO']?>" value="<?php echo $row['CODIGO']?>">
-                                     <label class="custom-control-label" for="aula<?php echo $row['CODIGO']?>"><?php echo $row['DESCRICAO']?></label>
-                                </div>
-                            <?php } ?>
+                                $aulaCount++;
+                                } ?>
+                        </div>
                  <button type="button" class="btn btn-outline-danger voltar_aula">Voltar</button>                
                  <button type="button" class="btn btn-outline-success proximo_aula" disabled>Proximo</button>
                 </div>
@@ -351,6 +353,8 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         });
        $('.proximo_equipamento').click(function(){
             if($('#dia').val() != null){
+                $('#dia').attr('disabled','');
+                montarAulas();
                 $("#selectEquipamento").hide();
                 for(var i in equipamentosSelected){
                     pesquisarAulas(equipamentosSelected[i]);
@@ -367,18 +371,26 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                 document.getElementsByClassName('custom-control-input').item(i).disabled = false;
                 $('.proximo_aula').attr('disabled','');
             }
+            $('#dia').removeAttr('disabled');
             $('#selectEquipamento').show('slow');
         });
         $('.proximo_aula').click(function(){
             $('#selectAula').hide();
             $("#selectTurma").show('slow');
-            for(var i = 1; i <= 9; i++){
-                var checked = document.getElementById('aula'+i).checked;
+            for(var i = 1; i <= <?php echo $aulaCount?>; i++){ 
+            for(var key in equipamentosSelected){
+                if(equipamentosSelected[key] != null){
+                var checked = document.getElementById('aula'+i+'-'+equipamentosSelected[key]).checked;
                         if(checked){
+                            var nomeEqui = $("#label"+equipamentosSelected[key]).attr('title');
                     var html = '<label>'+i+'° aula: </label><select onchange="selectTurma(this)" id="turma'+i+'"><option value="null">Selecionar turma</option><?php $sql = "SELECT * FROM TURMA ORDER BY DESCRICAO ASC"; $query = mysqli_query($con, $sql); while ($row = mysqli_fetch_array($query)) { ?> <option value="<?php echo $row["CODIGO"]?>"><?php echo $row["DESCRICAO"]?></option> <?php } ?> </select><br><br>';
                     $("#selectTurma div").html($("#selectTurma div").html()+html);
+                        break;
+                    
                         }
             }
+        }
+    }
         });
         $('.voltar_turma').click(function(){
             $("#selectTurma").hide();
@@ -460,14 +472,16 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 
         
     function selectAula(input){
-        var checado = false;
-        for(var i = 0; i < document.getElementsByClassName('custom-control-input').length;i++){
-            if(document.getElementsByClassName('custom-control-input').item(i).checked){
-                checado = true;
-                break;
+        var checadoOne = false;
+        var inputs = document.getElementsByClassName('custom-control-input');   
+            for (var i = 0; i < inputs.length; i++) {
+                var checked = inputs.item(i).checked;
+                if (checked) {
+                    checadoOne = true;
+                    break
+                }
             }
-        }
-        if(checado){
+        if(checadoOne){
             $('.proximo_aula').removeAttr('disabled');
         }else{
             $('.proximo_aula').attr('disabled','');
@@ -484,7 +498,9 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             function(page){
                 var arrayPage = page;
                 for(var i = 0; i < arrayPage.length;i++){
-                  document.getElementById('aula'+arrayPage[i]).disabled = true;
+                  document.getElementById('aula'+arrayPage[i]+'-'+codigo).disabled = true;
+                  document.getElementById('aula'+arrayPage[i]+'-'+codigo).checked = false;
+                  $('#aulaLabel'+arrayPage[i]+'-'+codigo).attr('style','text-decoration: line-through; cursor: not-allowed');
                 }
                     $('.carregando').hide();
                 },'JSON'
@@ -494,12 +510,12 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     }
     function selectTurma(select){
         var pode = false;
-        for(var i = 1; i <= 9; i++){
+        for(var i = 1; i <= <?php echo $aulaCount;?>; i++){
             if($("#turma"+i).val() != 'null'){
                 pode = true;
             }else{
                 pode = false;
-                i = 10;
+                i = <?php echo $aulaCount+1;?>;
             }
         }
         if(pode){
@@ -508,18 +524,34 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                 $('.proximo_turma').attr('disabled','');
             }
     }
+    function montarAulas(){ 
+        $('#selectAula div').html("");
+        var html = "";
+        for (var key in equipamentosSelected) {
+            if(equipamentosSelected[key] != null){
+            var aulaModel = "<div class='modelAulas'>";
+            for (var i = 1; i <= <?php echo $aulaCount?>; i++) {
+             aulaModel +=  '<div class="custom-control custom-checkbox"><input type="checkbox" onclick="selectAula(this)" name="aula" class="custom-control-input" id="aula'+i+'-'+equipamentosSelected[key]+'" value="'+i+'-'+equipamentosSelected[key]+'"> <label class="custom-control-label" for="aula'+i+'-'+equipamentosSelected[key]+'" id="aulaLabel'+i+'-'+equipamentosSelected[key]+'">'+i+'º AULA</label></div>';
+            }
+            aulaModel += "</div>";
+            var equipamento = $("#label"+equipamentosSelected[key]).attr('title') +"<br>"+ $("#label"+equipamentosSelected[key]).html() + aulaModel;
+            html += equipamento + "<hr><br><br>";
+            $('#selectAula div').html(html);
+        }
+    }
 
+    }
 
     function vereficarAgendamento( equii){
         var table = $('table tbody').html();
-            for(var i = 1; i <= 9; i++){
-                var checked = document.getElementById('aula'+i).checked;
+            for(var i = 1; i <= <?php echo $aulaCount;?>; i++){
+          for(var key in equipamentosSelected){
+             if(equipamentosSelected[key] != null){
+               var equi = document.getElementById('campo'+equipamentosSelected[key]).checked;
+               if(equi){
+                var checked = document.getElementById('aula'+i+'-'+equipamentosSelected[key]).checked;
                 if(checked){
                     var sala = $('#turma'+i+' option:selected').text();
-                    for(var key in equipamentosSelected){
-                        if(equipamentosSelected[key] != null){
-                        var equi = document.getElementById('campo'+equipamentosSelected[key]).checked;
-                        if(equi){
                             var dia = $("#dia").val();
                             var equipamento = $("#label"+equipamentosSelected[key]).attr('title');
                             table+="<tr><th scope='row'>"+equipamento+"</th><td scope='row'>"+i+"º Aula</td><td scope='row'>"+sala+"</td><td scope='row'>"+dia+"</td></tr>";
@@ -541,15 +573,14 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         var hoje = new Date();
         var efetuacao = hoje.getYear()+1900+"-"+ (hoje.getMonth()+1) + "-"+ hoje.getDate()+" "+ hoje.getHours()+":"+hoje.getMinutes()+":"+hoje.getSeconds();
         var dia = $('#dia').val();
-        for(var i = 1; i <= 9; i++){
-            var checked = document.getElementById('aula'+i).checked;
-            if (checked) {
-                aula = i;
                 for(var key in equipamentosSelected){
-                    console.log(key);
                     if(equipamentosSelected[key] != null){
                     var equi = document.getElementById('campo'+equipamentosSelected[key]).checked;
                     if(equi){
+        for(var i = 1; i <= <?php echo $aulaCount;?>; i++){
+            var checked = document.getElementById('aula'+i+'-'+equipamentosSelected[key]).checked;
+            if (checked) {
+                aula = i;
                         turma = turma =  $('#turma'+i+' option:selected').val();
                         equipamento = document.getElementById('campo'+equipamentosSelected[key]).value;
                         var data = {equipamento: equipamento, aula: aula, sala: turma, data_ultilizar: dia, efetuacao: efetuacao};
@@ -573,6 +604,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                 }
             }
             alert("Agendamento finalizado!");
+            $('#cancelar').hide();
             $("#selectConfirm").html('<a href="agendar.php"><button type="button" class="btn btn-outline-danger Cancelar_confirm">Novo agendamento</button></a><a href="reservas.php"><button type="button" class="btn btn-outline-success">Ir para os agendamentos</button></a>');
 
         $('.carregando').hide();

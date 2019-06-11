@@ -1,10 +1,22 @@
 <?php 
+session_start();
 include_once("classes/AdmDAO.class.php");
 $codigo = $_POST['codigo'];
 $descricao = $_POST['descricao'];
 $qtd = $_POST['qtd'];
+$imgName = $_FILES['img']['name'];
+$img = $_FILES['img']['tmp_name'];
+if ($img != null) {
+	$time = date('Y_m_d_h_m_s');
+	$nome = basename($time.$imgName);
+	move_uploaded_file($img,"../imgEquipamentos/".$nome);
+	$urlImg = "http://localhost/updateAgendamento/imgEquipamentos/".$nome;
+}else{
+	$urlImg = $_SESSION['IMG_EQUI'];
+}
+
 $admDAO = new AdmDAO();
-$query = $admDAO->updateEquipamento($codigo, $descricao, $qtd);
+$query = $admDAO->updateEquipamento($codigo, $descricao, $qtd, $urlImg);
 if($query){
 	?>
 	<script>

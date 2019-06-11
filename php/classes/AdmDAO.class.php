@@ -106,12 +106,13 @@ class AdmDAO extends Conexao{
                 }
             return $array;
            }
-           public function updateEquipamento($codigo,$descricao,$qtd){
+           public function updateEquipamento($codigo,$descricao,$qtd, $urlImg){
                $con = $this->openConnection();
-               $sql = "UPDATE EQUIPAMENTO SET DESCRICAO = :DESCRICAO,QUANTIDADE = :QTD WHERE CODIGO = :CODIGO";
+               $sql = "UPDATE EQUIPAMENTO SET DESCRICAO = :DESCRICAO,QUANTIDADE = :QTD, ICON = :ICON WHERE CODIGO = :CODIGO";
                $tpmt = $con->prepare($sql);
                $tpmt->bindValue(":DESCRICAO",$descricao);
                $tpmt->bindValue(":QTD",$qtd);
+               $tpmt->bindValue(":ICON",$urlImg);
                $tpmt->bindValue(":CODIGO",$codigo);
                $result = $tpmt->execute();
                if($result == 1){

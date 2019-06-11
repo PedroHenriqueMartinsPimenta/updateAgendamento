@@ -251,7 +251,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             <input type="text" required name="descricao" placeholder="Descrição equipamento" class="form-control" >
             <input type="number" required name="qtd" placeholder="Quantidade" min="0" class="form-control">
           
-            <label class="label btn btn-primary form-control"  for="file">Selecionar foto de usuario:</label>
+            <label class="label btn btn-primary form-control"  for="file">Selecionar foto do equipamento:</label>
             <input type="file" name="img" required accept="image/png, image/jpeg" style="display:none" id="file">
             <div id="preview"></div>
             

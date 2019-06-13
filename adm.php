@@ -79,6 +79,24 @@ img.emoji {
     background: none !important;
     padding: 0 !important;
 }
+     
+     @keyframes animation{
+        
+        100%{
+            top: 50px;
+        }
+
+     }
+     .modal{
+      position: fixed;
+      animation-name: animation;
+      animation-timing-function: inherit;
+      animation-duration: unset;
+      animation-direction: inherit;
+      animation-fill-mode: forwards;
+      animation-duration: 1s;
+
+     }
 
 </style>
 <link rel="stylesheet" id="mesmerize-parent-css" href="./adm_files/style.min.css" type="text/css" media="all">
@@ -234,6 +252,44 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     </div>
 </div>
     </div>
+     <?php 
+    $sql = "SELECT COUNT(CODIGO) AS QTD FROM PESQUISA WHERE USUARIO_CPF = '$cpf'";
+    $query = mysqli_query($con, $sql);
+    $row = mysqli_fetch_array($query);
+    if ($row['QTD'] == 0) {
+        $dia = date('Y-m-d');
+        $sql = "INSERT INTO PESQUISA (VALIDADE, USUARIO_CPF, OPNIAO)VALUES('$dia','$cpf',0)";
+         $query = mysqli_query($con, $sql);
+    }
+    $mes = date('m');
+    $ano = date('Y');
+    $sql = "SELECT * FROM PESQUISA WHERE MONTH(VALIDADE) = $mes AND YEAR(VALIDADE) = $ano AND USUARIO_CPF = '$cpf'";
+
+    $query = mysqli_query($con, $sql);
+    $rows = mysqli_num_rows($query);
+    
+    if($rows > 0){
+    ?>
+<div class="modal" tabindex="-1" role="dialog" style="display: block">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Pesquisa mensal de usabilidade</h5>
+        
+      </div>
+      <div class="modal-body">
+        <p>Gostariamos de saber a classificação do nosso sistema, para assim possiveis melhorias </p>
+      </div>
+      <div class="modal-footer">
+        <a href="php/insert_pesquisa.php?id=1"><button type="button" class="btn btn-success">Satisfaz bastante</button></a>
+        <a  href="php/insert_pesquisa.php?id=0"><button type="button" class="btn btn-danger" data-dismiss="modal">Não satisfaz </button></a>
+      </div>
+    </div>
+  </div>
+</div>
+<?php 
+}
+?>
 <script type="text/javascript" defer="defer" src="./adm_files/imagesloaded.min.js.download"></script>
 <script type="text/javascript" defer="defer" src="./adm_files/masonry.min.js.download"></script>
 <script type="text/javascript">

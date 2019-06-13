@@ -69,7 +69,8 @@
         data.addRows([
           <?php 
           $mes = date('m');
-          $sql = "SELECT COUNT(RESERVA.CODIGO) AS RESULT, EQUIPAMENTO.DESCRICAO,RESERVA.EQUIPAMENTO_CODIGO FROM RESERVA INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO WHERE MONTH(DATA_ULTILIZAR) = $mes GROUP BY EQUIPAMENTO_CODIGO ORDER BY RESULT DESC";
+          $ano = date('Y');
+          $sql = "SELECT COUNT(RESERVA.CODIGO) AS RESULT, EQUIPAMENTO.DESCRICAO,RESERVA.EQUIPAMENTO_CODIGO FROM RESERVA INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO WHERE MONTH(DATA_ULTILIZAR) = $mes AND YEAR(DATA_ULTILIZAR) = $ano GROUP BY EQUIPAMENTO_CODIGO ORDER BY RESULT DESC";
           $query = mysqli_query($con, $sql);
           $i = 0;
           while ($row = mysqli_fetch_array($query)) {
@@ -132,6 +133,63 @@
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div_users'));
         chart.draw(data, options);
+
+
+         var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        <?php 
+          $sql = "";
+        ?>
+        data.addRows([
+          <?php
+          $mes = date('m') + 1;
+          if ($mes > 12) {
+            $mes = "01";
+          } 
+          $sql = "SELECT COUNT(CODIGO) AS TOTAL, OPNIAO FROM PESQUISA  WHERE MONTH(VALIDADE) = $mes  AND YEAR(VALIDADE) = $ano  GROUP BY OPNIAO ORDER BY TOTAL DESC";
+          $query = mysqli_query($con, $sql);
+          $i = 0;
+          while ($row = mysqli_fetch_array($query)) {
+            $i++;
+            if($i == mysqli_num_rows($query)){
+              if($row['OPNIAO'] == 0){
+           ?>
+              ["Não satisfaz", <?php echo $row['TOTAL']?>]
+
+           <?php
+         }else if($row['OPNIAO'] == 1){
+             ?>
+              ["Satisfaz", <?php echo $row['TOTAL']?>]
+
+           <?php
+         }
+         }else{
+            if($row['OPNIAO'] == 0){
+           ?>
+              ["Não satisfaz", <?php echo $row['TOTAL']?>],
+
+           <?php
+         }else if($row['OPNIAO'] == 1){
+             ?>
+              ["Satisfaz", <?php echo $row['TOTAL']?>],
+
+           <?php
+         }
+         }
+          }
+        ?>
+        ]);
+
+        // Set chart options
+        var options = {'title':'Grafico de satisfação dos usuários neste mês',
+                       'width':700,
+                       'height':700};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div_avaliation'));
+        chart.draw(data, options);
+      
       }
 
     </script>
@@ -142,6 +200,7 @@
     <div id="chart_div" align="center"></div>
     <div id="chart_div_mes" align="center"></div>
     <div id="chart_div_users" align="center"></div>
+    <div id="chart_div_avaliation" align="center"></div>
   </body>
 </body>
 </html>

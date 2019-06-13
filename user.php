@@ -79,6 +79,23 @@ img.emoji {
     background: none !important;
     padding: 0 !important;
 }
+ @keyframes animation{
+        
+        100%{
+            top: 50px;
+        }
+
+     }
+     .modal{
+      position: fixed;
+      animation-name: animation;
+      animation-timing-function: inherit;
+      animation-duration: unset;
+      animation-direction: inherit;
+      animation-fill-mode: forwards;
+      animation-duration: 1s;
+
+     }
 
 </style>
 <link rel="stylesheet" id="mesmerize-parent-css" href="./user_files/style.min.css" type="text/css" media="all">

@@ -27,13 +27,33 @@
 					<td><label class="cpf">CPF</label></td>
 					<td><input type="text" name="cpf" maxlength="14" id="cpf" autocomplete="off" onkeydown="javascript: fMasc( this, mCPF );" class="input"></td>
 				</tr>
-				<input type="submit" class="entrar button" value="Recuperar">
+				<tr>
+				    <td>
+				<div class="g-recaptcha" style="position:absolute" data-callback="abilitar" data-sitekey="6LfWjqkUAAAAANmmZGQ-WoB7qjSKrb2WOCFqJgpt"></div>
+				</td>
+				</tr>
+				<input type="submit" disabled class="entrar button" value="Recuperar">
 		</table>
 		</form>
 			
 	</div>
+	<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+    </script>
+	  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	<script type="text/javascript" src="jquery-ui-1.12.1/jquery-3.3.1.js"></script>
 	<script type="text/javascript" src="js/js/entrar.js"></script>
 	<script type="text/javascript" src="js/js/jquery.mobile.js"></script>
+	<script type="text/javascript">
+  var onloadCallback = function() {
+    
+  };
+</script>
+	<script>
+	    function abilitar(){
+	        $('.g-recaptcha').hide('slow');
+	        $('.entrar').removeAttr('disabled');
+	    }
+	</script>
 </body>
 </html>

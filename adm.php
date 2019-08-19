@@ -290,6 +290,57 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 <?php 
 }
 ?>
+<?php 
+        if ($_SESSION['MODAL-INFO'] == false) {
+           
+?>
+<div class="modal modal-info" tabindex="-1" role="dialog" style="display: block">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Informações:</h5>
+        <div class="close" id="close-modal">X</div>
+        
+      </div>
+      <div class="modal-body">
+        <p>Seu equipamento preferido está disponivel nas aulas:</p>
+        <p>
+            <?php 
+                $sql = "SELECT COUNT(EQUIPAMENTO_CODIGO) AS QTD, EQUIPAMENTO_CODIGO, DESCRICAO, QUANTIDADE FROM RESERVA INNER JOIN EQUIPAMENTO ON RESERVA.EQUIPAMENTO_CODIGO = EQUIPAMENTO.CODIGO GROUP BY EQUIPAMENTO_CODIGO ORDER BY QTD DESC LIMIT 1";
+                $query = mysqli_query($con, $sql);
+                while ($row = mysqli_fetch_array($query)) {
+                    $equipamento = $row['EQUIPAMENTO_CODIGO'];
+                    $dia = date('d');
+                    $mes = date('m');
+                    $ano = date('Y');
+                    $sql = "SELECT * FROM AULA ORDER BY DESCRICAO ASC";
+                    $query2 = mysqli_query($con, $sql);
+                    while ($row2 = mysqli_fetch_array($query2)) {
+                        $aula_codigo = $row2['CODIGO']; 
+                        $sql = "SELECT * FROM RESERVA WHERE EQUIPAMENTO_CODIGO = $equipamento AND YEAR(DATA) = $ano AND MONTH(DATA) = $mes AND DAY(DATA) = $dia AND AULA_CODIGO = $aula_codigo";
+                        $query3 = mysqli_query($con, $sql);
+                        //echo(mysqli_num_rows($query3));
+                        if (mysqli_num_rows($query3) < $row['QUANTIDADE']) {
+                            echo $row2['DESCRICAO']. " - ". $row['DESCRICAO']."<BR>";
+                        }
+                    }
+                }
+            ?>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <a href="adm_files/html/agendar.php">
+            <button class="btn btn-success">Ir para os agendamentos</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<?php
+        $_SESSION['MODAL-INFO'] = true;
+ } 
+
+ ?>
 <script type="text/javascript" defer="defer" src="./adm_files/imagesloaded.min.js.download"></script>
 <script type="text/javascript" defer="defer" src="./adm_files/masonry.min.js.download"></script>
 <script type="text/javascript">
@@ -310,6 +361,10 @@ $(function(){
             $("#close").click(function(){
                 $('#offcanvas-wrapper').hide(500);
             });
+
+    $('#close-modal').click(function(){
+        $('.modal-info').hide('slow');
+    });
 })
 </script>
 

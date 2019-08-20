@@ -290,7 +290,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         if ($_SESSION['MODAL-INFO'] == false) {
            
 ?>
-<div class="modal modal-info" tabindex="-1" role="dialog" style="display: block">
+<div class="modal modal-info" tabindex="-1" role="dialog" style="display: block; overflow: auto">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -302,10 +302,11 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <p>Seu equipamento preferido está disponivel nas aulas:</p>
         <p>
             <?php 
-                $sql = "SELECT COUNT(EQUIPAMENTO_CODIGO) AS QTD, EQUIPAMENTO_CODIGO, DESCRICAO, QUANTIDADE FROM RESERVA INNER JOIN EQUIPAMENTO ON RESERVA.EQUIPAMENTO_CODIGO = EQUIPAMENTO.CODIGO GROUP BY EQUIPAMENTO_CODIGO ORDER BY QTD DESC LIMIT 1";
+                $sql = "SELECT COUNT(EQUIPAMENTO_CODIGO) AS QTD, EQUIPAMENTO_CODIGO, DESCRICAO, QUANTIDADE FROM RESERVA INNER JOIN EQUIPAMENTO ON RESERVA.EQUIPAMENTO_CODIGO = EQUIPAMENTO.CODIGO GROUP BY EQUIPAMENTO_CODIGO ORDER BY QTD DESC LIMIT 2";
                 $query = mysqli_query($con, $sql);
                 while ($row = mysqli_fetch_array($query)) {
                     $equipamento = $row['EQUIPAMENTO_CODIGO'];
+                    echo "<b>".$row['DESCRICAO'].":</b> <BR>";
                     $dia = date('d');
                     $mes = date('m');
                     $ano = date('Y');
@@ -313,11 +314,11 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                     $query2 = mysqli_query($con, $sql);
                     while ($row2 = mysqli_fetch_array($query2)) {
                         $aula_codigo = $row2['CODIGO']; 
-                        $sql = "SELECT * FROM RESERVA WHERE EQUIPAMENTO_CODIGO = $equipamento AND YEAR(DATA) = $ano AND MONTH(DATA) = $mes AND DAY(DATA) = $dia AND AULA_CODIGO = $aula_codigo";
+                        $sql = "SELECT * FROM RESERVA WHERE EQUIPAMENTO_CODIGO = $equipamento AND YEAR(DATA_ULTILIZAR) = $ano AND MONTH(DATA_ULTILIZAR) = $mes AND DAY(DATA_ULTILIZAR) = $dia AND AULA_CODIGO = $aula_codigo";
                         $query3 = mysqli_query($con, $sql);
                         //echo(mysqli_num_rows($query3));
                         if (mysqli_num_rows($query3) < $row['QUANTIDADE']) {
-                            echo $row2['DESCRICAO']. " - ". $row['DESCRICAO']."<BR>";
+                            echo $row2['DESCRICAO']. "; <BR>";
                         }
                     }
                 }

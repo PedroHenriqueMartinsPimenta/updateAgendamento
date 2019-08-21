@@ -306,7 +306,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <p>Seu equipamento preferido está disponivel nas aulas:</p>
         <p>
             <?php 
-                $sql = "SELECT COUNT(EQUIPAMENTO_CODIGO) AS QTD, EQUIPAMENTO_CODIGO, DESCRICAO, QUANTIDADE FROM RESERVA INNER JOIN EQUIPAMENTO ON RESERVA.EQUIPAMENTO_CODIGO = EQUIPAMENTO.CODIGO GROUP BY EQUIPAMENTO_CODIGO ORDER BY QTD DESC LIMIT 2";
+                $sql = "SELECT COUNT(EQUIPAMENTO_CODIGO) AS QTD, EQUIPAMENTO_CODIGO, DESCRICAO, QUANTIDADE FROM RESERVA INNER JOIN EQUIPAMENTO ON RESERVA.EQUIPAMENTO_CODIGO = EQUIPAMENTO.CODIGO WHERE RESERVA.USUARIO_CPF = '$cpf' GROUP BY EQUIPAMENTO_CODIGO ORDER BY QTD DESC LIMIT 2";
                 $query = mysqli_query($con, $sql);
                 while ($row = mysqli_fetch_array($query)) {
                     $equipamento = $row['EQUIPAMENTO_CODIGO'];

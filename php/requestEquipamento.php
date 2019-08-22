@@ -3,6 +3,11 @@
 	$codigoEquipamento = $_POST['equipamento'];
 	$equipamento  = $_SESSION['equipamentos'];
 	$count = count($equipamento);
+	for ($i=1; $i <= $count ; $i++) { 
+		if ($equipamento[$i] == $codigoEquipamento) {
+			$equipamento[$i] = null;
+		}
+	}
 	$equipamento[$count+1] = $codigoEquipamento; 
 	$_SESSION['equipamentos'] = $equipamento;
 	$true= true;

@@ -388,8 +388,36 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                 var checked = document.getElementById('aula'+i+'-'+equipamentosSelected[key]).checked;
                         if(checked){
                             var nomeEqui = $("#label"+equipamentosSelected[key]).attr('title');
-                    var html = '<label>'+i+'° aula: </label><select onchange="selectTurma(this)" id="turma'+i+'"><option value="null">Selecionar turma</option><?php $sql = "SELECT * FROM TURMA ORDER BY DESCRICAO ASC"; $query = mysqli_query($con, $sql); while ($row = mysqli_fetch_array($query)) { ?> <option value="<?php echo $row["CODIGO"]?>"><?php echo $row["DESCRICAO"]?></option> <?php } ?> </select><br><br>';
+                    var html = '<label>'+i+'° aula: </label><select onchange="selectTurma(this)" id="turma'+i+'"><option value="null">Selecionar turma</option><?php $sql = "SELECT * FROM TURMA ORDER BY DESCRICAO ASC"; $query = mysqli_query($con, $sql); while ($row = mysqli_fetch_array($query)) { ?> <option value="<?php echo $row["CODIGO"]?>" id="<?php echo $row["CODIGO"]?>"><?php echo $row["DESCRICAO"]?></option> <?php } ?> </select><br><br>';
                     $("#selectTurma div").html($("#selectTurma div").html()+html);
+                    
+                        var ano = $('#dia').val().substring(0, 4);
+                        var mes = $('#dia').val().substring(5, 7) - 1;
+                        var dia = $('#dia').val().substring(8, 10);
+                        date = new Date(ano, mes, dia);
+                        var dados = {codigo: equipamentosSelected[key], cpf: <?php echo json_encode($cpf)?>, aula: i, dia_semana: date.getDay()};
+                        var pass = true;
+                        $.post(
+                           "../../php/getAulasComuns.php",
+                           dados,
+                           function(result){
+                            console.log(result);
+                            if (result != null) {
+                                //document.getElementById(result).selected = true;
+                                console.log(result);
+                                $(result).attr('selected','selected');
+                                if (pass) {
+                                    $('.proximo_turma').removeAttr('disabled');
+                                }
+                            }else{
+                                pass = false;
+                                $('.proximo_turma').attr('disabled', 'true');  
+                            }
+                           },
+                           'JSON'
+                            );
+                        
+                            
                         break;
                     
                         }
@@ -567,8 +595,10 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                     }
                 }
             }
-
+    var finish = false;
      function agendar(){
+        if (finish == false) {
+            finish = true;
         $('.carregando').show();
         var erroEquipamento = "";
         var aula;
@@ -613,7 +643,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             $("#selectConfirm").html('<a href="agendar.php"><button type="button" class="btn btn-outline-danger Cancelar_confirm">Novo agendamento</button></a><a href="reservas.php"><button type="button" class="btn btn-outline-success">Ir para os agendamentos</button></a>');
 
         $('.carregando').hide();
-        
+        }
      }
 </script>
 

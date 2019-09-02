@@ -10,6 +10,10 @@
     		input[type=button]{
     			margin-top: 10px
     		}
+
+            img[alt='www.000webhost.com']{
+                display: none
+            }
     	</style>
 	
 <link rel="icon" href="img/ceara.png">

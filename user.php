@@ -329,6 +329,9 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <a href="user_files/html/agendar.php">
             <button class="btn btn-success">Ir para os agendamentos</button>
         </a>
+        <a href="php/certificado.php?cpf=<?php echo $cpf?>">
+            <button class="btn btn-warning">Visualizar meu certificado!</button>
+        </a>
       </div>
     </div>
   </div>

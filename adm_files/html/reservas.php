@@ -158,7 +158,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                  }
             }
             @media print{
-                .header,input, select, .btn, #page-top, .footer, .edit{
+                .header,input, select, .btn, #page-top, .footer, .edit, #info{
                     width:0px;
                     display:none;
                 }
@@ -253,9 +253,9 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         $sql = "SELECT table_name AS `Table`, SUM(round(((data_length + index_length) / 1024 / 1024), 2)) AS `TAMANHO` FROM information_schema.TABLES WHERE table_schema = '$db_name'";
         $query = mysqli_query($con, $sql);
         $row = mysqli_fetch_array($query);
-        $livre = round((1024 - $row['TAMANHO']) / 1024, 2);
+        $livre = round((1000 - $row['TAMANHO']) / 1024, 2);
 
-        echo "<p style='color:red; float:right'>Você tem um amazenamento livre de ".$livre."Gb</p>";
+        echo "<p id='info' style='color:red; float:right'>Você tem um amazenamento livre de ".$livre."Gb</p>";
         ?>
     <form action="reservas.php" method="post">
     <select id="filtro" class="col-12" name="aula">

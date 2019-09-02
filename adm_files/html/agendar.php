@@ -608,10 +608,10 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         var hoje = new Date();
         var efetuacao = hoje.getYear()+1900+"-"+ (hoje.getMonth()+1) + "-"+ hoje.getDate()+" "+ hoje.getHours()+":"+hoje.getMinutes()+":"+hoje.getSeconds();
         var dia = $('#dia').val();
-                for(var key in equipamentosSelected){
-                    if(equipamentosSelected[key] != null){
-                    var equi = document.getElementById('campo'+equipamentosSelected[key]).checked;
-                    if(equi){
+         for(var key in equipamentosSelected){
+            if(equipamentosSelected[key] != null){
+                var equi = document.getElementById('campo'+equipamentosSelected[key]).checked;
+                if(equi){
         for(var i = 1; i <= <?php echo $aulaCount;?>; i++){
             var checked = document.getElementById('aula'+i+'-'+equipamentosSelected[key]).checked;
             if (checked) {

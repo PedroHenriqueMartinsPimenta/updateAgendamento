@@ -386,6 +386,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                     var html = '<label>'+i+'° aula: </label><select onchange="selectTurma(this)" id="turma'+i+'"><option value="null">Selecionar turma</option><?php $sql = "SELECT * FROM TURMA ORDER BY DESCRICAO ASC"; $query = mysqli_query($con, $sql); while ($row = mysqli_fetch_array($query)) { ?> <option value="<?php echo $row["CODIGO"]?>" id="<?php echo $row["CODIGO"]?>"><?php echo $row["DESCRICAO"]?></option> <?php } ?> </select><br><br>';
                     $("#selectTurma div").html($("#selectTurma div").html()+html);
 
+                        $('.carregando').show();
                         var ano = $('#dia').val().substring(0, 4);
                         var mes = $('#dia').val().substring(5, 7) - 1;
                         var dia = $('#dia').val().substring(8, 10);
@@ -396,6 +397,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                            "../../php/getAulasComuns.php",
                            dados,
                            function(result){
+                            $('.carregando').hide();
                             console.log(result);
                             if (result != null) {
                                 //document.getElementById(result).selected = true;

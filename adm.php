@@ -329,6 +329,14 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             ?>
         </p>
       </div>
+      <div class="modal-footer" style="display:inline-block">
+        <a href="adm_files/html/agendar.php">
+            <button class="btn btn-success" style="margin-top:10px">Ir para os agendamentos</button>
+        </a>
+        <a href="php/certificado.php?cpf=<?php echo $cpf?>">
+            <button class="btn btn-warning" style="margin-top:10px">Visualizar meu certificado!</button>
+        </a>
+      </div>
       <div class="modal-footer">
         <a href="adm_files/html/agendar.php">
             <button class="btn btn-success">Ir para os agendamentos</button>

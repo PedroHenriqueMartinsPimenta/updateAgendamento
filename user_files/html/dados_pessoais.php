@@ -89,6 +89,7 @@ img.emoji {
     background-position:center center;
     background-repeat: no-repeat;
     cursor: pointer;
+    transition: 0.25s;
 }
 .editar:hover{
     transform:  rotate(15deg);

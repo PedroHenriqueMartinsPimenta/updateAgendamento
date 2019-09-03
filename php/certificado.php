@@ -130,6 +130,7 @@
 				width: 1300px;
 				height: 900px;
 				background: linear-gradient(120deg, rgba(20,230, 90, 0.7), rgba(20,150, 90, 0.7));
+				-webkit-print-color-adjust: exact;
 			}
 			.footer{
 				top: 85%;

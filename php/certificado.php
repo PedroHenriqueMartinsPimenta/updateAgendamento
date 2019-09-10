@@ -190,6 +190,7 @@
 			function cancelar(){
 				document.getElementById('modal').style.display = 'none';
 			}
+			window.print();
 		</script>
 </body>
 </html>

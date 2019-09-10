@@ -248,7 +248,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     <div class="form">
         <form action="../../php/addEquipamento.php" method="post" enctype="multipart/form-data">
             <p>Adicionar usuario</p>
-            <input type="text" required name="descricao" placeholder="Descrição equipamento" class="form-control" >
+            <input type="text" required name="descricao" placeholder="Descrição equipamento" class="form-control" maxlength="250">
             <input type="number" required name="qtd" placeholder="Quantidade" min="0" class="form-control">
           
             <label class="label btn btn-primary form-control"  for="file">Selecionar foto do equipamento:</label>

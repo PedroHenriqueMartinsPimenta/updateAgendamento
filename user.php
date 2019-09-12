@@ -304,6 +304,15 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             <?php 
                 $sql = "SELECT COUNT(EQUIPAMENTO_CODIGO) AS QTD, EQUIPAMENTO_CODIGO, DESCRICAO, QUANTIDADE FROM RESERVA INNER JOIN EQUIPAMENTO ON RESERVA.EQUIPAMENTO_CODIGO = EQUIPAMENTO.CODIGO WHERE RESERVA.USUARIO_CPF = '$cpf' GROUP BY EQUIPAMENTO_CODIGO ORDER BY QTD DESC LIMIT 2";
                 $query = mysqli_query($con, $sql);
+                if (mysqli_num_rows($query) == 0) {
+                    ?>
+                    <style>
+                        .moda-info{
+                            display: none;
+                        }
+                    </style>
+                    <?php
+                }
                 while ($row = mysqli_fetch_array($query)) {
                     $equipamento = $row['EQUIPAMENTO_CODIGO'];
                     echo "<b>".$row['DESCRICAO'].":</b> <BR>";

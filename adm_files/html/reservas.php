@@ -316,6 +316,27 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     <a href="grafico.php"><div class="btn btn-info" style="cursor: pointer;">
         Graficos
     </div></a>
+    <?php 
+        if ($livre <= 0.1) {
+            ?>
+            <style type="text/css">
+                .anime{
+                    float: right;
+                    animation: animacao 1s infinite alternate;
+                }
+                @keyframes animacao{
+                    0%{
+                         box-shadow: none;
+                    }
+                    100%{
+                        box-shadow: 0px 0px 1px 3px rgba(240,80,25,0.8);
+                    }
+                }
+            </style>
+            <div class="btn btn-outline-danger anime">Reiniciar tabela</div>
+            <?php
+        }
+    ?>
 </form>
 <div style=" max-width: 100%;overflow: scroll">
 <?php 
@@ -467,6 +488,31 @@ while($rowList = mysqli_fetch_array($queryAgendamento)){
 
     
     </div>
+<div class="modal modal-info" tabindex="-1" role="dialog" style="overflow: auto">
+  <div class="modal-dialog" role="document">
+    <div>
+        <form action="../../php/reset_table_reservas.php" method="post" class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Atenção</h5>
+            <div class="close" id="close-modal">X</div>
+            
+          </div>
+          <div class="modal-body">
+            <label for="cpf">Confirme seu CPF:</label>
+            <input type="CPF" name="cpf" id="cpf" placeholder="CPF" maxlength="14" required onkeydown="javascript: fMasc( this, mCPF );">
+            <label for="senha">Confirme sua senha:</label>
+            <input type="password" name="senha" id="senha" placeholder="Senha" required>
+            <div class="custom-control custom-checkbox">
+            <input type="checkbox" name="confim" id="confirm" required class="col-1 custom-control-input"><label for="confirm"  class="col-11 custom-control-label" style="color: rgba(240,18,30,1);">Estou ciente que apagarei todos os dados de agendamentos efetuados até hoje</label>
+        </div>
+          </div>
+          <div class="modal-footer" style="display:inline-block">
+                <input type="submit" class="btn btn-primary" style="margin-top:10px; float: right;" value="Reiniciar">
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
 <script type="text/javascript" defer="defer" src="./reservas_files/imagesloaded.min.js.download"></script>
 <script type="text/javascript" defer="defer" src="./reservas_files/masonry.min.js.download"></script>
 <script type="text/javascript" defer="defer" src="./reservas_files/theme.bundle.min.js.download"></script>
@@ -485,12 +531,67 @@ while($rowList = mysqli_fetch_array($queryAgendamento)){
         $('.print').click(function(){
             window.print();
         });
-            
+        $('#close-modal').click(function(){
+            $('.modal-info').fadeOut('fast');
+        });
+        $('.anime').click(function(){
+            $('.modal-info').fadeIn('slow');
+        });
     })
 </script>
 
 <script type="text/javascript">
     document.getElementsByClassName('site-info').item(0).style.display = 'none';
+     function fMasc(objeto,mascara) {
+        obj=objeto
+        masc = mascara
+        setTimeout("fMascEx()",1)
+    }
+    function fMascEx() {
+        obj.value=masc(obj.value)
+    }
+    function mTel(tel) {
+        tel=tel.replace(/\D/g,"")
+        tel=tel.replace(/^(\d)/,"($1")
+        tel=tel.replace(/(.{3})(\d)/,"$1)$2")
+        if(tel.length == 9) {
+            tel=tel.replace(/(.{1})$/,"-$1")
+        } else if (tel.length == 10) {
+            tel=tel.replace(/(.{2})$/,"-$1")
+        } else if (tel.length == 11) {
+            tel=tel.replace(/(.{3})$/,"-$1")
+        } else if (tel.length == 12) {
+            tel=tel.replace(/(.{4})$/,"-$1")
+        } else if (tel.length > 12) {
+            tel=tel.replace(/(.{4})$/,"-$1")
+        }
+        return tel;
+    }
+    function mCNPJ(cnpj){
+        cnpj=cnpj.replace(/\D/g,"")
+        cnpj=cnpj.replace(/^(\d{2})(\d)/,"$1.$2")
+        cnpj=cnpj.replace(/^(\d{2})\.(\d{3})(\d)/,"$1.$2.$3")
+        cnpj=cnpj.replace(/\.(\d{3})(\d)/,".$1/$2")
+        cnpj=cnpj.replace(/(\d{4})(\d)/,"$1-$2")
+        return cnpj
+    }
+    function mCPF(cpf){
+        cpf=cpf.replace(/\D/g,"")
+        cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+        cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+        cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
+        return cpf
+    }
+    function mCEP(cep){
+        cep=cep.replace(/\D/g,"")
+        cep=cep.replace(/^(\d{2})(\d)/,"$1.$2")
+        cep=cep.replace(/\.(\d{3})(\d)/,".$1-$2")
+        return cep
+    }
+    function mNum(num){
+        num=num.replace(/\D/g,"")
+        return num
+    }
 </script>
 <div id="offcanvas-wrapper" class="hide  offcanvas-right offcanvas col-12">
         <div class="offcanvas-top">

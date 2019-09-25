@@ -8,20 +8,20 @@
 	<title>Certificado</title>
 	<style type="text/css">
 		body{
-			background: linear-gradient(120deg, rgba(20,230, 90, 0.7), rgba(20,150, 90, 0.7));
 			color: white;
 			font-family: arial;
-			background-size: 100%;
 		}
 		.corpo{
-			width: 1350px;
+			background: linear-gradient(120deg, rgba(20,230, 90, 0.7), rgba(20,150, 90, 0.7));
+			width: 99%;
 			height: 630px;
 			border:3px solid rgba(240,240,240,1);
 			position: absolute;
-			top: 10px;
-			left: 5px;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
 			border-radius: 20px;
-			z-index: 990
+			z-index: 990;
 		}
 		.img-1{
 			width: 100px;
@@ -60,8 +60,9 @@
 			font-size: 20px;
 		}
 		.modal{
-			position: relative;
-			top: 50px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
 			width: 500px;
 			background-color: white;
 			color: black;
@@ -69,7 +70,8 @@
 			margin:0 auto;
 			z-index: 999;
 			border-radius: 5px;
-			transition: 0.25s
+			transition: 0.25s;
+			transform: translate(-50%,-50%);
 		}
 		.title{
 			width: 100%;
@@ -122,6 +124,35 @@
 			border:2px solid rgba(150,20, 20, 0.8);	
 			background-color: rgba(150,20, 20, 1);		
 		}
+		.assinatura{
+			width: 400px;
+			color: white;
+			border-top: 1px white solid;
+			text-align: center;
+			font-size: 15px;
+			padding-top: 5px;
+			position: absolute;
+			right: 200px;
+			bottom: 30%;
+		}
+		.assinatura-agendamento {
+			width: 400px;
+			position: absolute;
+			left: 200px;
+			bottom: 30%;
+			text-align: center
+		}
+		.assinatura-agendamento p{
+			font-size: 14px;
+			font-family: cursive;
+			margin-bottom: -1px;
+			color: rgba(10,10,140,0.8);
+		}
+		.assinatura-agendamento div{
+				font-size: 15px;
+				border-top: 1px white solid;
+				padding-top:5px;
+		}
 		@media print{
 			.corpo{
 				transform: rotate(90deg);
@@ -154,7 +185,7 @@
 		</div>
 		<div class="mensagem">
 			Deseja imprimir o certificado?<br>
-			(Caso na impressão não apareca cores vá em <br> Mais detalhes e selecione a opção Gráficos de segundo plano)
+			(Certificado simplesmente simbolico)
 		</div>
 		<div class="buttons">
 			<button class="imprimir" onclick="imprimir()"><b>Imprimir</b></button>
@@ -178,6 +209,11 @@
 				<?php
 					}
 				?>
+				<div class="assinatura-agendamento">
+					<p>Agendamento web da EEEP Padre João Bosco de Lima</p>
+					<div>Assinatura do realizador</div>
+				</div>
+				<div class="assinatura">Assinatura</div>
 			</div>
 			<div class="footer"><p>Certificado criado pelo sistema de agendamento web</p></div>
 		</div>
@@ -190,7 +226,7 @@
 			function cancelar(){
 				document.getElementById('modal').style.display = 'none';
 			}
-			window.print();
+			//window.print();
 		</script>
 </body>
 </html>

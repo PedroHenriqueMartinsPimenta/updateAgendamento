@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<?php 
+		include_once('php/conexao.php');
+		include_once('adm_files/html/init/enter/enter/enter/enter/insert_reservas_padroes.php');
+	?>
 	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 	<meta name="viewport" content="width=device-width">

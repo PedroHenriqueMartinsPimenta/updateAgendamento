@@ -316,6 +316,10 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     <a href="grafico.php"><div class="btn btn-info" style="cursor: pointer;">
         Graficos
     </div></a>
+    <br>
+    <a href="agendamentos_padroes.php"><div class="btn btn-outline-primary" style="cursor: pointer;">
+        Agendamentos padrões
+    </div></a>
     <?php 
         if ($livre <= 0.1) {
             ?>

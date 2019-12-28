@@ -20,7 +20,8 @@ class ComumDAO extends Conexao{
         $_SESSION['nome'] = $row['NOME'];
 				$_SESSION['PERMISSAO'] = $row['PERMISSAO'];
         $_SESSION['ativo'] = $row['ATIVO'];
-				$_SESSION['FOTO'] = $row['FOTO'];
+        $_SESSION['FOTO'] = $row['FOTO'];
+        $_SESSION['MODAL-INFO'] = false;
         $_SESSION["equipamentos"] = array();
 								
 				if($row['PERMISSAO'] == 0){

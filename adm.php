@@ -219,18 +219,27 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <div class="gridContainer content">
             <div id="post-26" class="post-26 page type-page status-publish hentry">
   <div>
-   <div class="row">
+   <div class="row" style="top:0px">
 <div class="col-md-12">
 <div class="row">
-<div class="progress progress1">
-                        <span class="progress-left"><br>
-                            <span class="progress-bar"></span><br>
-                        </span><br>
-                        <span class="progress-right"><br>
-                            <span class="progress-bar"></span><br>
-                        </span><p></p>
-<div class="progress-value">98% Evolução na logística de agendamento</div>
-<p></p></div>
+<progress class="progress-value" max="100" value="98" id="progress">98% Evolução na logística de agendamento</progress>
+<style>
+    #progress{
+        height:50px;
+        background-color: transparent;
+        border: 1px solid;
+        border-radius: 5px;
+        padding: 0px;
+        margin-left:5px;
+        margin-right:5px;
+    }
+    #progress::-webkit-progress-bar{
+        background-color:transparent
+    }
+    #progress::-webkit-progress-value {
+        background-image:linear-gradient(120deg, rgba(120,10,170, 1), rgba(230,100, 100, 1))
+    }
+</style>
 <h6 class="category"></h6>
 <p>O nosso sistema promete ao usuario uma evolução de 98% na logistica de agendamento dos equipamentos </p>
 <p></p></div>
@@ -345,15 +354,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <a href="php/certificado.php?cpf=<?php echo $cpf?>">
             <button class="btn btn-warning" style="margin-top:10px">Visualizar meu certificado!</button>
         </a>
-      </div>
-      <div class="modal-footer">
-        <a href="adm_files/html/agendar.php">
-            <button class="btn btn-success">Ir para os agendamentos</button>
-        </a>
-        <a href="php/certificado.php?cpf=<?php echo $cpf?>">
-            <button class="btn btn-warning">Visualizar meu certificado!</button>
-        </a>
-      </div>
+      </div> 
     </div>
   </div>
 </div>

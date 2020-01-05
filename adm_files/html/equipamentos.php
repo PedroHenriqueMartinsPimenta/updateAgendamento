@@ -3,6 +3,7 @@
     session_start();
     if(isset($_SESSION['CPF']) && $_SESSION['PERMISSAO'] == 1){
     $cpf = $_SESSION['CPF'];
+    $escola = $_SESSION['ESCOLA'];
     $permissao = $_SESSION['PERMISSAO'];
 ?>
 <!DOCTYPE html>
@@ -276,7 +277,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
   </thead>
   <tbody>
       <?php 
-        $sql = "SELECT * FROM EQUIPAMENTO ORDER BY DESCRICAO  ASC";
+        $sql = "SELECT * FROM EQUIPAMENTO WHERE ESCOLA_CODIGO = $escola ORDER BY DESCRICAO  ASC";
         $query = mysqli_query($con, $sql);
         while($row = mysqli_fetch_array($query)){
       ?>

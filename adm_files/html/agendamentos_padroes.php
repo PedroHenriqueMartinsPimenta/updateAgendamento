@@ -3,6 +3,7 @@
     session_start();
     if(isset($_SESSION['CPF']) && $_SESSION['PERMISSAO'] == 1){
     $cpf = $_SESSION['CPF'];
+    $escola = $_SESSION['ESCOLA'];
     $permissao = $_SESSION['PERMISSAO'];
 ?>
 <!DOCTYPE html>
@@ -259,7 +260,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             <select name="professor">
                 <?php
                     $dia_semana = array('Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado');
-                    $sql = "SELECT * FROM USUARIO ORDER BY NOME ASC";
+                    $sql = "SELECT * FROM USUARIO WHERE ESCOLA_CODIGO = $escola ORDER BY NOME ASC";
                     $query = mysqli_query($con, $sql);
                     while($row = mysqli_fetch_array($query)){
                         ?>
@@ -272,7 +273,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             <label>Turma:</label>
             <select name="turma">
                 <?php
-                    $sql = "SELECT * FROM TURMA ORDER BY DESCRICAO ASC";
+                    $sql = "SELECT * FROM TURMA WHERE ESCOLA_CODIGO = $escola ORDER BY DESCRICAO ASC";
                     $query = mysqli_query($con, $sql);
                     while($row = mysqli_fetch_array($query)){
                         ?>
@@ -285,7 +286,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             <label>Equipamento:</label>
             <select name="equipamento">
                 <?php
-                    $sql = "SELECT * FROM EQUIPAMENTO ORDER BY DESCRICAO ASC";
+                    $sql = "SELECT * FROM EQUIPAMENTO WHERE ESCOLA_CODIGO = $escola ORDER BY DESCRICAO ASC";
                     $query = mysqli_query($con, $sql);
                     while($row = mysqli_fetch_array($query)){
                         ?>
@@ -343,7 +344,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
   <tbody>
       <?php 
       $dia_semana = array('Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado');
-        $sql = "SELECT RESERVAS_PADROES.ID AS CODIGO, RESERVAS_PADROES.DIA_SEMANA, USUARIO.NOME, TURMA.DESCRICAO AS TURMA, AULA.DESCRICAO AS AULA, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO FROM RESERVAS_PADROES INNER JOIN USUARIO ON RESERVAS_PADROES.USUARIO_CPF = USUARIO.CPF INNER JOIN TURMA ON RESERVAS_PADROES.TURMA_CODIGO = TURMA.CODIGO INNER JOIN AULA ON RESERVAS_PADROES.AULA_CODIGO = AULA.CODIGO INNER JOIN EQUIPAMENTO ON RESERVAS_PADROES.EQUIPAMENTO_CODIGO = EQUIPAMENTO.CODIGO ORDER BY DIA_SEMANA  ASC";
+        $sql = "SELECT RESERVAS_PADROES.ID AS CODIGO, RESERVAS_PADROES.DIA_SEMANA, USUARIO.NOME, TURMA.DESCRICAO AS TURMA, AULA.DESCRICAO AS AULA, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO FROM RESERVAS_PADROES INNER JOIN USUARIO ON RESERVAS_PADROES.USUARIO_CPF = USUARIO.CPF INNER JOIN TURMA ON RESERVAS_PADROES.TURMA_CODIGO = TURMA.CODIGO INNER JOIN AULA ON RESERVAS_PADROES.AULA_CODIGO = AULA.CODIGO INNER JOIN EQUIPAMENTO ON RESERVAS_PADROES.EQUIPAMENTO_CODIGO = EQUIPAMENTO.CODIGO WHERE USUARIO.ESCOLA_CODIGO = $escola ORDER BY DIA_SEMANA  ASC";
         $query = mysqli_query($con, $sql);
         while($row = mysqli_fetch_array($query)){
       ?>

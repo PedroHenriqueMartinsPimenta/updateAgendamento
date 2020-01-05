@@ -277,7 +277,8 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
   </thead>
   <tbody>
       <?php 
-        $sql = "SELECT * FROM TURMA ORDER BY DESCRICAO  ASC";
+      $escola = $_SESSION['ESCOLA'];
+        $sql = "SELECT * FROM TURMA WHERE ESCOLA_CODIGO = $escola ORDER BY DESCRICAO ASC";
         $query = mysqli_query($con, $sql);
         while($row = mysqli_fetch_array($query)){
       ?>

@@ -3,8 +3,9 @@
     session_start();
     if(isset($_SESSION['CPF']) && $_SESSION['PERMISSAO'] == 0){
     $cpf = $_SESSION['CPF'];
+    $escola = $_SESSION['ESCOLA'];
     $permissao = $_SESSION['PERMISSAO'];
-			$dia = $_SESSION['dia'];
+	$dia = $_SESSION['dia'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,7 +35,6 @@
 </head>
 <body>
 	<p><a href="#" id="pdf" class="btn btn-info">Baixar (.pdf)</a> 
-	<a href="#" id="exel"  class="btn btn-info">Baixar (.xlsx)</a>
 	<a href="#" class="btn btn-info" onclick="adapter()">Melhorar visão da tabela</a>
 	</p>
 	<div id="table">
@@ -42,7 +42,7 @@
 		<?php 
 		$total = 0;
 		$maior = 0;
-			$sql = "SELECT COUNT(CODIGO) AS QTD FROM EQUIPAMENTO";
+			$sql = "SELECT COUNT(CODIGO) AS QTD FROM EQUIPAMENTO WHERE ESCOLA_CODIGO = $escola";
 			$query = mysqli_query($con, $sql);
 			while ($row = mysqli_fetch_array($query)) {
 			$total = $row['QTD'];
@@ -59,7 +59,7 @@
 					<td>Nome Completo</td>
 					<td>Turma</td>
 					<?php 
-			$sql = "SELECT * FROM EQUIPAMENTO";
+			$sql = "SELECT * FROM EQUIPAMENTO WHERE ESCOLA_CODIGO = $escola";
 			$query = mysqli_query($con, $sql);
 			while ($row = mysqli_fetch_array($query)) {
 				?>
@@ -71,7 +71,7 @@
 		</thead>
 		<?php 
 			}
-			$sql = "SELECT SUM(QUANTIDADE) AS MAIOR FROM EQUIPAMENTO";
+			$sql = "SELECT SUM(QUANTIDADE) AS MAIOR FROM EQUIPAMENTO WHERE ESCOLA_CODIGO = $escola";
 			$query = mysqli_query($con, $sql);
 			$row = mysqli_fetch_array($query);
 			$maior = $row['MAIOR'];
@@ -86,8 +86,9 @@
 INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO 
 INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF
 INNER JOIN AULA ON RESERVA.AULA_CODIGO = AULA.CODIGO
-INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '$dia' ORDER BY ORDEM ASC";
+INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE USUARIO.ESCOLA_CODIGO = $escola AND DATA_ULTILIZAR = '$dia' ORDER BY ORDEM ASC";
 				$query = mysqli_query($con, $sql);
+				echo mysqli_error($con);
 				while ($row = mysqli_fetch_array($query)) {
 				if($row['AULA'] != $AULA){
 			?>
@@ -104,7 +105,7 @@ INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '
 					<td id="nome<?php echo $i?>"></td>
 					<td id="turma<?php echo $i?>"></td>
 					<?php 
-					$sql = "SELECT * FROM EQUIPAMENTO";
+					$sql = "SELECT * FROM EQUIPAMENTO WHERE ESCOLA_CODIGO = $escola";
 					$queryQ = mysqli_query($con, $sql);
 					while ($rowQ = mysqli_fetch_array($queryQ)) {
 					
@@ -128,39 +129,30 @@ INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '
 	for ($i=1; $i <= 9; $i++) { 
 		$line = 0;
 	
-		$sql = "SELECT DISTINCT USUARIO_CPF AS CPF FROM RESERVA WHERE DATA_ULTILIZAR = '$dia' AND AULA_CODIGO = $i ORDER BY DATA ASC";
+		$sql = "SELECT DISTINCT USUARIO_CPF AS CPF FROM RESERVA INNER JOIN USUARIO ON  USUARIO.CPF = RESERVA.USUARIO_CPF WHERE DATA_ULTILIZAR = '$dia' AND AULA_CODIGO = $i AND ESCOLA_CODIGO = $escola ORDER BY DATA ASC";
 		$query = mysqli_query($con, $sql);
 		while ($row = mysqli_fetch_array($query)) {
 			$cpf = $row['CPF'];
-			$sql2 = "SELECT * FROM RESERVA INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '$dia' AND USUARIO_CPF = '$cpf' AND AULA_CODIGO = $i";
+			$sql2 = "SELECT * FROM RESERVA INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '$dia' AND USUARIO_CPF = '$cpf' AND AULA_CODIGO = $i AND USUARIO.ESCOLA_CODIGO = $escola";
 			$query2 = mysqli_query($con, $sql2);
 			while ($reserva = mysqli_fetch_array($query2)) {
-				if ($cpf == $_SESSION['CPF']) {
-						$momento = $reserva['DATA'];
+				$momento = $reserva['DATA'];
 				$codigo_equipamento = $reserva['EQUIPAMENTO_CODIGO'];
 				$a = $reserva['AULA_CODIGO'];
 				$sql = "SELECT COUNT(CODIGO) AS QTD FROM RESERVA WHERE DATA < '$momento' AND AULA_CODIGO = $a AND DATA_ULTILIZAR = '$dia' AND EQUIPAMENTO_CODIGO = $codigo_equipamento";
 				$queryCount = mysqli_query($con, $sql);
 				$rowCount = mysqli_fetch_array($queryCount);
 				$qtdCount = $rowCount['QTD']+1;
+				
 				?>
 				<script type="text/javascript">
 					$(function(){
 					$('#line<?php echo $line?>aula<?php echo $i?> #nome<?php echo $line?>').html("<?php echo $reserva['NOME']?>");
 					$('#line<?php echo $line?>aula<?php echo $i?> #turma<?php echo $line?>').html("<?php echo $reserva['DESCRICAO']?>");
-					$('#line<?php echo $line?>aula<?php echo $i?> #equi<?php echo $reserva['EQUIPAMENTO_CODIGO']?>').html("<b>X</b> <?php echo $qtdCount?>º");
+					$('#line<?php echo $line?>aula<?php echo $i?> #equi<?php echo $reserva['EQUIPAMENTO_CODIGO']?>').html("<b>X</b>  <?php echo $qtdCount ?>º");
 					});
 				</script>
 				<?php
-			}else{
-				?>
-				<script type="text/javascript">
-					$('#line<?php echo $line?>aula<?php echo $i?> #nome<?php echo $line?>').html("**********");	
-					$('#line<?php echo $line?>aula<?php echo $i?> #turma<?php echo $line?>').html("********");
-					$('#line<?php echo $line?>aula<?php echo $i?> #equi<?php echo $reserva['EQUIPAMENTO_CODIGO']?>').html("<b>X</b>");
-				</script>
-				<?php
-			}
 			}
 
 				$line++;
@@ -200,8 +192,7 @@ INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '
 		var td = document.getElementsByClassName('line'+a);
 			for (var i = 0; i < td.length; i++) {
 				if (!td[i].innerHTML.match("<b>X</b>")) {
-					td[i].style.display = 'none';
-					if (test) {
+					td[i].style.display = 'none';if (test) {
 						qtd = i;
 						test = false;
 					}
@@ -211,7 +202,7 @@ INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '
 			test = true;
 			console.log(qtd +":"+ a);
 			console.log(aula[a-1]);
-			$(aula[a-1]).attr('rowspan',qtd + 1);
+			$(aula[a-1]).attr('rowspan',qtd+1);
 			qtd = 0;
 		}
 			}

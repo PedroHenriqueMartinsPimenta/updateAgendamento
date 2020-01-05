@@ -30,6 +30,10 @@ function getData(mesQtd){
 					dia = (parseInt(dia) + parseInt(diaSemana)) - mesQtd;
 					mes = parseInt(mes) + 1;
 					if (mes >= 10) {
+						if(mes > 12){
+							mes = mes - 12;
+							ano++;
+						}
 						var diasProximo = ano + "-" +mes + "-0" + dia;
 					}else{
 						var diasProximo = ano + "-0" +mes + "-0" + dia;
@@ -80,6 +84,10 @@ function getData(mesQtd){
 					var diaAtual = ano + "-" +mes + "-" + dia;
 					dia = (parseInt(dia) + 5) - mesQtd;
 					mes = parseInt(mes) + 1;
+					if(mes > 12){
+							mes = mes - 12;
+							ano++;
+						}
 					if (mes >= 10) {
 						var diasProximo = ano + "-" +mes + "-0" + dia;
 					}else{
@@ -93,6 +101,10 @@ function getData(mesQtd){
 				if (dia > mesQtd) {
 					dia = (parseInt(dia)) - mesQtd;
 					mes++;
+				if(mes > 12){
+					mes = mes - 12;
+					ano++;
+				}
 				if (mes < 10) {
 					mes = "0" + mes;
 				}
@@ -100,9 +112,12 @@ function getData(mesQtd){
 			if(dia < 10){
 				dia = "0"+dia;
 				}
+
+				
+
 		var diasProximo =  ano + "-" +mes + "-" + dia;
 			}
-			
+
 			var dias =[diaAtual, diasProximo];
 		return dias;
 		}

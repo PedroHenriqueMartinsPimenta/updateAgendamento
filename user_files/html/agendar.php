@@ -3,6 +3,7 @@
     session_start();
     if(isset($_SESSION['CPF']) && $_SESSION['PERMISSAO'] == 0){
     $cpf = $_SESSION['CPF'];
+    $escola = $_SESSION['ESCOLA'];
     $permissao = $_SESSION['PERMISSAO'];
 ?>
 <!DOCTYPE html>
@@ -256,7 +257,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                         </div>
     </div>
 
-    <div class="page-content">
+   <div class="page-content">
         <div class="gridContainer content">
             <div id="post-103" class="post-103 page type-page status-publish hentry">
     <div>
@@ -271,7 +272,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                  <div class="col-9" id="selectEquipamento" style="margin: 0 auto; text-align: center">
               
                     <?php 
-                        $sql = "SELECT * FROM EQUIPAMENTO ORDER BY DESCRICAO ASC";
+                        $sql = "SELECT * FROM EQUIPAMENTO WHERE ESCOLA_CODIGO = $escola ORDER BY DESCRICAO ASC";
                         $query = mysqli_query($con, $sql);
                         while ($row = mysqli_fetch_array($query)) {
                     ?>
@@ -331,6 +332,8 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 </div>
     
     </div>
+  
+
 <div class="carregando"></div>
 <script type="text/javascript" defer="defer" src="./reservas_files/imagesloaded.min.js.download"></script>
 <script type="text/javascript" defer="defer" src="./reservas_files/masonry.min.js.download"></script>
@@ -383,9 +386,9 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                 var checked = document.getElementById('aula'+i+'-'+equipamentosSelected[key]).checked;
                         if(checked){
                             var nomeEqui = $("#label"+equipamentosSelected[key]).attr('title');
-                    var html = '<label>'+i+'° aula: </label><select onchange="selectTurma(this)" id="turma'+i+'"><option value="null">Selecionar turma</option><?php $sql = "SELECT * FROM TURMA ORDER BY DESCRICAO ASC"; $query = mysqli_query($con, $sql); while ($row = mysqli_fetch_array($query)) { ?> <option value="<?php echo $row["CODIGO"]?>" id="<?php echo $row["CODIGO"]?>"><?php echo $row["DESCRICAO"]?></option> <?php } ?> </select><br><br>';
+                    var html = '<label>'+i+'° aula: </label><select onchange="selectTurma(this)" id="turma'+i+'"><option value="null">Selecionar turma</option><?php $sql = "SELECT * FROM TURMA WHERE ESCOLA_CODIGO = $escola ORDER BY DESCRICAO ASC"; $query = mysqli_query($con, $sql); while ($row = mysqli_fetch_array($query)) { ?> <option value="<?php echo $row["CODIGO"]?>" id="<?php echo $row["CODIGO"]?>"><?php echo $row["DESCRICAO"]?></option> <?php } ?> </select><br><br>';
                     $("#selectTurma div").html($("#selectTurma div").html()+html);
-
+                        
                         $('.carregando').show();
                         var ano = $('#dia').val().substring(0, 4);
                         var mes = $('#dia').val().substring(5, 7) - 1;
@@ -402,7 +405,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                             if (result != null) {
                                 //document.getElementById(result).selected = true;
                                 console.log(result);
-                                $(result).attr('selected',true);
+                                $(result).attr('selected','selected');
                                 if (pass) {
                                     $('.proximo_turma').removeAttr('disabled');
                                 }
@@ -413,7 +416,8 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                            },
                            'JSON'
                             );
-
+                        
+                            
                         break;
                     
                         }
@@ -525,6 +529,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             "../../php/pesquisaEquipamentos.php",
             data,
             function(page){
+                console.log(page);
                 var arrayPage = page;
                 for(var i = 0; i < arrayPage.length;i++){
                   document.getElementById('aula'+arrayPage[i]+'-'+codigo).disabled = true;
@@ -591,7 +596,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                     }
                 }
             }
-            var finish = false;
+    var finish = false;
      function agendar(){
         if (finish == false) {
             finish = true;
@@ -604,10 +609,10 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         var hoje = new Date();
         var efetuacao = hoje.getYear()+1900+"-"+ (hoje.getMonth()+1) + "-"+ hoje.getDate()+" "+ hoje.getHours()+":"+hoje.getMinutes()+":"+hoje.getSeconds();
         var dia = $('#dia').val();
-                for(var key in equipamentosSelected){
-                    if(equipamentosSelected[key] != null){
-                    var equi = document.getElementById('campo'+equipamentosSelected[key]).checked;
-                    if(equi){
+         for(var key in equipamentosSelected){
+            if(equipamentosSelected[key] != null){
+                var equi = document.getElementById('campo'+equipamentosSelected[key]).checked;
+                if(equi){
         for(var i = 1; i <= <?php echo $aulaCount;?>; i++){
             var checked = document.getElementById('aula'+i+'-'+equipamentosSelected[key]).checked;
             if (checked) {
@@ -639,10 +644,10 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             $("#selectConfirm").html('<a href="agendar.php"><button type="button" class="btn btn-outline-danger Cancelar_confirm">Novo agendamento</button></a><a href="reservas.php"><button type="button" class="btn btn-outline-success">Ir para os agendamentos</button></a>');
 
         $('.carregando').hide();
-        
+        }
      }
- }
 </script>
+
 
 <div id="offcanvas-wrapper" class="hide  offcanvas-right offcanvas col-12">
         <div class="offcanvas-top">

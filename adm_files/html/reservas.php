@@ -4,6 +4,7 @@
     if(isset($_SESSION['CPF']) && $_SESSION['PERMISSAO'] == 1){
     $cpf = $_SESSION['CPF'];
     $_SESSION['dia'] = date('Y-m-d');
+    $escola = $_SESSION['ESCOLA'];
     $permissao = $_SESSION['PERMISSAO'];
 ?>
 <!DOCTYPE html>
@@ -320,27 +321,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     <a href="agendamentos_padroes.php"><div class="btn btn-outline-primary" style="cursor: pointer;">
         Agendamentos padrões
     </div></a>
-    <?php 
-        if ($livre <= 0.1) {
-            ?>
-            <style type="text/css">
-                .anime{
-                    float: right;
-                    animation: animacao 1s infinite alternate;
-                }
-                @keyframes animacao{
-                    0%{
-                         box-shadow: none;
-                    }
-                    100%{
-                        box-shadow: 0px 0px 1px 3px rgba(240,80,25,0.8);
-                    }
-                }
-            </style>
-            <div class="btn btn-outline-danger anime">Reiniciar tabela</div>
-            <?php
-        }
-    ?>
+    
 </form>
 <div style=" max-width: 100%;overflow: scroll">
 <?php 
@@ -363,7 +344,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO 
 INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF
 INNER JOIN AULA ON RESERVA.AULA_CODIGO = AULA.CODIGO
-INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '$dia' ORDER BY ORDEM ASC";
+INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE DATA_ULTILIZAR = '$dia' AND USUARIO.ESCOLA_CODIGO = $escola ORDER BY ORDEM ASC";
 
 $queryAgendamento = mysqli_query($con,$sql);
 while($rowList = mysqli_fetch_array($queryAgendamento)){
@@ -409,7 +390,7 @@ while($rowList = mysqli_fetch_array($queryAgendamento)){
 INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO 
 INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF
 INNER JOIN AULA ON RESERVA.AULA_CODIGO = AULA.CODIGO
-INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO ORDER BY EFETUOU DESC";
+INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE USUARIO.ESCOLA_CODIGO = $escola ORDER BY EFETUOU DESC";
 
 $queryAgendamento = mysqli_query($con,$sql);
 echo mysqli_error($con);
@@ -452,7 +433,7 @@ while($rowList = mysqli_fetch_array($queryAgendamento)){
 INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO 
 INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF
 INNER JOIN AULA ON RESERVA.AULA_CODIGO = AULA.CODIGO
-INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE AULA_CODIGO ". $aula ." AND  DATA_ULTILIZAR = '$dia' ORDER BY ORDEM ASC";
+INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE AULA_CODIGO ". $aula ." AND  DATA_ULTILIZAR = '$dia' AND USUARIO.ESCOLA_CODIGO = $escola ORDER BY ORDEM ASC";
 
 $queryAgendamento = mysqli_query($con,$sql);
 echo mysqli_error($con);
@@ -492,31 +473,7 @@ while($rowList = mysqli_fetch_array($queryAgendamento)){
 
     
     </div>
-<div class="modal modal-info" tabindex="-1" role="dialog" style="overflow: auto">
-  <div class="modal-dialog" role="document">
-    <div>
-        <form action="../../php/reset_table_reservas.php" method="post" class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Atenção</h5>
-            <div class="close" id="close-modal">X</div>
-            
-          </div>
-          <div class="modal-body">
-            <label for="cpf">Confirme seu CPF:</label>
-            <input type="CPF" name="cpf" id="cpf" placeholder="CPF" maxlength="14" required onkeydown="javascript: fMasc( this, mCPF );">
-            <label for="senha">Confirme sua senha:</label>
-            <input type="password" name="senha" id="senha" placeholder="Senha" required>
-            <div class="custom-control custom-checkbox">
-            <input type="checkbox" name="confim" id="confirm" required class="col-1 custom-control-input"><label for="confirm"  class="col-11 custom-control-label" style="color: rgba(240,18,30,1);">Estou ciente que apagarei todos os dados de agendamentos efetuados até hoje</label>
-        </div>
-          </div>
-          <div class="modal-footer" style="display:inline-block">
-                <input type="submit" class="btn btn-primary" style="margin-top:10px; float: right;" value="Reiniciar">
-          </div>
-      </form>
-    </div>
-  </div>
-</div>
+
 <script type="text/javascript" defer="defer" src="./reservas_files/imagesloaded.min.js.download"></script>
 <script type="text/javascript" defer="defer" src="./reservas_files/masonry.min.js.download"></script>
 <script type="text/javascript" defer="defer" src="./reservas_files/theme.bundle.min.js.download"></script>

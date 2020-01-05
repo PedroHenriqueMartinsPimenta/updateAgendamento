@@ -4,6 +4,7 @@
     if(isset($_SESSION['CPF']) && $_SESSION['PERMISSAO'] == 1){
     $cpf = $_SESSION['CPF'];
     $permissao = $_SESSION['PERMISSAO'];
+    $escola = $_SESSION['ESCOLA'];
 ?>
 <!DOCTYPE html>
 <!-- saved from url=(0032)http://localhost/diego/usuarios/ -->
@@ -290,7 +291,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
   </thead>
   <tbody>
       <?php 
-        $sql = "SELECT * FROM USUARIO ORDER BY NOME  ASC";
+        $sql = "SELECT * FROM USUARIO WHERE ESCOLA_CODIGO = $escola ORDER BY NOME  ASC";
         $query = mysqli_query($con, $sql);
         while($row = mysqli_fetch_array($query)){
             if($row['ATIVO'] == 1){

@@ -1,5 +1,6 @@
 <?php 
 include_once('Conexao.class.php');
+
 class UserComumDAO extends Conexao{
 	public function listar($codigo,$cpf,$dia){
 				$con = $this->openConnection();
@@ -61,9 +62,11 @@ class UserComumDAO extends Conexao{
          public function pesquisaEquipamentos($equipamento,$dia){
              $con1 = $this->openConnection();
              $con2 = $this->openConnection();
+             session_start();
+             $escola = $_SESSION['ESCOLA'];
              $array = array();
                 $c=0; 
-                for ($i=1; $i <= 9; $i++) {
+                for ($i=1; $i <= $this->countAulas(); $i++) {
                 $sqlTest ="SELECT count(AULA_CODIGO) AS QTD FROM RESERVA WHERE EQUIPAMENTO_CODIGO = :EQUIPAMENTO AND DATA_ULTILIZAR = :DIA AND AULA_CODIGO = :I"; 
                 $sqlQtd = "SELECT * FROM EQUIPAMENTO WHERE CODIGO = :EQUIPAMENTO";
                 $tpmt1 = $con1->prepare($sqlQtd);
@@ -146,5 +149,14 @@ class UserComumDAO extends Conexao{
                 }
                 return $array;
             }
+
+              public function countAulas(){
+                $con = $this->openConnection();
+                $sql = "SELECT * FROM AULA";
+                $tpmt = $con->prepare($sql);
+                $tpmt->execute();
+                $result = $tpmt->fetchAll();
+                return count($result);
+              }
 	}
 ?>

@@ -22,6 +22,7 @@ class ComumDAO extends Conexao{
         $_SESSION['ativo'] = $row['ATIVO'];
         $_SESSION['FOTO'] = $row['FOTO'];
         $_SESSION['MODAL-INFO'] = false;
+        $_SESSION['ESCOLA'] = $row['ESCOLA_CODIGO'];
         $_SESSION["equipamentos"] = array();
 								
 				if($row['PERMISSAO'] == 0){
@@ -43,7 +44,7 @@ class ComumDAO extends Conexao{
   
   public function close(){
       session_start();
-	session_destroy();
+	    session_destroy();
   }
 
   public function updateReserva($dataConvertida,$professor,$equipamento,$aula,$turma,$codigo){
@@ -80,5 +81,6 @@ class ComumDAO extends Conexao{
       }
   }
 }
+
 
 ?>

@@ -153,6 +153,9 @@
 				border-top: 1px white solid;
 				padding-top:5px;
 		}
+		code{
+			color: red;
+		}
 		@media print{
 			.corpo{
 				transform: rotate(90deg);
@@ -185,7 +188,7 @@
 		</div>
 		<div class="mensagem">
 			Deseja imprimir o certificado?<br>
-			(Certificado simplesmente simbolico)
+			(<code>Certificado simplesmente simbolico</code>)
 		</div>
 		<div class="buttons">
 			<button class="imprimir" onclick="imprimir()"><b>Imprimir</b></button>

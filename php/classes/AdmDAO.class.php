@@ -1,14 +1,18 @@
 <?php 
 
 include_once('Conexao.class.php');
+
 class AdmDAO extends Conexao{
 	public function addEquipamento($descricao,$qtd,$ft){
 		$con = $this->openConnection();
-		$sql = "INSERT INTO EQUIPAMENTO (DESCRICAO,QUANTIDADE,ICON) VALUES(:DESCRICAO,:QTD,:FT)";
+    session_start();
+    $escola = $_SESSION['ESCOLA'];
+		$sql = "INSERT INTO EQUIPAMENTO (DESCRICAO,QUANTIDADE,ICON, ESCOLA_CODIGO) VALUES(:DESCRICAO,:QTD,:FT,:ESCOLA)";
                 $tpmt = $con->prepare($sql);
                 $tpmt->bindValue(":DESCRICAO",$descricao);
                 $tpmt->bindValue(":QTD",$qtd);
                 $tpmt->bindValue(":FT",$ft);
+                $tpmt->bindValue(":ESCOLA",$escola);
                 
 		$query = $tpmt->execute();
 		if($query == 1){
@@ -19,11 +23,14 @@ class AdmDAO extends Conexao{
 		}
 	public function addCurso($descricao){
 			$con = $this->openConnection();
+      session_start();
+      $escola = $_SESSION['ESCOLA'];
 			for($i =1; $i <= 3;$i++){
 					$turma = $i."º ".$descricao;
-					$sqlTurma = "INSERT INTO TURMA (DESCRICAO) VALUES(:TURMA)";
+					$sqlTurma = "INSERT INTO TURMA (DESCRICAO, ESCOLA_CODIGO) VALUES(:TURMA, :ESCOLA)";
                                         $tpmt = $con->prepare($sqlTurma);
                                         $tpmt->bindValue(":TURMA",$turma);
+                                        $tpmt->bindValue(':ESCOLA', $escola);
                                         $tpmt->execute();
 					
 				}
@@ -31,14 +38,16 @@ class AdmDAO extends Conexao{
 		}
 	public function addProfessor($cpf,$nome,$name,$img,$sobrenome,$senhaa,$permissao,$email){
 		$con = $this->openConnection();
+    session_start();
+    $escola = $_SESSION['ESCOLA'];
 		$senha = base64_encode($senhaa);
 		mkdir("../path/".$cpf,0777,true);
 		$time = date('Y_m_d_h_m_s');
 		$n = basename($time.$nome);
 		move_uploaded_file($img, "../path/".$cpf."/".$n);
 		$url = "http://localhost/updateAgendamento/path/".$cpf."/".$n;
-		$sql="INSERT INTO USUARIO (CPF,NOME,SOBRENOME,FOTO,SENHA,ATIVO,PERMISSAO,EMAIL)VALUES
-		(:CPF,:NAME,:SOBRENOME,:URL,:SENHA,:ATIVO,:PERMISSAO,:EMAIL)";
+		$sql="INSERT INTO USUARIO (CPF,NOME,SOBRENOME,FOTO,SENHA,ATIVO,PERMISSAO,EMAIL, ESCOLA_CODIGO)VALUES
+		(:CPF,:NAME,:SOBRENOME,:URL,:SENHA,:ATIVO,:PERMISSAO,:EMAIL, :ESCOLA)";
                 $tpmt = $con->prepare($sql);
                 $tpmt->bindValue(":CPF",$cpf);
                 $tpmt->bindValue(":NAME",$name);
@@ -48,6 +57,7 @@ class AdmDAO extends Conexao{
                 $tpmt->bindValue(":ATIVO",1);
                 $tpmt->bindValue(":PERMISSAO",$permissao);
                 $tpmt->bindValue(":EMAIL",$email);  
+                $tpmt->bindValue(":ESCOLA", $escola);
 		
 		$query = $tpmt->execute();
 		}

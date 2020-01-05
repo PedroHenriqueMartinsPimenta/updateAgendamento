@@ -6,7 +6,6 @@
     $permissao = $_SESSION['PERMISSAO'];
 ?>
 <!DOCTYPE html>
-<!-- saved from url=(0023)http://localhost/diego/ -->
 <html lang="pt-BR" class="has-offscreen"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -264,6 +263,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
      <?php 
     $sql = "SELECT COUNT(CODIGO) AS QTD FROM PESQUISA WHERE USUARIO_CPF = '$cpf'";
     $query = mysqli_query($con, $sql);
+    echo mysqli_error($con);
     $row = mysqli_fetch_array($query);
     if ($row['QTD'] == 0) {
         $dia = date('Y-m-d');

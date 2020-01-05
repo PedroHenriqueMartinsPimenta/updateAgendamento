@@ -3,6 +3,7 @@
     session_start();
     if(isset($_SESSION['CPF']) && $_SESSION['PERMISSAO'] == 1){
     $cpf = $_SESSION['CPF'];
+    $escola = $_SESSION['ESCOLA'];
     $permissao = $_SESSION['PERMISSAO'];
 ?>
 <!DOCTYPE html>
@@ -274,7 +275,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                  <div class="col-9" id="selectEquipamento" style="margin: 0 auto; text-align: center">
               
                     <?php 
-                        $sql = "SELECT * FROM EQUIPAMENTO ORDER BY DESCRICAO ASC";
+                        $sql = "SELECT * FROM EQUIPAMENTO WHERE ESCOLA_CODIGO = $escola ORDER BY DESCRICAO ASC";
                         $query = mysqli_query($con, $sql);
                         while ($row = mysqli_fetch_array($query)) {
                     ?>
@@ -388,7 +389,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                 var checked = document.getElementById('aula'+i+'-'+equipamentosSelected[key]).checked;
                         if(checked){
                             var nomeEqui = $("#label"+equipamentosSelected[key]).attr('title');
-                    var html = '<label>'+i+'° aula: </label><select onchange="selectTurma(this)" id="turma'+i+'"><option value="null">Selecionar turma</option><?php $sql = "SELECT * FROM TURMA ORDER BY DESCRICAO ASC"; $query = mysqli_query($con, $sql); while ($row = mysqli_fetch_array($query)) { ?> <option value="<?php echo $row["CODIGO"]?>" id="<?php echo $row["CODIGO"]?>"><?php echo $row["DESCRICAO"]?></option> <?php } ?> </select><br><br>';
+                    var html = '<label>'+i+'° aula: </label><select onchange="selectTurma(this)" id="turma'+i+'"><option value="null">Selecionar turma</option><?php $sql = "SELECT * FROM TURMA WHERE ESCOLA_CODIGO = $escola ORDER BY DESCRICAO ASC"; $query = mysqli_query($con, $sql); while ($row = mysqli_fetch_array($query)) { ?> <option value="<?php echo $row["CODIGO"]?>" id="<?php echo $row["CODIGO"]?>"><?php echo $row["DESCRICAO"]?></option> <?php } ?> </select><br><br>';
                     $("#selectTurma div").html($("#selectTurma div").html()+html);
                         
                         $('.carregando').show();
@@ -531,6 +532,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             "../../php/pesquisaEquipamentos.php",
             data,
             function(page){
+                console.log(page);
                 var arrayPage = page;
                 for(var i = 0; i < arrayPage.length;i++){
                   document.getElementById('aula'+arrayPage[i]+'-'+codigo).disabled = true;

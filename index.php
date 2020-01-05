@@ -5,9 +5,12 @@
 		include_once('php/conexao.php');
 		include_once('adm_files/html/init/enter/enter/enter/enter/insert_reservas_padroes.php');
 	?>
-	<title>Login</title>
+	<title>Login - Agendamento de equipamentos EEEP</title>
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 	<meta name="viewport" content="width=device-width">
+	<meta name="description" content="Agendamento online das EEEPs, fazendo seus agendamentos de modo rápido e eficiente!">
+	<meta name="keywords" content="EEEP, agendamento, online, Agendamento online EEEP, Ceará, EEEP Ceará, Agendamento EEEP">
+	<meta name="google-site-verification" content="f6S_53lYIUWuWT4P8GcdtonsI_A6r_bTuK4YCQvpSTk" />
     	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.css">
     	<link rel="stylesheet" type="text/css" href="bootstrap-4.1.3-dist (1)/css/bootstrap.min.css">
     	<style type="text/css">

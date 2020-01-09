@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<?php 
+<?php 
+		session_start();
+		if(isset($_SESSION['CPF'])){
+			if($_SESSION['PERMISSAO'] == 0){
+				header("location:user.php");
+				}else if($_SESSION['PERMISSAO'] == 1){
+					header("location:adm.php");
+				}
+				
+			}
 		include_once('php/conexao.php');
 		include_once('adm_files/html/init/enter/enter/enter/enter/insert_reservas_padroes.php');
 	?>
+<!DOCTYPE html>
+<html>
+<head>
 	<title>Login - Agendamento de equipamentos EEEP</title>
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 	<meta name="viewport" content="width=device-width">
@@ -26,17 +35,6 @@
 <link rel="icon" href="img/ceara.png">
 </head>
 <body>
-	<?php 
-		session_start();
-		if(isset($_SESSION['CPF'])){
-			if($_SESSION['PERMISSAO'] == 0){
-				header("location:user.php");
-				}else if($_SESSION['PERMISSAO'] == 1){
-					header("location:adm.php");
-				}
-				
-			}
-	?>
     <div class="corpo">
 		<div class="texto">
 			<img src="img/userPadrao.png" class="icon" draggable="false">

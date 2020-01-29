@@ -3,6 +3,8 @@
 include_once('Conexao.class.php');
 
 class AdmDAO extends Conexao{
+  private $link = "http://localhost/updateAgendamento/";
+
 	public function addEquipamento($descricao,$qtd,$ft){
 		$con = $this->openConnection();
     session_start();
@@ -21,31 +23,39 @@ class AdmDAO extends Conexao{
 				return false;
 			}
 		}
-	public function addCurso($descricao){
+	public function addCurso($descricao, $vezes){
 			$con = $this->openConnection();
       session_start();
       $escola = $_SESSION['ESCOLA'];
-			for($i =1; $i <= 3;$i++){
-					$turma = $i."º ".$descricao;
-					$sqlTurma = "INSERT INTO TURMA (DESCRICAO, ESCOLA_CODIGO) VALUES(:TURMA, :ESCOLA)";
-                                        $tpmt = $con->prepare($sqlTurma);
-                                        $tpmt->bindValue(":TURMA",$turma);
-                                        $tpmt->bindValue(':ESCOLA', $escola);
-                                        $tpmt->execute();
-					
-				}
+      if ($vezes) {
+  			for($i =1; $i <= 3;$i++){
+  					$turma = $i."º ".$descricao;
+  					$sqlTurma = "INSERT INTO TURMA (DESCRICAO, ESCOLA_CODIGO) VALUES(:TURMA, :ESCOLA)";
+                                          $tpmt = $con->prepare($sqlTurma);
+                                          $tpmt->bindValue(":TURMA",$turma);
+                                          $tpmt->bindValue(':ESCOLA', $escola);
+                                          $tpmt->execute();
+  					
+  				}
+        }else{
+          $sqlTurma = "INSERT INTO TURMA (DESCRICAO, ESCOLA_CODIGO) VALUES(:TURMA, :ESCOLA)";
+                                          $tpmt = $con->prepare($sqlTurma);
+                                          $tpmt->bindValue(":TURMA",$descricao);
+                                          $tpmt->bindValue(':ESCOLA', $escola);
+                                          $tpmt->execute();
+        }
 				return true;
 		}
 	public function addProfessor($cpf,$nome,$name,$img,$sobrenome,$senhaa,$permissao,$email){
 		$con = $this->openConnection();
-    session_start();
+    @session_start();
     $escola = $_SESSION['ESCOLA'];
 		$senha = base64_encode($senhaa);
 		mkdir("../path/".$cpf,0777,true);
 		$time = date('Y_m_d_h_m_s');
 		$n = basename($time.$nome);
 		move_uploaded_file($img, "../path/".$cpf."/".$n);
-		$url = "http://localhost/updateAgendamento/path/".$cpf."/".$n;
+		$url = $this->link."path/".$cpf."/".$n;
 		$sql="INSERT INTO USUARIO (CPF,NOME,SOBRENOME,FOTO,SENHA,ATIVO,PERMISSAO,EMAIL, ESCOLA_CODIGO)VALUES
 		(:CPF,:NAME,:SOBRENOME,:URL,:SENHA,:ATIVO,:PERMISSAO,:EMAIL, :ESCOLA)";
                 $tpmt = $con->prepare($sql);

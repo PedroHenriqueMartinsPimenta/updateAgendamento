@@ -49,12 +49,11 @@
 				return num
 			}
 		
-
 		function entrar(){ $('.alert').show();
 var cpf = $('#cpf').val(); var senha = $('#senha').val(); var data = {cpf:
 cpf, senha: senha}; $.post( "php/entrar.php", data, function(result){ if
 (result == 0) { window.location.href = "user.php"; }else if(result == 1){
 window.location.href = "adm.php";						 }else if (result == 2) { var html =
 "<strong>Atenção</strong><br>CPF ou senha incorretos!";
-$(".alert").html(html); } }, 'JSON' ); }
+$(".alert").html(html); }else if (result == 3) {window.location.href = 'adm_files/html/dashboard/dashboard.php#mesalidades'} }, 'JSON' ); }
 

@@ -198,7 +198,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <div class="row header-description-row middle-sm">
     <div class="header-content header-content-centered col-md col-xs-12">
         <div class="align-holder center">
-            <h1 class="hero-title">Seja bem vindo administrador</h1><p class="header-subtitle">Agendamentos rápidos </p><div data-dynamic-mod-container="" class="header-buttons-wrapper"><a class="button big color1 round" target="_self" href="adm_files/html/reservas.php">AGENDAMENTOS DE HOJE</a></div>        </div>
+            <h1 class="hero-title">Seja bem vindo administrador</h1><p class="header-subtitle">Agendamentos rápidos </p><div data-dynamic-mod-container="" class="header-buttons-wrapper"><a class="button big color1 round" target="_self" href="adm_files/html/dashboard/dashboard.php">Dashboard</a></div>        </div>
     </div>
 </div>
     </div>

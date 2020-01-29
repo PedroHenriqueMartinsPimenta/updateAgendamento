@@ -250,14 +250,6 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <div class="gridContainer content">
             <div id="post-103" class="post-103 page type-page status-publish hentry">
     <div>
-        <?php
-        $sql = "SELECT table_name AS `Table`, SUM(round(((data_length + index_length) / 1024 / 1024), 2)) AS `TAMANHO` FROM information_schema.TABLES WHERE table_schema = '$db_name'";
-        $query = mysqli_query($con, $sql);
-        $row = mysqli_fetch_array($query);
-        $livre = round((1000 - $row['TAMANHO']) / 1024, 2);
-
-        echo "<p id='info' style='color:red; float:right'>Você tem um amazenamento livre de ".$livre."Gb</p>";
-        ?>
     <form action="reservas.php" method="post">
     <select id="filtro" class="col-12" name="aula">
         <option value="!= 0">Todas as aulas</option>

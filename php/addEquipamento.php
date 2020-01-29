@@ -1,5 +1,6 @@
 <?php 
 include_once("classes/AdmDAO.class.php");
+include_once('classes/config.class.php');
 	$inserir = new AdmDAO;
 	$descricao = $_POST['descricao'];
 	$qtd = $_POST['qtd'];
@@ -8,7 +9,7 @@ include_once("classes/AdmDAO.class.php");
 	$time = date('Y_m_d_h_m_s');
 	$nome = basename($time.$ftNome);
 	move_uploaded_file($ft,"../imgEquipamentos/".$nome);
-	$urlImg = "http://localhost/updateAgendamento/imgEquipamentos/".$nome;
+	$urlImg = $link."imgEquipamentos/".$nome;
 	$checked = $inserir->addEquipamento($descricao,$qtd,$urlImg);
 	if($checked){
 		?>

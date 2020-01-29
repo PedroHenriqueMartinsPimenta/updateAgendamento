@@ -256,7 +256,9 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <form action="../../php/addCurso.php" method="post" enctype="multipart/form-data">
             <p>Adicionar curso</p>
             <input type="text" required name="descricao" placeholder="Descrição equipamento" class="form-control" >
-            
+            <div class="custom-control custom-checkbox">
+            	<input type="checkbox" name="vezes" id="vezes" class="custom-control-input" value="1"> <label class="custom-control-label" for="vezes">Inserir os 3 anos</label>
+            </div>
             <input type="submit" value="Cadastrar" class="btn btn-success">
         </form>
     </div>

@@ -50,7 +50,7 @@
 					<td><label>Senha</label></td>
 					<td><input type="password" name="senha" class="input" id="senha" minlength="6" maxlength="16"></td>
 				</tr>
-				<input type="button" class="entrar button" onclick="entrar()" value="Entrar">
+				<input type="button" class="entrar button" value="Entrar">
 		</table>
 		</form>
 		<div class="col-10" style="position: relative; top: 50%; margin: 0 auto">
@@ -60,10 +60,34 @@
 				<strong>Atenção</strong><br> aguarde a autenticação <img src="img/loader.gif" width="25px">
 			</div>
 	</div>
+	<style type="text/css">
+		.add_escola{
+			position: fixed;
+			right: 10px;
+			bottom: 10px;
+			width: 50px;
+			height: 50px;
+			border-radius: 25px;
+			background-image: url(img/add.png);
+			background-repeat: no-repeat;
+			background-size: 100%;
+			background-color: white;
+			transition: 0.25s;
+		}
+		.add_escola:hover{
+			transform: rotate(90deg);
+			background-color: rgba(20,200,20,0.5);
+		}
+	</style>
+	<a href="add_escola.html" class="add_escola" title="Cadastrar-se">
+		
+	</a>
 	<script type="text/javascript" src="jquery-ui-1.12.1/jquery-3.3.1.js"></script>
 	<script type="text/javascript"> $(document).ready(function(){
 	$('input[type=text], input[type=password]').keypress(function(e){ if
-	(e.keyCode == 13) { entrar(); } }); }); </script>
+	(e.keyCode == 13) {$('.alert').html('<strong>Atenção</strong><br> aguarde a autenticação <img src="img/loader.gif" width="25px">');  entrar(); } }); }); 
+	$('input[type=button]').click(function(){
+$('.alert').html('<strong>Atenção</strong><br> aguarde a autenticação <img src="img/loader.gif" width="25px">');  entrar(); }); </script>
 	<script type="text/javascript" src="js/js/entrar.js"></script>
 	<script type="text/javascript" src="js/js/jquery.mobile.js"></script>
 </body>

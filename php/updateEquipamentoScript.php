@@ -10,6 +10,7 @@ $img = $_FILES['img']['tmp_name'];
 if ($img != null) {
 	$time = date('Y_m_d_h_m_s');
 	$nome = basename($time.$imgName);
+	unlink(str_replace($link, '../', $_SESSION['IMG_EQUI']));
 	move_uploaded_file($img,"../imgEquipamentos/".$nome);
 	$urlImg = $link."imgEquipamentos/".$nome;
 }else{

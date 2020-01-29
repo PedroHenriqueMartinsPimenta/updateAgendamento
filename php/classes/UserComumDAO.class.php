@@ -66,7 +66,8 @@ class UserComumDAO extends Conexao{
              $escola = $_SESSION['ESCOLA'];
              $array = array();
                 $c=0; 
-                for ($i=1; $i <= $this->countAulas(); $i++) {
+               
+                foreach ($this->getAulas($escola) as $i => $v) {
                 $sqlTest ="SELECT count(AULA_CODIGO) AS QTD FROM RESERVA WHERE EQUIPAMENTO_CODIGO = :EQUIPAMENTO AND DATA_ULTILIZAR = :DIA AND AULA_CODIGO = :I"; 
                 $sqlQtd = "SELECT * FROM EQUIPAMENTO WHERE CODIGO = :EQUIPAMENTO";
                 $tpmt1 = $con1->prepare($sqlQtd);
@@ -157,6 +158,19 @@ class UserComumDAO extends Conexao{
                 $tpmt->execute();
                 $result = $tpmt->fetchAll();
                 return count($result);
+              }
+              public function getAulas($escola){
+                $con = $this->openConnection();
+                $sql = "SELECT * FROM AULA WHERE ESCOLA_CODIGO = :ESCOLA";
+                $tpmt = $con->prepare($sql);
+                $tpmt->bindValue(":ESCOLA", $escola);
+                $tpmt->execute();
+                $result = $tpmt->fetchAll(PDO::FETCH_ASSOC);
+                $array = array();
+                foreach ($result as $row) {
+                    $array[$row['CODIGO']] = $row['DESCRICAO'];
+                }
+                return $array;
               }
 	}
 ?>

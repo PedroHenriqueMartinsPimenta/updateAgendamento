@@ -228,6 +228,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                     <li id="menu-item-109" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109"><a href="reservas.php">Agendamentos</a></li>
                     <li id="menu-item-111" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-111"><a href="equipamentos.php">Equipamentos</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="usuarios.php">Usuarios</a></li>
+                    <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="aulas.php">Aulas</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="cursos.php">Cursos</a></li>
                     <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="dados_pessoais.php">Dados pessoais</a></li>
 <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="../../php/sair.php" >Sair</a></li>
@@ -291,11 +292,11 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                  <div class="col-9 form-check" id="selectAula" style="margin: 0 auto; text-align: center; display: none">
                     <div>
                                <?php 
-                               $sql = "SELECT * FROM AULA ORDER BY DESCRICAO ASC";
+                               $sql = "SELECT * FROM AULA WHERE ESCOLA_CODIGO = $escola ORDER BY DESCRICAO ASC";
                                $query = mysqli_query($con, $sql);
-                               $aulaCount = 0;
+                               $aulaCount = array();;
                                while ($row = mysqli_fetch_array($query)) {
-                                $aulaCount++;
+                                $aulaCount[$row['CODIGO']] = $row['DESCRICAO'];
                                 } ?>
                         </div>
                  <button type="button" class="btn btn-outline-danger voltar_aula">Voltar</button>                
@@ -346,6 +347,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 <script type="text/javascript" src="../../jquery-ui-1.12.1/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="../../js/js/funcoes usuario comum.js"></script>
 <script>
+    var arrayAulas = <?php echo json_encode($aulaCount)?>;
     $(function(){
         
         $('.fa').click(function(){
@@ -383,13 +385,14 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         $('.proximo_aula').click(function(){
             $('#selectAula').hide();
             $("#selectTurma").show('slow');
-            for(var i = 1; i <= <?php echo $aulaCount?>; i++){ 
+
+            for(var i in arrayAulas){ 
             for(var key in equipamentosSelected){
                 if(equipamentosSelected[key] != null){
                 var checked = document.getElementById('aula'+i+'-'+equipamentosSelected[key]).checked;
                         if(checked){
                             var nomeEqui = $("#label"+equipamentosSelected[key]).attr('title');
-                    var html = '<label>'+i+'° aula: </label><select onchange="selectTurma(this)" id="turma'+i+'"><option value="null">Selecionar turma</option><?php $sql = "SELECT * FROM TURMA WHERE ESCOLA_CODIGO = $escola ORDER BY DESCRICAO ASC"; $query = mysqli_query($con, $sql); while ($row = mysqli_fetch_array($query)) { ?> <option value="<?php echo $row["CODIGO"]?>" id="<?php echo $row["CODIGO"]?>"><?php echo $row["DESCRICAO"]?></option> <?php } ?> </select><br><br>';
+                    var html = '<label>'+arrayAulas[i]+' </label><select onchange="selectTurma(this)" id="turma'+i+'"><option value="null">Selecionar turma</option><?php $sql = "SELECT * FROM TURMA WHERE ESCOLA_CODIGO = $escola ORDER BY DESCRICAO ASC"; $query = mysqli_query($con, $sql); while ($row = mysqli_fetch_array($query)) { ?> <option value="<?php echo $row["CODIGO"]?>" id="<?php echo $row["CODIGO"]?>"><?php echo $row["DESCRICAO"]?></option> <?php } ?> </select><br><br>';
                     $("#selectTurma div").html($("#selectTurma div").html()+html);
                         
                         $('.carregando').show();
@@ -547,12 +550,11 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     }
     function selectTurma(select){
         var pode = false;
-        for(var i = 1; i <= <?php echo $aulaCount;?>; i++){
+        for(var i in arrayAulas){
             if($("#turma"+i).val() != 'null'){
                 pode = true;
             }else{
                 pode = false;
-                i = <?php echo $aulaCount+1;?>;
             }
         }
         if(pode){
@@ -567,8 +569,8 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         for (var key in equipamentosSelected) {
             if(equipamentosSelected[key] != null){
             var aulaModel = "<div class='modelAulas'>";
-            for (var i = 1; i <= <?php echo $aulaCount?>; i++) {
-             aulaModel +=  '<div class="custom-control custom-checkbox"><input type="checkbox" onclick="selectAula(this)" name="aula" class="custom-control-input" id="aula'+i+'-'+equipamentosSelected[key]+'" value="'+i+'-'+equipamentosSelected[key]+'"> <label class="custom-control-label" for="aula'+i+'-'+equipamentosSelected[key]+'" id="aulaLabel'+i+'-'+equipamentosSelected[key]+'">'+i+'º AULA</label></div>';
+            for (var i in arrayAulas) {
+             aulaModel +=  '<div class="custom-control custom-checkbox"><input type="checkbox" onclick="selectAula(this)" name="aula" class="custom-control-input" id="aula'+i+'-'+equipamentosSelected[key]+'" value="'+i+'-'+equipamentosSelected[key]+'"> <label class="custom-control-label" for="aula'+i+'-'+equipamentosSelected[key]+'" id="aulaLabel'+i+'-'+equipamentosSelected[key]+'">'+arrayAulas[i]+'</label></div>';
             }
             aulaModel += "</div>";
             var equipamento = $("#label"+equipamentosSelected[key]).attr('title') +"<br>"+ $("#label"+equipamentosSelected[key]).html() + aulaModel;
@@ -581,7 +583,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 
     function vereficarAgendamento( equii){
         var table = $('table tbody').html();
-            for(var i = 1; i <= <?php echo $aulaCount;?>; i++){
+            for(var i in arrayAulas){
           for(var key in equipamentosSelected){
              if(equipamentosSelected[key] != null){
                var equi = document.getElementById('campo'+equipamentosSelected[key]).checked;
@@ -591,7 +593,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                     var sala = $('#turma'+i+' option:selected').text();
                             var dia = $("#dia").val();
                             var equipamento = $("#label"+equipamentosSelected[key]).attr('title');
-                            table+="<tr><th scope='row'>"+equipamento+"</th><td scope='row'>"+i+"º Aula</td><td scope='row'>"+sala+"</td><td scope='row'>"+dia+"</td></tr>";
+                            table+="<tr><th scope='row'>"+equipamento+"</th><td scope='row'>"+arrayAulas[i]+"</td><td scope='row'>"+sala+"</td><td scope='row'>"+dia+"</td></tr>";
                             $('table tbody').html(table);
                             }
                         }
@@ -616,7 +618,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             if(equipamentosSelected[key] != null){
                 var equi = document.getElementById('campo'+equipamentosSelected[key]).checked;
                 if(equi){
-        for(var i = 1; i <= <?php echo $aulaCount;?>; i++){
+        for(var i in arrayAulas){
             var checked = document.getElementById('aula'+i+'-'+equipamentosSelected[key]).checked;
             if (checked) {
                 aula = i;
@@ -660,6 +662,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <li id="menu-item-109" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109"><a href="reservas.php">Agendamentos</a></li>
                     <li id="menu-item-111" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-111"><a href="equipamentos.php">Equipamentos</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="usuarios.php">Usuarios</a></li>
+                    <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="aulas.php">Aulas</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="cursos.php">Cursos</a></li>
                     <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="dados_pessoais.php">Dados pessoais</a></li>
                     <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="../../php/sair.php">Sair</a></li>

@@ -7,11 +7,12 @@
 	$cpf = $_SESSION['CPF'];
 	$foto =basename($foto_name);
 	$url = $link."path/".$cpf."/".$foto;
-	
+	unlink(str_replace($link, '../', $_SESSION['FOTO']));
 	move_uploaded_file($foto_tmp, "../path/".$cpf."/".$foto);
 	$sql = "UPDATE USUARIO SET FOTO = '$url' WHERE CPF = '$cpf'";
 	$query= mysqli_query($con, $sql);
 	if ($query) {
+		$_SESSION['FOTO'] = $url;
 		if($_SESSION['PERMISSAO'] == 1) {
 			?>
 				<script type="text/javascript">

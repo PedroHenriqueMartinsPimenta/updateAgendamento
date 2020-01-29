@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login - Agendamento de equipamentos EEEP</title>
+	<title>Login - Agendamento de equipamentos</title>
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 	<meta name="viewport" content="width=device-width">
 	<meta name="description" content="Agendamento online das EEEPs, fazendo seus agendamentos de modo rápido e eficiente!">

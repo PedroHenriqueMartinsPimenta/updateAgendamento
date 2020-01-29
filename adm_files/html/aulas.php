@@ -234,7 +234,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <div class="row header-description-row">
     <div class="col-xs col-xs-12">
         <h1 class="hero-title">
-            Cursos      
+            Aulas      
          </h1>
                     <p class="header-subtitle">Agendamentos rapidos</p>
             </div>
@@ -254,12 +254,9 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <button class="btn btn-primary" id="imprimir">Imprimir</button>
         <div class="content" id="content-modal" style="display:none">    
     <div class="form">
-        <form action="../../php/addCurso.php" method="post" enctype="multipart/form-data">
-            <p>Adicionar curso</p>
+        <form action="../../php/addAula.php" method="post">
+            <p>Adicionar aula</p>
             <input type="text" required name="descricao" placeholder="Descrição equipamento" class="form-control" >
-            <div class="custom-control custom-checkbox">
-            	<input type="checkbox" name="vezes" id="vezes" class="custom-control-input" value="1"> <label class="custom-control-label" for="vezes">Inserir os 3 anos</label>
-            </div>
             <input type="submit" value="Cadastrar" class="btn btn-success">
         </form>
     </div>
@@ -281,14 +278,14 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
   <tbody>
       <?php 
       $escola = $_SESSION['ESCOLA'];
-        $sql = "SELECT * FROM TURMA WHERE ESCOLA_CODIGO = $escola ORDER BY DESCRICAO ASC";
+        $sql = "SELECT * FROM AULA WHERE ESCOLA_CODIGO = $escola ORDER BY DESCRICAO ASC";
         $query = mysqli_query($con, $sql);
         while($row = mysqli_fetch_array($query)){
       ?>
     <tr>
       <th scope="row" id="icon"><?php echo $row['CODIGO'] ?></th>
       <td id="desc"><?php echo $row['DESCRICAO'] ?></td>
-      <td class="td"><a href="../../php/delete turma.php?codigo=<?php echo $row['CODIGO'] ?>" title="deletar equipamento" class="btn btn-outline-danger">Remover</a></td>
+      <td class="td"><a href="../../php/delete aula.php?codigo=<?php echo $row['CODIGO'] ?>" title="deletar equipamento" class="btn btn-outline-danger">Remover</a></td>
     </tr>
     <?php 
         }
@@ -357,61 +354,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         }
         });
 </script>
-<script>
-    
-        
-    function fMasc(objeto,mascara) {
-        obj=objeto
-        masc = mascara
-        setTimeout("fMascEx()",1)
-    }
-    function fMascEx() {
-        obj.value=masc(obj.value)
-    }
-    function mTel(tel) {
-        tel=tel.replace(/\D/g,"")
-        tel=tel.replace(/^(\d)/,"($1")
-        tel=tel.replace(/(.{3})(\d)/,"$1)$2")
-        if(tel.length == 9) {
-            tel=tel.replace(/(.{1})$/,"-$1")
-        } else if (tel.length == 10) {
-            tel=tel.replace(/(.{2})$/,"-$1")
-        } else if (tel.length == 11) {
-            tel=tel.replace(/(.{3})$/,"-$1")
-        } else if (tel.length == 12) {
-            tel=tel.replace(/(.{4})$/,"-$1")
-        } else if (tel.length > 12) {
-            tel=tel.replace(/(.{4})$/,"-$1")
-        }
-        return tel;
-    }
-    function mCNPJ(cnpj){
-        cnpj=cnpj.replace(/\D/g,"")
-        cnpj=cnpj.replace(/^(\d{2})(\d)/,"$1.$2")
-        cnpj=cnpj.replace(/^(\d{2})\.(\d{3})(\d)/,"$1.$2.$3")
-        cnpj=cnpj.replace(/\.(\d{3})(\d)/,".$1/$2")
-        cnpj=cnpj.replace(/(\d{4})(\d)/,"$1-$2")
-        return cnpj
-    }
-    function mCPF(cpf){
-        cpf=cpf.replace(/\D/g,"")
-        cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
-        cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
-        cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
-        return cpf
-    }
-    function mCEP(cep){
-        cep=cep.replace(/\D/g,"")
-        cep=cep.replace(/^(\d{2})(\d)/,"$1.$2")
-        cep=cep.replace(/\.(\d{3})(\d)/,".$1-$2")
-        return cep
-    }
-    function mNum(num){
-        num=num.replace(/\D/g,"")
-        return num
-    }
 
-</script>
 <div id="offcanvas-wrapper" class="hide  offcanvas-right offcanvas col-12">
         <div class="offcanvas-top">
             <div class="logo-holder">

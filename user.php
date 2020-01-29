@@ -4,6 +4,7 @@
     if(isset($_SESSION['CPF']) && $_SESSION['PERMISSAO'] == 0){
     $cpf = $_SESSION['CPF'];
     $permissao = $_SESSION['PERMISSAO'];
+    $escola = $_SESSION['ESCOLA'];
 ?>
 <!DOCTYPE html>
 <!-- saved from url=(0023)http://localhost/diego/ -->
@@ -328,7 +329,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                     $dia = date('d');
                     $mes = date('m');
                     $ano = date('Y');
-                    $sql = "SELECT * FROM AULA ORDER BY DESCRICAO ASC";
+                    $sql = "SELECT * FROM AULA WHERE ESCOLA_CODIGO = $escola ORDER BY DESCRICAO ASC";
                     $query2 = mysqli_query($con, $sql);
                     while ($row2 = mysqli_fetch_array($query2)) {
                         $aula_codigo = $row2['CODIGO']; 

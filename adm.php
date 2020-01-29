@@ -4,6 +4,7 @@
     if(isset($_SESSION['CPF']) && $_SESSION['PERMISSAO'] == 1){
     $cpf = $_SESSION['CPF'];
     $permissao = $_SESSION['PERMISSAO'];
+    $escola = $_SESSION['ESCOLA'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR" class="has-offscreen"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -174,6 +175,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
 <li id="menu-item-109" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109"><a href="adm_files/html/reservas.php">Agendamentos</a></li>
 <li id="menu-item-111" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-111"><a href="adm_files/html/equipamentos.php">Equipamentos</a></li>
 <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="adm_files/html/usuarios.php">Usuarios</a></li>
+<li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="adm_files/html/aulas.php">Aulas</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="adm_files/html/cursos.php">Cursos</a></li>
 <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="adm_files/html/dados_pessoais.php">Dados pessoais</a></li>
 <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="php/sair.php">Sair</a></li>
@@ -332,7 +334,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
                     $dia = date('d');
                     $mes = date('m');
                     $ano = date('Y');
-                    $sql = "SELECT * FROM AULA ORDER BY DESCRICAO ASC";
+                    $sql = "SELECT * FROM AULA WHERE ESCOLA_CODIGO = $escola ORDER BY DESCRICAO ASC";
                     $query2 = mysqli_query($con, $sql);
                     while ($row2 = mysqli_fetch_array($query2)) {
                         $aula_codigo = $row2['CODIGO']; 
@@ -402,6 +404,7 @@ $(function(){
                     <li id="menu-item-109" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109"><a href="adm_files/html/reservas.php">Agendamentos</a></li>
                     <li id="menu-item-111" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-111"><a href="adm_files/html/equipamentos.php">Equipamentos</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="adm_files/html/usuarios.php">Usuarios</a></li>
+                    <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="adm_files/html/aulas.php">Aulas</a></li>
                     <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="adm_files/html/cursos.php">Cursos</a></li>
                     <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="adm_files/html/dados_pessoais.php">Dados pessoais</a></li>
                     <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="php/sair.php">Sair</a></li>

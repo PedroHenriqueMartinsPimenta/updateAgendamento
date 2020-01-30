@@ -83,7 +83,7 @@
 			<?php 
 			$y = 1;
 			$AULA = "NULL";
-	$sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO,EQUIPAMENTO.CODIGO AS EQUI, AULA.DESCRICAO AS AULA,CONCAT(AULA.DESCRICAO,'-', RESERVA.DATA) AS ORDEM, TURMA.DESCRICAO AS TURMA FROM RESERVA
+	$sql = "SELECT RESERVA.CODIGO AS CODIGO,DATE_FORMAT(RESERVA.DATA_ULTILIZAR,'%d/%m/%Y') AS DATA, RESERVA.DATA AS EFETUOU, USUARIO.NOME AS NOME,USUARIO.SOBRENOME AS SOBRENOME, EQUIPAMENTO.DESCRICAO AS EQUIPAMENTO,EQUIPAMENTO.CODIGO AS EQUI, AULA.DESCRICAO AS AULA,CONCAT(AULA.DESCRICAO,'-', RESERVA.DATA) AS ORDEM,AULA.CODIGO AS AULA_CODIGO, TURMA.DESCRICAO AS TURMA FROM RESERVA
 INNER JOIN EQUIPAMENTO ON EQUIPAMENTO.CODIGO = RESERVA.EQUIPAMENTO_CODIGO 
 INNER JOIN USUARIO ON RESERVA.USUARIO_CPF = USUARIO.CPF
 INNER JOIN AULA ON RESERVA.AULA_CODIGO = AULA.CODIGO
@@ -91,6 +91,7 @@ INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE USUARIO.ESCOLA_COD
 				$query = mysqli_query($con, $sql);
 				echo mysqli_error($con);
 				while ($row = mysqli_fetch_array($query)) {
+
 				if($row['AULA'] != $AULA){
 			?>
 
@@ -102,7 +103,7 @@ INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE USUARIO.ESCOLA_COD
 			<?php 
 				for ($i=0; $i < $maior; $i++) { 
 				?>
-				<tr id="line<?php echo $i?>aula<?php echo substr($row['AULA'], 0,1)?>" class="line<?php echo substr($row['AULA'], 0,1)?>">
+				<tr id="line<?php echo $i?>aula<?php echo $row['AULA_CODIGO']?>" class="line<?php echo $row['AULA_CODIGO']?>">
 					<td id="nome<?php echo $i?>"></td>
 					<td id="turma<?php echo $i?>"></td>
 					<?php 
@@ -118,7 +119,7 @@ INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE USUARIO.ESCOLA_COD
 				</tr>
 			<?php
 				}
-			$AULA = $row['AULA'];
+			$AULA = $row['AULA_CODIGO'];
 			}
 			?>
 			<?php }?>
@@ -127,8 +128,14 @@ INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE USUARIO.ESCOLA_COD
 	</table>
 </div>
 	<?php
-	for ($i=1; $i <= 9; $i++) { 
-		$line = 0;
+	$sql = "SELECT * FROM AULA WHERE ESCOLA_CODIGO = $escola";
+	$query = mysqli_query($con, $sql);
+	$arrayAulas = array();
+	while ($row = mysqli_fetch_array($query)) {
+		$arrayAulas[$row['CODIGO']] = $row['DESCRICAO'];
+	}
+	foreach ($arrayAulas as $i => $valor) {
+	 	$line = 0;
 	
 		$sql = "SELECT DISTINCT USUARIO_CPF AS CPF FROM RESERVA INNER JOIN USUARIO ON  USUARIO.CPF = RESERVA.USUARIO_CPF WHERE DATA_ULTILIZAR = '$dia' AND AULA_CODIGO = $i AND ESCOLA_CODIGO = $escola ORDER BY DATA ASC";
 		$query = mysqli_query($con, $sql);

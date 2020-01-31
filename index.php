@@ -17,7 +17,7 @@
 	<title>Login - Agendamento de equipamentos</title>
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 	<meta name="viewport" content="width=device-width">
-	<meta name="description" content="Agendamento online das EEEPs, fazendo seus agendamentos de modo rápido e eficiente!">
+	<meta name="description" content="Agendamento online, fazendo seus agendamentos de modo rápido e eficiente!">
 	<meta name="keywords" content="EEEP, agendamento, online, Agendamento online EEEP, Ceará, EEEP Ceará, Agendamento EEEP">
 	<meta name="google-site-verification" content="f6S_53lYIUWuWT4P8GcdtonsI_A6r_bTuK4YCQvpSTk" />
     	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.css">

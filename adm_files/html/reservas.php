@@ -251,15 +251,16 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     <form action="reservas.php" method="GET">
     <select id="filtro" class="col-12" name="aula">
         <option value="!= 0">Todas as aulas</option>
-        <option value="= 1">Aula 1</option>
-        <option value="= 2">Aula 2</option>
-        <option value="= 3">Aula 3</option>
-        <option value="= 4">Aula 4</option>
-        <option value="= 5">Aula 5</option>
-        <option value="= 6">Aula 6</option>
-        <option value="= 7">Aula 7</option>
-        <option value="= 8">Aula 8</option>
-        <option value="= 9">Aula 9</option>
+        
+        <?php
+            $sql = "SELECT * FROM AULA WHERE ESCOLA_CODIGO = $escola";
+            $query = mysqli_query($con, $sql);
+            while ($row = mysqli_fetch_array($query)) {
+                ?>
+                <option value="= <?php echo $row['CODIGO']?>"><?php echo $row['DESCRICAO']?></option>
+                <?php
+            }
+        ?>
     </select>
     <input type="date" id="dia" value="<?php echo $_GET['dia']?>" class="col-12" name="dia">
     <?php 

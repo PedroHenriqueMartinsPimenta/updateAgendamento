@@ -391,39 +391,39 @@ INNER JOIN TURMA ON RESERVA.TURMA_CODIGO = TURMA.CODIGO WHERE USUARIO.ESCOLA_COD
 
 				var aula = document.getElementsByClassName('aula');
 
-		for(var a = 1; a <= aula.length; a++){
+				for(var a = 1; a <= aula.length; a++){
 
-		var td = document.getElementsByClassName('line'+a);
+				var td = document.getElementsByClassName('line'+a);
+				
+					for (var i = 0; i < td.length; i++) {
 
-			for (var i = 0; i < td.length; i++) {
+						if (!td[i].innerHTML.match("<b>X</b>")) {
 
-				if (!td[i].innerHTML.match("<b>X</b>")) {
+							td[i].style.display = 'none';if (test) {
 
-					td[i].style.display = 'none';if (test) {
+								qtd = i;
 
-						qtd = i;
+								test = false;
 
-						test = false;
+							}
+
+							
+
+						}
 
 					}
 
-					
+					test = true;
+
+					console.log(qtd +":"+ a);
+
+					console.log(aula[a-1]);
+
+					$(aula[a-1]).attr('rowspan',qtd+1);
+
+					qtd = 0;
 
 				}
-
-			}
-
-			test = true;
-
-			console.log(qtd +":"+ a);
-
-			console.log(aula[a-1]);
-
-			$(aula[a-1]).attr('rowspan',qtd+1);
-
-			qtd = 0;
-
-		}
 
 			}
 

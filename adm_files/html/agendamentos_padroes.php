@@ -297,7 +297,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
             <label>Aula:</label>
             <select name="aula">
                 <?php
-                    $sql = "SELECT * FROM AULA ORDER BY DESCRICAO ASC";
+                    $sql = "SELECT * FROM AULA WHERE ESCOLA_CODIGO = $escola ORDER BY DESCRICAO ASC";
                     $query = mysqli_query($con, $sql);
                     while($row = mysqli_fetch_array($query)){
                         ?>

@@ -253,7 +253,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     <div class="form">
         <form action="../../php/addAula.php" method="post">
             <p>Adicionar aula</p>
-            <input type="text" required name="descricao" placeholder="Descrição equipamento" class="form-control" >
+            <input type="text" required name="descricao" placeholder="Descrição da aula" class="form-control" >
             <input type="submit" value="Cadastrar" class="btn btn-success">
         </form>
     </div>

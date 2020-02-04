@@ -252,8 +252,8 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <div class="content" id="content-modal" style="display:none">    
     <div class="form">
         <form action="../../php/addCurso.php" method="post" enctype="multipart/form-data">
-            <p>Adicionar curso</p>
-            <input type="text" required name="descricao" placeholder="Descrição equipamento" class="form-control" >
+            <p>Adicionar curso / turma</p>
+            <input type="text" required name="descricao" placeholder="Descrição do curso / turma" class="form-control" >
             <div class="custom-control custom-checkbox">
             	<input type="checkbox" name="vezes" id="vezes" class="custom-control-input" value="1"> <label class="custom-control-label" for="vezes">Inserir os 3 anos</label>
             </div>

@@ -1,8 +1,9 @@
 <?php 
 		session_start();
-		$cpf = $_GET['codigo'];
-		$senha_antiga = base64_decode($_GET['s']);
-		if (isset($cpf)) {
+		$codigo = $_GET['codigo'];
+		$codigo_original = $_SESSION['codigo_update_senha'];
+		if ($codigo == $codigo_original) {
+			$cpf = $_GET['CPF'];
 ?>
 <html>
 <head>

@@ -270,7 +270,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     }
     $mes = date('m');
     $ano = date('Y');
-    $sql = "SELECT * FROM PESQUISA WHERE MONTH(VALIDADE) = $mes AND YEAR(VALIDADE) = $ano AND USUARIO_CPF = '$cpf'";
+    $sql = "SELECT * FROM PESQUISA WHERE MONTH(VALIDADE) = $mes AND USUARIO_CPF = '$cpf'";
 
     $query = mysqli_query($con, $sql);
     $rows = mysqli_num_rows($query);

@@ -271,33 +271,33 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
     }
     $mes = date('m');
     $ano = date('Y');
-    $sql = "SELECT * FROM PESQUISA WHERE MONTH(VALIDADE) = $mes AND YEAR(VALIDADE) = $ano AND USUARIO_CPF = '$cpf'";
+    $sql = "SELECT * FROM PESQUISA WHERE MONTH(VALIDADE) = $mes AND USUARIO_CPF = '$cpf'";
 
     $query = mysqli_query($con, $sql);
     $rows = mysqli_num_rows($query);
     
     if($rows > 0){
     ?>
-<div class="modal" tabindex="-1" role="dialog" style="display: block">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Pesquisa mensal de usabilidade</h5>
-        
-      </div>
-      <div class="modal-body">
-        <p>Gostariamos de saber a classificação do nosso sistema, para assim possiveis melhorias </p>
-      </div>
-      <div class="modal-footer">
-        <a href="php/insert_pesquisa.php?id=1"><button type="button" class="btn btn-success">Satisfaz bastante</button></a>
-        <a  href="php/insert_pesquisa.php?id=0"><button type="button" class="btn btn-danger" data-dismiss="modal">Não satisfaz </button></a>
-      </div>
-    </div>
-  </div>
-</div>
-<?php 
-}
-?>
+        <div class="modal" tabindex="-1" role="dialog" style="display: block">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Pesquisa mensal de usabilidade</h5>
+                
+            </div>
+            <div class="modal-body">
+                <p>Gostariamos de saber a classificação do nosso sistema, para assim possiveis melhorias </p>
+            </div>
+            <div class="modal-footer">
+                <a href="php/insert_pesquisa.php?id=1"><button type="button" class="btn btn-success">Satisfaz bastante</button></a>
+                <a  href="php/insert_pesquisa.php?id=0"><button type="button" class="btn btn-danger" data-dismiss="modal">Não satisfaz </button></a>
+            </div>
+            </div>
+        </div>
+        </div>
+    <?php 
+        }
+    ?>
 <?php 
         if ($_SESSION['MODAL-INFO'] == false) {
            

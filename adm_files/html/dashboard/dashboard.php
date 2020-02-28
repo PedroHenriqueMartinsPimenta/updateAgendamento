@@ -328,7 +328,7 @@
 						$mes = date('m');
 						foreach ($arrayMeses as $key => $value) {
 							$mesCodigo = $key + 1;
-							$sql = "SELECT * FROM MENSALIDADE INNER JOIN USUARIO ON MENSALIDADE.USUARIO_CPF = USUARIO.CPF WHERE USUARIO.ESCOLA_CODIGO = $escola AND MONTH(MENSALIDADE.DIA_PAGO) = $mesCodigo AND YEAR(MENSALIDADE.DIA_PAGO) = $ano ORDER BY MENSALIDADE.CODIGO DESC LIMIT 1";
+							$sql = "SELECT * FROM MENSALIDADE INNER JOIN USUARIO ON MENSALIDADE.USUARIO_CPF = USUARIO.CPF WHERE USUARIO.ESCOLA_CODIGO = $escola AND MONTH(MENSALIDADE.DIA_PAGO) = $mesCodigo AND YEAR(MENSALIDADE.DIA_PAGO) = $ano AND MENSALIDADE.STATUS = 3 ORDER BY MENSALIDADE.CODIGO DESC LIMIT 1";
 							$query = mysqli_query($con, $sql);
 							$row = mysqli_fetch_array($query);
 							if ($mesCodigo >= intval($mes)) {

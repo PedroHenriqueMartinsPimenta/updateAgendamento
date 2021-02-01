@@ -10,8 +10,8 @@
 		private $savePedido = "php/pagamento/salvarPedido.php"; // local do arquivo que salva a compra (status aguardando pagamento)
 		private $buttonClass = "btn btn-primary col-sm-12"; //Classes para estilização do botão de compra
 		private $buttonText = "Pagar"; // Texto do botão de compra
-		private $token = "aa2ea291-bd75-4a64-b5ee-0ac119358522c8fa089b480397dfee4738a38d734fb442c9-ae95-4d2a-8265-445bbb8e9da2"; // Token gerado no PagSeguro
-		private $email = "trydeveloper70@gmail.com"; // Seu E-mail
+		private $token = ""; // Token gerado no PagSeguro
+		private $email = ""; // Seu E-mail
 		private $sandbox = ""; // Caso esteja em teste insira valor sandbox. / caso de produção deixar vazio
 		private $uriProgress = "https://thumbs.gfycat.com/BountifulHarshAmoeba-size_restricted.gif";
 

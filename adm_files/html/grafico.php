@@ -126,7 +126,7 @@
         ]);
 
         // Set chart options
-        var options = {'title':'Grafico dos 3 professores que mais agendaram neste mês',
+        var options = {'title':'Grafico dos 3 usuários que mais agendaram neste mês',
                        'width':700,
                        'height':700};
 

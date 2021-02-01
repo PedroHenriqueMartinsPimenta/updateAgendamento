@@ -216,7 +216,7 @@
 											<div class="col-sm-12" id="info"><?php echo $diaPago?> até <?php echo substr($diaPago, 0, 2)."/" . (intval(substr($diaPago, 3,2)) + 1) . "/" . substr($diaPago, 6, 4)?></div>
 										</div>
 										<div class="col-sm-12" id="box" style="margin-bottom: 20px">
-											<label class="col-sm-12">Escola</label>
+											<label class="col-sm-12">Empresa</label>
 											<div class="col-sm-12" id="info">
 												<?php
 													$codigoEscola = $row['ESCOLA_CODIGO'];
@@ -268,7 +268,7 @@
 											<div class="col-sm-12" id="info"><?php echo $diaPago?> até <?php echo substr($diaPago, 0, 2)."/" . (intval(substr($diaPago, 3,2)) + 1) . "/" . substr($diaPago, 6, 4)?></div>
 										</div>
 										<div class="col-sm-12" id="box" style="margin-bottom: 20px">
-											<label class="col-sm-12">Escola</label>
+											<label class="col-sm-12">Empresa</label>
 											<div class="col-sm-12" id="info">
 												<?php
 													$codigoEscola = $row['ESCOLA_CODIGO'];
@@ -325,7 +325,7 @@
 											<div class="col-sm-12" id="info"><?php echo $diaPago?> até <?php echo substr($diaPago, 0, 2)."/" . (intval(substr($diaPago, 3,2)) + 1) . "/" . substr($diaPago, 6, 4)?></div>
 										</div>
 										<div class="col-sm-12" id="box" style="margin-bottom: 20px">
-											<label class="col-sm-12">Escola</label>
+											<label class="col-sm-12">Empresa</label>
 											<div class="col-sm-12" id="info">
 												<?php
 													$codigoEscola = $row['ESCOLA_CODIGO'];
@@ -377,7 +377,7 @@
 											<div class="col-sm-12" id="info"><?php echo $diaPago?> até <?php echo substr($diaPago, 0, 2)."/" . (intval(substr($diaPago, 3,2)) + 1) . "/" . substr($diaPago, 6, 4)?></div>
 										</div>
 										<div class="col-sm-12" id="box" style="margin-bottom: 20px">
-											<label class="col-sm-12">Escola</label>
+											<label class="col-sm-12">Empresa</label>
 											<div class="col-sm-12" id="info">
 												<?php
 													$codigoEscola = $row['ESCOLA_CODIGO'];

@@ -14,14 +14,6 @@ class ComumDAO extends Conexao{
 		
       foreach ($result as $row){
   		 	if($senha == $row['SENHA'] && $row['ATIVO'] == 1){
-          $sql = "SELECT * FROM MENSALIDADE INNER JOIN USUARIO ON MENSALIDADE.USUARIO_CPF = USUARIO.CPF WHERE TIMESTAMPDIFF(DAY, :DIA_ATUAL, MENSALIDADE.DIA_PAGO) <= 30 AND MENSALIDADE.STATUS = 3 AND USUARIO.ESCOLA_CODIGO = :ESCOLA AND MONTH(MENSALIDADE.DIA_PAGO) <= :MES AND YEAR(MENSALIDADE.DIA_PAGO) = :ANO ORDER BY MENSALIDADE.DIA_PAGO DESC LIMIT 1";
-          $tpmt = $con->prepare($sql);
-          $tpmt->bindValue(":DIA_ATUAL",date('Y-m-d'));
-          $tpmt->bindValue(':ESCOLA', $row['ESCOLA_CODIGO']);
-          $tpmt->bindValue(':MES', date('m'));
-          $tpmt->bindValue(":ANO", date('Y'));
-          $tpmt->execute();
-          if ($tpmt->rowCount() > 0) {
             session_start();
     				$_SESSION['CPF'] = $row['CPF'];
     				$_SESSION['senha'] = $row['SENHA'];
@@ -38,22 +30,7 @@ class ComumDAO extends Conexao{
     				}else if($row['PERMISSAO'] == 1){
     					echo json_encode(1);
     				}
-          }else{
-            if ($row['PERMISSAO'] == 1) {
-              session_start();
-              $_SESSION['CPF'] = $row['CPF'];
-              $_SESSION['senha'] = $row['SENHA'];
-              $_SESSION['nome'] = $row['NOME'];
-              $_SESSION['PERMISSAO'] = $row['PERMISSAO'];
-              $_SESSION['ativo'] = $row['ATIVO'];
-              $_SESSION['FOTO'] = $row['FOTO'];
-              $_SESSION['MODAL-INFO'] = false;
-              $_SESSION['ESCOLA'] = $row['ESCOLA_CODIGO'];
-              echo(json_encode(3));
-            }else{
-              echo json_encode(2);
-            }
-          }
+          
   			}else{
   				echo json_encode(2);
   				}

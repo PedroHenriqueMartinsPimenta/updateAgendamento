@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <!-- saved from url=(0032)http://localhost/diego/usuarios/ -->
 <html lang="pt-BR" class="has-offscreen"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+    <meta name="google-site-verification" content="f6S_53lYIUWuWT4P8GcdtonsI_A6r_bTuK4YCQvpSTk" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="http://gmpg.org/xfn/11">
 

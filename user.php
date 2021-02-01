@@ -310,7 +310,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         
       </div>
       <div class="modal-body">
-        <p>Seu equipamento preferido está disponivel nas aulas:</p>
+        <p>Seu equipamento preferido está disponivel nos horários:</p>
         <p>
             <?php 
                 $sql = "SELECT COUNT(EQUIPAMENTO_CODIGO) AS QTD, EQUIPAMENTO_CODIGO, DESCRICAO, QUANTIDADE FROM RESERVA INNER JOIN EQUIPAMENTO ON RESERVA.EQUIPAMENTO_CODIGO = EQUIPAMENTO.CODIGO WHERE RESERVA.USUARIO_CPF = '$cpf' GROUP BY EQUIPAMENTO_CODIGO ORDER BY QTD DESC LIMIT 2";

@@ -203,7 +203,7 @@
         ]);
 
         var options = {
-          title: '3 professores que mais agedaram neste mês',
+          title: '3 usuários que mais agedaram neste mês',
           pieHole: 0.4,
           backgroundColor:'transparent',
           color: 'rgba(230, 230, 230, 1);',

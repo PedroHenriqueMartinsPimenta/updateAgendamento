@@ -197,7 +197,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <div class="row header-description-row middle-sm">
     <div class="header-content header-content-centered col-md col-xs-12">
         <div class="align-holder center">
-            <h1 class="hero-title">Seja bem vindo administrador</h1><p class="header-subtitle">Agendamentos rápidos </p><div data-dynamic-mod-container="" class="header-buttons-wrapper"><a class="button big color1 round" target="_self" href="adm_files/html/dashboard/dashboard.php">Dashboard</a></div>        </div>
+            <h1 class="hero-title">Seja bem vindo administrador</h1><p class="header-subtitle">Agendamentos rápidos </p><div data-dynamic-mod-container="" class="header-buttons-wrapper"><a class="button big color1 round" target="_self" href="adm_files/html/reservas.php">Agendamentos de Hoje</a></div>        </div>
     </div>
 </div>
     </div>
@@ -311,7 +311,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         
       </div>
       <div class="modal-body">
-        <p>Seu equipamento preferido está disponivel nas aulas:</p>
+        <p>Seu equipamento preferido está disponivel nos horários:</p>
         <p>
             <?php 
                 $sql = "SELECT COUNT(EQUIPAMENTO_CODIGO) AS QTD, EQUIPAMENTO_CODIGO, DESCRICAO, QUANTIDADE FROM RESERVA INNER JOIN EQUIPAMENTO ON RESERVA.EQUIPAMENTO_CODIGO = EQUIPAMENTO.CODIGO WHERE RESERVA.USUARIO_CPF = '$cpf' GROUP BY EQUIPAMENTO_CODIGO ORDER BY QTD DESC LIMIT 2";

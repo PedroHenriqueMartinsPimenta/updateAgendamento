@@ -231,7 +231,7 @@ img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
         <div class="row header-description-row">
     <div class="col-xs col-xs-12">
         <h1 class="hero-title">
-            Aulas      
+            Horários      
          </h1>
                     <p class="header-subtitle">Agendamentos rapidos</p>
             </div>
